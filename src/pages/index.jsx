@@ -65,7 +65,7 @@ const columns = [
 ];
 
 const Page = () => {
-	const { data, loading, error } = useGet("http://0.0.0.0:3000/api/testCoins");
+	const { data, loading, error } = useGet("../api/testCoins");
 
 	return (
 		<Layout>

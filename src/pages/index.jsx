@@ -1,3 +1,4 @@
+import { styled } from "@mui/material";
 import Head from "next/head";
 import React from "react";
 import Layout from "../organisms/layout";
@@ -6,6 +7,10 @@ import useGet from "../ions/hooks/fetch/get";
 
 import Box from "@mui/material/Box"
 import { DataGrid } from "@mui/x-data-grid"
+
+const StyledDataGrid = styled(DataGrid)({
+
+})
 
 const columns = [
 	{
@@ -48,16 +53,14 @@ const columns = [
 	},
 	{
 		field: "current_price",
-		width: 60,
 		headerName: "Price",
 		valueFormatter: ({ value }) =>
 			new Intl.NumberFormat("en-US", {
 				style: "currency",
 				currency: "USD",
-				maximumSignificantDigits: 3
-			}).format(value)
+				currencyDisplay: "narrowSymbol"
+			}).format((Math.round(value * 100) / 100).toFixed(2))
 	},
-	{ field: "isFavorited", headerName: "Favorited", type: "boolean" }
 ];
 
 const Page = () => {
@@ -77,12 +80,17 @@ const Page = () => {
 						width: 1
 					}}
 				>
-					<DataGrid
+					<StyledDataGrid
 						hideFooter
 						rows={data}
 						columns={columns}
 						loading={loading}
 						density="standard"
+						GridLinesVisibility="None"
+						sx={{".MuiDataGrid-columnSeparator": {
+								visibility: "hidden",
+							},
+							m: .5}}
 					/>
 				</Box>
 			)}

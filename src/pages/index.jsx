@@ -7,6 +7,8 @@ import useGet from "../ions/hooks/fetch/get";
 import Box from "@mui/material/Box"
 import { DataGrid } from "@mui/x-data-grid"
 
+import { formatCurrency } from "@coingecko/cryptoformat";
+
 const columns = [
 	{
 		field: "market_cap_rank",
@@ -51,12 +53,7 @@ const columns = [
 		field: "current_price",
 		headerName: "Price",
 		valueFormatter: ({ value }) =>
-			new Intl.NumberFormat("en-US", {
-				style: "currency",
-				currency: "USD",
-				currencyDisplay: "narrowSymbol",
-				maximumSignificantDigits: 2
-			}).format(value)
+			formatCurrency(value, "USD", "en", false)
 	},
 ];
 

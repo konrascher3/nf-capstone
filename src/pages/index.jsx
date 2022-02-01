@@ -26,10 +26,11 @@ const columns = [
 	{
 		field: "name",
 		headerName: "Name",
+		minWidth: 130,
 		renderCell: (params) => (
 			<>
 				<img
-					style={{ width: "25px", paddingRight: "5px" }}
+					style={{ width: 25, paddingRight: 5 }}
 					src={`${params.row.image}`}
 					alt={`Project-icon of ${params.row.name}`}
 				/>
@@ -58,8 +59,9 @@ const columns = [
 			new Intl.NumberFormat("en-US", {
 				style: "currency",
 				currency: "USD",
-				currencyDisplay: "narrowSymbol"
-			}).format((Math.round(value * 100) / 100).toFixed(2))
+				currencyDisplay: "narrowSymbol",
+				maximumSignificantDigits: 2
+			}).format(value)
 	},
 ];
 

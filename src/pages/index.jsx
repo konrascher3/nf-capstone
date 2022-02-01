@@ -82,20 +82,16 @@ const Page = () => {
 			</Head>
 			{error && <div>{error.message}</div>}
 			{data && (
-				<Box
-					sx={{
-						height: 1000,
-						width: 1
-					}}
-				>
+				<Box >
 					<DataGrid
 						hideFooter
+						autoHeight
 						rows={data}
 						columns={columns}
 						loading={loading}
-						density="standart"
+						density="standard"
 						headerHeight={35}
-						scrollbarSize={-10}
+						//scrollbarSize={0}
 						sx={{".MuiDataGrid-columnSeparator": {
 								visibility: "hidden",
 							},

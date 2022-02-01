@@ -2,7 +2,7 @@ import React from "react";
 // import Link from "next/link";
 
 // Import logo
-import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode.svg"
+import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode-optimized.svg"
 
 // MUI Imports
 import AppBar from '@mui/material/AppBar';
@@ -15,7 +15,7 @@ const Header = () => {
 			<Box sx={{flexGrow: 1}}>
 				<AppBar position="static">
 					<Toolbar>
-						<img style={{height: "40px"}} src={logoDarkMode.src} alt="Coin ghost logo" />
+						<img style={{width: "180px"}} src={logoDarkMode.src} alt="Coin ghost logo" />
 					</Toolbar>
 				</AppBar>
 			</Box>

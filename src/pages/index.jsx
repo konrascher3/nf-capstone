@@ -86,12 +86,14 @@ const Page = () => {
 						rows={data}
 						columns={columns}
 						loading={loading}
-						density="standard"
-						GridLinesVisibility="None"
+						density="standart"
+						headerHeight={35}
 						sx={{".MuiDataGrid-columnSeparator": {
 								visibility: "hidden",
 							},
-							m: .5}}
+							m: .5,
+						}}
+
 					/>
 				</Box>
 			)}

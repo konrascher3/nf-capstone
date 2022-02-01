@@ -19,10 +19,6 @@ const Header = () => {
 					</Toolbar>
 				</AppBar>
 			</Box>
-			{/*<nav data-test-id="navigation">*/}
-			{/*	<Link href="/">Home</Link>*/}
-			{/*	<Link href="/about">About me</Link>*/}
-			{/*</nav>*/}
 		</header>
 	);
 };

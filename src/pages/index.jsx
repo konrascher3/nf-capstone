@@ -6,24 +6,29 @@ import useGet from "../ions/hooks/fetch/get";
 
 import Box from "@mui/material/Box"
 import { DataGrid } from "@mui/x-data-grid"
-
 import { formatCurrency } from "@coingecko/cryptoformat";
 
 const columns = [
 	{
 		field: "market_cap_rank",
-		width: 50,
+		width: 0,
 		headerName: "#",
 		renderCell: (params) => (
-			<div>
-				# {params.value}
+			/* TODO: Decide on  */
+			<div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+				{/* Checkbox */}
+				{/*<button style={{position: "absolute", left: 0, top: 0, border: "10px solid", borderColor: "red transparent transparent red" }}>*/}
+
+				{/*</button>*/}
+				<span>{params.value}.</span>
 			</div>
 		)
 	},
 	{
 		field: "name",
 		headerName: "Name",
-		minWidth: 130,
+		maxWidth: 400,
+		flex: 1,
 		renderCell: (params) => (
 			<div style={{display: "grid", gap: 10, gridTemplateColumns: "25px 1fr"}}>
 				<img
@@ -43,7 +48,7 @@ const columns = [
 	{
 		field: "price_change_percentage_24h",
 		headerName: "24h",
-		width: 70,
+		width:80,
 		renderCell: ({ value }) => {
 			const decimals = 0.0001;
 			return (
@@ -59,6 +64,8 @@ const columns = [
 	{
 		field: "current_price",
 		headerName: "Price",
+		width: 110,
+
 		valueFormatter: ({ value }) =>
 			formatCurrency(value, "USD", "en", false)
 	},
@@ -88,9 +95,14 @@ const Page = () => {
 						loading={loading}
 						density="standart"
 						headerHeight={35}
+						scrollbarSize={-10}
 						sx={{".MuiDataGrid-columnSeparator": {
 								visibility: "hidden",
 							},
+						".MuiDataGrid-cell": {
+							position: "relative",
+							overflow: "visible"
+						},
 							m: .5,
 						}}
 

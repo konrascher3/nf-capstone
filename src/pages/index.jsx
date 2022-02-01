@@ -48,7 +48,7 @@ const columns = [
 	{
 		field: "price_change_percentage_24h",
 		headerName: "24h",
-		width:80,
+		flex: 1,
 		renderCell: ({ value }) => {
 			const decimals = 0.0001;
 			return (

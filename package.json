@@ -20,7 +20,7 @@
     "storybook:build": "build-storybook",
     "test:e2e": "npx start-server-and-test@1 start http://localhost:3000 cypress:run",
     "test:unit": "npm run jest",
-    "test": "npm run test:unit && npm run test:e2e"
+    "test": "npm run test:unit && npm run"
   },
   "dependencies": {
     "@emotion/react": "11.7.1",

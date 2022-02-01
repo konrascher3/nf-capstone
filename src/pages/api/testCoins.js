@@ -41,7 +41,7 @@ res.status(200).json([
 			"high_24h": 2794.94,
 			"low_24h": 2518.66,
 			"price_change_24h": 225.61,
-			"price_change_percentage_24h": 8.89342,
+			"price_change_percentage_24h": -88.89342,
 			"market_cap_change_24h": 24617988360,
 			"market_cap_change_percentage_24h": 8.12142,
 			"circulating_supply": 119399629.499,

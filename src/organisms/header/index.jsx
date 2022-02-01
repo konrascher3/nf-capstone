@@ -1,5 +1,4 @@
 import React from "react";
-// import Link from "next/link";
 
 // Import logo
 import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode-optimized.svg"

@@ -8,10 +8,6 @@ import useGet from "../ions/hooks/fetch/get";
 import Box from "@mui/material/Box"
 import { DataGrid } from "@mui/x-data-grid"
 
-const StyledDataGrid = styled(DataGrid)({
-
-})
-
 const columns = [
 	{
 		field: "market_cap_rank",
@@ -82,7 +78,7 @@ const Page = () => {
 						width: 1
 					}}
 				>
-					<StyledDataGrid
+					<DataGrid
 						hideFooter
 						rows={data}
 						columns={columns}

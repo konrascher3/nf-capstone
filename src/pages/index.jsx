@@ -10,10 +10,11 @@ import { DataGrid } from "@mui/x-data-grid"
 const columns = [
 	{
 		field: "market_cap_rank",
-		headerName: "Rank",
+		width: 50,
+		headerName: "#",
 		renderCell: (params) => (
 			<div>
-				# {params.value} {console.log(params.value)}
+				# {params.value}
 			</div>
 		)
 	},
@@ -37,28 +38,27 @@ const columns = [
 	{
 		field: "price_change_percentage_24h",
 		headerName: "24h",
+		width: 70,
 		valueFormatter: ({ value }) => `${value} %`,
 		renderCell: ({ value }) => (
 			<div style={value > 0 ? { color: "green" } : { color: "red" }}>
-				{value > 0 ? "+" : ""}
 				{value.toFixed(2)} %
 			</div>
 		)
 	},
 	{
 		field: "current_price",
+		width: 60,
 		headerName: "Price",
 		valueFormatter: ({ value }) =>
 			new Intl.NumberFormat("en-US", {
 				style: "currency",
-				currency: "USD"
+				currency: "USD",
+				maximumSignificantDigits: 3
 			}).format(value)
 	},
 	{ field: "isFavorited", headerName: "Favorited", type: "boolean" }
-
-
 ];
-
 
 const Page = () => {
 	const { data, loading, error } = useGet("http://0.0.0.0:3000/api/testCoins");
@@ -69,12 +69,11 @@ const Page = () => {
 				<title key="title">coin ghost</title>
 				<meta key="description" name="description" content="This is my project" />
 			</Head>
-			{loading && <div>Loading...</div>}
 			{error && <div>{error.message}</div>}
 			{data && (
 				<Box
 					sx={{
-						height: 500,
+						height: 1000,
 						width: 1
 					}}
 				>
@@ -83,13 +82,11 @@ const Page = () => {
 						rows={data}
 						columns={columns}
 						loading={loading}
+						density="standard"
 					/>
 				</Box>
-
-
 			)}
 		</Layout>
-
 	);
 };
 

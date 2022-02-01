@@ -25,29 +25,36 @@ const columns = [
 		headerName: "Name",
 		minWidth: 130,
 		renderCell: (params) => (
-			<>
+			<div style={{display: "grid", gap: 10, gridTemplateColumns: "25px 1fr"}}>
 				<img
-					style={{ width: 25, paddingRight: 5 }}
+					style={{ width: 28, height: 28, alignSelf: "center" }}
 					src={`${params.row.image}`}
 					alt={`Project-icon of ${params.row.name}`}
 				/>
-				<div>
-					{params.value}
+				<div style={{width: "100%", overflow:"hidden",  whiteSpace: "no-wrap"}}>
+					<div style={{textOverflow: "ellipsis", overflow: "hidden" }}>
+						{params.value}
+					</div>
 					<div>{params.row.symbol.toUpperCase()}</div>
 				</div>
-			</>
+			</div>
 		)
 	},
 	{
 		field: "price_change_percentage_24h",
 		headerName: "24h",
 		width: 70,
-		valueFormatter: ({ value }) => `${value} %`,
-		renderCell: ({ value }) => (
-			<div style={value > 0 ? { color: "green" } : { color: "red" }}>
-				{value.toFixed(2)} %
-			</div>
-		)
+		renderCell: ({ value }) => {
+			const decimals = 0.0001;
+			return (
+				<div style={value > 0 ? { color: "green" } : { color: "red" }}>
+					{new Intl.NumberFormat("en-US", {
+						style: "percent",
+						maximumSignificantDigits: 5
+					}).format(Math.round(value / 1000 / decimals) * decimals)}
+				</div>
+			);
+		}
 	},
 	{
 		field: "current_price",

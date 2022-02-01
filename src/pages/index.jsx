@@ -27,7 +27,7 @@ const columns = [
 	{
 		field: "name",
 		headerName: "Name",
-		maxWidth: 400,
+		minWidth: 100,
 		flex: 1,
 		renderCell: (params) => (
 			<div style={{display: "grid", gap: 10, gridTemplateColumns: "25px 1fr"}}>

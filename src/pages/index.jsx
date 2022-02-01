@@ -1,4 +1,3 @@
-import { styled } from "@mui/material";
 import Head from "next/head";
 import React from "react";
 import Layout from "../organisms/layout";

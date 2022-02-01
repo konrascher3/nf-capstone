@@ -12,7 +12,7 @@ const Header = () => {
 	return (
 		<header>
 			<Box sx={{flexGrow: 1}}>
-				<AppBar position="static">
+				<AppBar position="static" elevation={1}>
 					<Toolbar>
 						<img style={{width: "180px"}} src={logoDarkMode.src} alt="Coin ghost logo" />
 					</Toolbar>

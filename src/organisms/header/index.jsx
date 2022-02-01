@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+// import Link from "next/link";
 
 // Import logo
 import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode.svg"
@@ -19,10 +19,10 @@ const Header = () => {
 					</Toolbar>
 				</AppBar>
 			</Box>
-			<nav data-test-id="navigation">
-				<Link href="/">Home</Link>
-				<Link href="/about">About me</Link>
-			</nav>
+			{/*<nav data-test-id="navigation">*/}
+			{/*	<Link href="/">Home</Link>*/}
+			{/*	<Link href="/about">About me</Link>*/}
+			{/*</nav>*/}
 		</header>
 	);
 };

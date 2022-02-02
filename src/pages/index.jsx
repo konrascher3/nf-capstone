@@ -2,6 +2,8 @@ import Head from "next/head";
 import React from "react";
 import Layout from "../organisms/layout";
 
+import FastMarquee from "/src/molecules/fastMarquee/fastMarquee"
+
 import useGet from "../ions/hooks/fetch/get";
 
 import Box from "@mui/material/Box"
@@ -14,7 +16,7 @@ const columns = [
 		width: 0,
 		headerName: "#",
 		renderCell: (params) => (
-			/* TODO: Decide on  */
+			/* TODO: Decide on bookmark */
 			<div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
 				{/* Checkbox */}
 				{/*<button style={{position: "absolute", left: 0, top: 0, border: "10px solid", borderColor: "red transparent transparent red" }}>*/}
@@ -82,28 +84,32 @@ const Page = () => {
 			</Head>
 			{error && <div>{error.message}</div>}
 			{data && (
-				<Box >
-					<DataGrid
-						hideFooter
-						autoHeight
-						rows={data}
-						columns={columns}
-						loading={loading}
-						density="standard"
-						headerHeight={35}
-						//scrollbarSize={0}
-						sx={{".MuiDataGrid-columnSeparator": {
-								visibility: "hidden",
+				<>
+					<Box sx={{ m: .75 }}>
+						<FastMarquee />
+					</Box>
+					<Box >
+						<DataGrid
+							hideFooter
+							autoHeight
+							rows={data}
+							columns={columns}
+							loading={loading}
+							density="standard"
+							headerHeight={35}
+							//scrollbarSize={0}
+							sx={{".MuiDataGrid-columnSeparator": {
+									visibility: "hidden",
+								},
+							".MuiDataGrid-cell": {
+								position: "relative",
+								overflow: "visible"
 							},
-						".MuiDataGrid-cell": {
-							position: "relative",
-							overflow: "visible"
-						},
-							m: .5,
-						}}
-
-					/>
-				</Box>
+								m: .5,
+							}}
+						/>
+					</Box>
+				</>
 			)}
 		</Layout>
 	);

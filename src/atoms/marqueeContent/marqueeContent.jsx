@@ -4,7 +4,7 @@ import Typography from  "@mui/material/Typography"
 import useGet from "../../ions/hooks/fetch/get";
 
 const marqueeContent = () => {
-	const { data, loading, error } = useGet("../api/fetchGlobals");
+	const { data, loading, error } = useGet("../api/fetch-globals");
 	return (
 		<>
 			{loading ?? <Typography variant="caption">loading...</Typography>}
@@ -22,8 +22,7 @@ const marqueeContent = () => {
 					<Typography variant="caption">⠀•⠀</Typography>
 					<Typography variant="caption">{`24h Vol: ${new Intl.NumberFormat("en-US", {notation: "compact", style: 'currency', currency: 'USD'}).format(data["24h Vol"].toString())}`}</Typography>
 					<Typography variant="caption">⠀•⠀</Typography>
-				</>
-			}
+				</>}
 		</>
 	)
 }

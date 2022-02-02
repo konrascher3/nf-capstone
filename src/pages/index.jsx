@@ -91,7 +91,7 @@ const columns = [
 ];
 
 const Page = () => {
-	const { data, loading, error } = useGet("../api/testCoins");
+	const { data, loading, error } = useGet("../api/test-coins");
 
 	return (
 		<Layout>

@@ -9,9 +9,7 @@ const FastMarquee = () => {
 			gradientWidth={10}
 			speed={25}
 		>
-			<div>
-				<MarqueeContent/>
-			</div>
+			<MarqueeContent/>
 		</Marquee>
 	)
 }

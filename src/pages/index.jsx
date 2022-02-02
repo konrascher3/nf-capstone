@@ -7,8 +7,26 @@ import FastMarquee from "/src/molecules/fastMarquee/fastMarquee"
 import useGet from "../ions/hooks/fetch/get";
 
 import Box from "@mui/material/Box"
+import { styled } from "@mui/material/";
 import { DataGrid } from "@mui/x-data-grid"
+
 import { formatCurrency } from "@coingecko/cryptoformat";
+
+
+// Styled components (columns)
+const StyledRankColumn = styled("div")({
+	position: "absolute",
+	inset: 0,
+	display: "flex",
+	alignItems: "center",
+	justifyContent: "center"
+})
+
+const StyledNameColumn = styled("div")({
+	display: "grid",
+	gap: 10,
+	gridTemplateColumns: "25px 1fr"
+})
 
 const columns = [
 	{
@@ -17,13 +35,12 @@ const columns = [
 		headerName: "#",
 		renderCell: (params) => (
 			/* TODO: Decide on bookmark */
-			<div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+			<StyledRankColumn>
 				{/* Checkbox */}
 				{/*<button style={{position: "absolute", left: 0, top: 0, border: "10px solid", borderColor: "red transparent transparent red" }}>*/}
-
 				{/*</button>*/}
 				<span>{params.value}.</span>
-			</div>
+			</StyledRankColumn>
 		)
 	},
 	{
@@ -32,7 +49,7 @@ const columns = [
 		minWidth: 100,
 		flex: 1,
 		renderCell: (params) => (
-			<div style={{display: "grid", gap: 10, gridTemplateColumns: "25px 1fr"}}>
+			<StyledNameColumn>
 				<img
 					style={{ width: 28, height: 28, alignSelf: "center" }}
 					src={`${params.row.image}`}
@@ -44,7 +61,7 @@ const columns = [
 					</div>
 					<div>{params.row.symbol.toUpperCase()}</div>
 				</div>
-			</div>
+			</StyledNameColumn>
 		)
 	},
 	{
@@ -67,7 +84,6 @@ const columns = [
 		field: "current_price",
 		headerName: "Price",
 		width: 110,
-
 		valueFormatter: ({ value }) =>
 			formatCurrency(value, "USD", "en", false)
 	},

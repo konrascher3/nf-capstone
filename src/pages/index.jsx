@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import Layout from "../organisms/layout";
 
-import FastMarquee from "/src/molecules/fastMarquee/fastMarquee"
+import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
 
 import useGet from "../ions/hooks/fetch/get";
 

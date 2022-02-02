@@ -2,13 +2,17 @@ import Head from "next/head";
 import React from "react";
 import Layout from "../organisms/layout";
 
-import FastMarquee from "/src/molecules/fastMarquee/fastMarquee"
+import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
 
 import useGet from "../ions/hooks/fetch/get";
 
+// MUI Imports
 import Box from "@mui/material/Box"
 import { styled } from "@mui/material/";
+//// Data-grid component
 import { DataGrid } from "@mui/x-data-grid"
+
+import TabBar from "/src/molecules/tab-bar/TabBar"
 
 import { formatCurrency } from "@coingecko/cryptoformat";
 
@@ -28,6 +32,7 @@ const StyledNameColumn = styled("div")({
 	gridTemplateColumns: "25px 1fr"
 })
 
+// Data-grid component (columns)
 const columns = [
 	{
 		field: "market_cap_rank",
@@ -90,7 +95,7 @@ const columns = [
 ];
 
 const Page = () => {
-	const { data, loading, error } = useGet("../api/testCoins");
+	const { data, loading, error } = useGet("../api/test-coins");
 
 	return (
 		<Layout>
@@ -101,9 +106,15 @@ const Page = () => {
 			{error && <div>{error.message}</div>}
 			{data && (
 				<>
+					{/*Tab-bar component*/}
+					< TabBar />
+
+					{/*Marquee component*/}
 					<Box sx={{ m: .75 }}>
 						<FastMarquee />
 					</Box>
+
+					{/*Data-grid component*/}
 					<Box >
 						<DataGrid
 							hideFooter

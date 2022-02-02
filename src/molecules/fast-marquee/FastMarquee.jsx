@@ -1,7 +1,7 @@
 import React from "react"
 
 import Marquee from "react-fast-marquee"
-import MarqueeContent from "/src/atoms/marqueeContent/marqueeContent"
+import MarqueeContent from "/src/atoms/marquee-content/MarqueeContent"
 
 const FastMarquee = () => {
 	return (

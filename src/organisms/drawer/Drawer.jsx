@@ -9,6 +9,7 @@ import DrawerList from "/src/molecules/drawer-list/DrawerList"
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore"
+import SidebarAppBar from "/src/molecules/sidebar-appbar/SidebarAppBar";
 
 
 const Drawer = () => {
@@ -16,12 +17,13 @@ const Drawer = () => {
 
 	return (
 		<SwipeableDrawer
-			anchor="right"
+			anchor="left"
 			open={open}
 			onOpen={()=>{setOpen(!open)}}
 			onClose={()=>{setOpen(!open)}}
 		>
 			<Box>
+				<SidebarAppBar />
 				<DrawerList />
 			</Box>
 		</SwipeableDrawer>

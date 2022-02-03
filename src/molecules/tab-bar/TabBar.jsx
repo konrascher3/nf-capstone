@@ -41,11 +41,19 @@ function a11yProps(index) {
 	};
 }
 
-console.log("tabbar")
-
 const TabBar = () => {
-	const [value, setValue] = React.useState(0);
 
+	const endpoints = {
+		topCoins: "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+		stableCoins: "coins/markets?vs_currency=usd&category=stablecoins&order=market_cap_desc&sparkline=false",
+		memeCoins: "coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&sparkline=false",
+		nftCoins: "coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&sparkline=false",
+		dexCoins: "coins/markets?vs_currency=usd&category=decentralized-exchange&order=market_cap_desc&sparkline=false",
+		gameCoins: "coins/markets?vs_currency=usd&category=gaming&order=market_cap_desc&sparkline=false",
+		musicCoins: "coins/markets?vs_currency=usd&category=music&order=market_cap_desc&sparkline=false"
+	}
+
+	const [value, setValue] = React.useState(0);
 	const fetchData = useStore((state) => state.fetchData)
 	const loading = useStore((state)  => state.loading)
 
@@ -54,31 +62,31 @@ const TabBar = () => {
 		switch (newValue) {
 			case 0:
 				console.log("top-coins fetching")
-				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`)
 				break
 			case 1:
 				console.log("stable-coins fetching")
-				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=stablecoins&order=market_cap_desc&sparkline=false")
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.stableCoins}`)
 				break
 			case 2:
 				console.log("meme-coins fetching")
-				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&sparkline=false")
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.memeCoins}`)
 				break
 			case 3:
 				console.log("nft-coins fetching")
-				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=non-fungible-tokens-nft&order=market_cap_desc&sparkline=false")
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`)
 				break
 			case 4:
 				console.log("dex-coins fetching")
-				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=decentralized-exchange&order=market_cap_desc&sparkline=false")
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`)
 				break
 			case 5:
 				console.log("game-coins fetching")
-				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=gaming&order=market_cap_desc&sparkline=false")
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`)
 				break
 			case 6:
 				console.log("music-coins fetching")
-				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=music&order=market_cap_desc&sparkline=false")
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`)
 				break
 		}
 	};

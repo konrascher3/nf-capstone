@@ -5,10 +5,11 @@ const useStore = create((set) => ({
 	data: null,
 	loading: false,
 	error: null,
+	coins: null,
 	endpoint: "",
 	url:"",
 	setCoins: (data) => ({
-		data,
+		coins: data,
 		error: null,
 		loading: true,
 	}),
@@ -23,6 +24,7 @@ const useStore = create((set) => ({
 				set({
 					error: null,
 					data,
+					coins: data,
 					loading: false,
 				});
 			})

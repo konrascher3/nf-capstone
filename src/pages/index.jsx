@@ -11,6 +11,7 @@ import Box from "@mui/material/Box"
 import TabBar from "/src/molecules/tab-bar/TabBar"
 import CoinsDataGrid from "/src/molecules/coins-data-grid/DataGrid"
 import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton"
+import Drawer from "/src/organisms/drawer/Drawer"
 
 // useStore
 import useStore from "../ions/hooks/state/useStore";
@@ -33,6 +34,9 @@ const {data, error, fetchData} = useStore((state) => state);
 			{error && <div>{error.message}</div>}
 			{data && (
 				<>
+					{/*Drawer component*/}
+					<Drawer />
+
 					{/*Tab-bar component*/}
 					< TabBar />
 

@@ -12,8 +12,9 @@ import TabBar from "/src/molecules/tab-bar/TabBar"
 import CoinsDataGrid from "/src/molecules/coins-data-grid/DataGrid"
 import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton"
 
-// useStore Import
+// useStore
 import useStore from "../ions/hooks/state/useStore";
+
 
 const Page = () => {
 const {data, error, fetchData} = useStore((state) => state);

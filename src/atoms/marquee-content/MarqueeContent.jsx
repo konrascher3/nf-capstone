@@ -3,6 +3,7 @@ import React from "react"
 import Typography from  "@mui/material/Typography"
 import useGet from "../../ions/hooks/fetch/get";
 
+
 const marqueeContent = () => {
 	const { data, loading, error } = useGet("../api/fetch-globals");
 	return (

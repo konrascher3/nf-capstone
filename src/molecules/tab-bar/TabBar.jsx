@@ -41,6 +41,7 @@ function a11yProps(index) {
 	};
 }
 
+
 const TabBar = () => {
 
 	const endpoints = {

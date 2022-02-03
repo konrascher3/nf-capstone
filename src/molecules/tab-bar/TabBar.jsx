@@ -54,7 +54,7 @@ const TabBar = () => {
 		switch (newValue) {
 			case 0:
 				console.log("top-coins fetching")
-				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=49&page=1&sparkline=false")
+				fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
 				break
 			case 1:
 				console.log("stable-coins fetching")

@@ -149,7 +149,9 @@ const Page = () => {
 							onPageSizeChange={(newPage) => setPageSize(newPage)}
 						/>
 					</Box>
-					<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}><Button onClick={()=>{setPageSize(pageSize + 10)}}>load more</Button></Box>
+					{/* TODO: implement pagination */}
+					{/* max.: per_page=249&page=1 */}
+					<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}><Button disabled={pageSize > 50} onClick={()=>{setPageSize(pageSize + 10)}}>load more</Button></Box>
 
 				</>
 			)}

@@ -8,6 +8,7 @@ import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
 import Box from "@mui/material/Box"
 import { styled } from "@mui/material/";
 import Button from "@mui/material/Button"
+import LoadingButton from "@mui/lab/LoadingButton"
 //// Data-grid component
 import { DataGrid } from "@mui/x-data-grid"
 
@@ -96,8 +97,8 @@ const columns = [
 ];
 
 const Page = () => {
-	const { data, loading, error, fetchData } = useStore((state) => state)
-	const initialPageSize = 15;
+	const { data, loading, error, fetchData, coins } = useStore((state) => state)
+	const initialPageSize = 20;
 	const [pageSize, setPageSize] = useState(initialPageSize);
 
 	// Reset page-size if category switches
@@ -105,7 +106,7 @@ const Page = () => {
 
 	// Initial fetch if data = 0
 	if(data === null) {
-		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=49&page=1&sparkline=false")
+		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
 	}
 
 	return (
@@ -131,7 +132,7 @@ const Page = () => {
 							hideFooter
 							autoHeight
 							pageSize={pageSize}
-							rows={data}
+							rows={coins}
 							columns={columns}
 							loading={loading}
 							density="standard"
@@ -151,7 +152,11 @@ const Page = () => {
 					</Box>
 					{/* TODO: implement pagination */}
 					{/* max.: per_page=249&page=1 */}
-					<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}><Button disabled={pageSize > 50} onClick={()=>{setPageSize(pageSize + 10)}}>load more</Button></Box>
+					<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}>
+						<LoadingButton loading={loading} disabled={pageSize >= coins.length} onClick={()=>{setPageSize(pageSize + 10)}}>
+							load more
+						</LoadingButton>
+					</Box>
 
 				</>
 			)}

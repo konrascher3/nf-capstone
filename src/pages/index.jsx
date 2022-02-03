@@ -95,6 +95,8 @@ const columns = [
 	},
 ];
 
+
+
 const Page = () => {
 	const { data, loading, error, fetchData, coins } = useStore((state) => state)
 	const initialPageSize = 20;
@@ -107,7 +109,8 @@ const Page = () => {
 	if(data === null) {
 		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
 	}
-
+	console.log(data?.length);
+	console.log(pageSize)
 	return (
 		<Layout>
 			<Head>
@@ -152,7 +155,7 @@ const Page = () => {
 					{/* TODO: implement pagination */}
 					{/* max.: per_page=249&page=1 */}
 					<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}>
-						<LoadingButton loading={loading} disabled={pageSize >= coins.length} onClick={()=>{setPageSize(pageSize + 10)}}>
+						<LoadingButton loading={loading} disabled={pageSize === 100 || pageSize >= coins.length} onClick={()=>{setPageSize(pageSize + 10)}}>
 							load more
 						</LoadingButton>
 					</Box>

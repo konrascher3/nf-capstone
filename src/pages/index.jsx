@@ -1,14 +1,13 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../organisms/layout";
 
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
 
-import useGet from "../ions/hooks/fetch/get";
-
 // MUI Imports
 import Box from "@mui/material/Box"
 import { styled } from "@mui/material/";
+import LoadingButton from "@mui/lab/LoadingButton"
 //// Data-grid component
 import { DataGrid } from "@mui/x-data-grid"
 
@@ -16,6 +15,8 @@ import TabBar from "/src/molecules/tab-bar/TabBar"
 
 import { formatCurrency } from "@coingecko/cryptoformat";
 
+// useState
+import useStore from "/src/ions/hooks/state/useStore"
 
 // Styled components (columns)
 const StyledRankColumn = styled("div")({
@@ -94,9 +95,20 @@ const columns = [
 	},
 ];
 
-const Page = () => {
-	const { data, loading, error } = useGet("../api/test-coins");
 
+
+const Page = () => {
+	const { data, loading, error, fetchData, coins } = useStore((state) => state)
+	const initialPageSize = 20;
+	const [pageSize, setPageSize] = useState(initialPageSize);
+
+	// Reset page-size if category switches
+	useEffect(()=>{setPageSize(initialPageSize)}, [data])
+
+	// Initial fetch if data = null
+	if(data === null) {
+		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+	}
 	return (
 		<Layout>
 			<Head>
@@ -119,12 +131,12 @@ const Page = () => {
 						<DataGrid
 							hideFooter
 							autoHeight
-							rows={data}
+							pageSize={pageSize}
+							rows={coins}
 							columns={columns}
 							loading={loading}
 							density="standard"
 							headerHeight={35}
-							//scrollbarSize={0}
 							sx={{".MuiDataGrid-columnSeparator": {
 									visibility: "hidden",
 								},
@@ -134,8 +146,18 @@ const Page = () => {
 							},
 								m: .5,
 							}}
+							//scrollbarSize={0}
+							onPageSizeChange={(newPage) => setPageSize(newPage)}
 						/>
 					</Box>
+					{/* TODO: implement pagination */}
+					{/* max.: per_page=249&page=1 */}
+					<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}>
+						<LoadingButton loading={loading} disabled={pageSize === 100 || pageSize >= coins.length} onClick={()=>{setPageSize(pageSize + 10)}}>
+							load more
+						</LoadingButton>
+					</Box>
+
 				</>
 			)}
 		</Layout>

@@ -47,7 +47,7 @@ const TabBar = () => {
 		topCoins: "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
 		stableCoins: "coins/markets?vs_currency=usd&category=stablecoins&order=market_cap_desc&sparkline=false",
 		memeCoins: "coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&sparkline=false",
-		nftCoins: "coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&sparkline=false",
+		nftCoins: "coins/markets?vs_currency=usd&category=non-fungible-tokens-nft&order=market_cap_desc&sparkline=false",
 		dexCoins: "coins/markets?vs_currency=usd&category=decentralized-exchange&order=market_cap_desc&sparkline=false",
 		gameCoins: "coins/markets?vs_currency=usd&category=gaming&order=market_cap_desc&sparkline=false",
 		musicCoins: "coins/markets?vs_currency=usd&category=music&order=market_cap_desc&sparkline=false"
@@ -74,19 +74,19 @@ const TabBar = () => {
 				break
 			case 3:
 				console.log("nft-coins fetching")
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.nftCoins}`)
 				break
 			case 4:
 				console.log("dex-coins fetching")
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`)
 				break
 			case 5:
 				console.log("game-coins fetching")
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`)
 				break
 			case 6:
 				console.log("music-coins fetching")
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`)
 				break
 		}
 	};

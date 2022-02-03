@@ -61,31 +61,24 @@ const TabBar = () => {
 		setValue(newValue);
 		switch (newValue) {
 			case 0:
-				console.log("top-coins fetching")
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`)
 				break
 			case 1:
-				console.log("stable-coins fetching")
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.stableCoins}`)
 				break
 			case 2:
-				console.log("meme-coins fetching")
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.memeCoins}`)
 				break
 			case 3:
-				console.log("nft-coins fetching")
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.nftCoins}`)
 				break
 			case 4:
-				console.log("dex-coins fetching")
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`)
 				break
 			case 5:
-				console.log("game-coins fetching")
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`)
 				break
 			case 6:
-				console.log("music-coins fetching")
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`)
 				break
 		}

@@ -6,8 +6,6 @@ const useStore = create((set) => ({
 	loading: false,
 	error: null,
 	coins: null,
-	endpoint: "",
-	url:"",
 	setCoins: (data) => ({
 		coins: data,
 		error: null,

@@ -16,7 +16,6 @@ import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode-optimized.
 import { mdiClose } from "@mdi/js";
 
 
-
 const SidebarAppBar = () => {
 	const { open, setOpen } = useStore((state) => state)
 	return (

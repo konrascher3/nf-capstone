@@ -4,8 +4,6 @@ import Layout from "../organisms/layout";
 
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
 
-import useGet from "../ions/hooks/fetch/get";
-
 // MUI Imports
 import Box from "@mui/material/Box"
 import { styled } from "@mui/material/";
@@ -16,6 +14,8 @@ import TabBar from "/src/molecules/tab-bar/TabBar"
 
 import { formatCurrency } from "@coingecko/cryptoformat";
 
+// useState
+import useStore from "/src/ions/hooks/state/useStore"
 
 // Styled components (columns)
 const StyledRankColumn = styled("div")({
@@ -95,7 +95,12 @@ const columns = [
 ];
 
 const Page = () => {
-	const { data, loading, error } = useGet("../api/test-coins");
+	const { data, loading, error, fetchData } = useStore((state) => state)
+
+	// Initial fetch if data = 0
+	if(data === null) {
+		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=49&page=1&sparkline=false")
+	}
 
 	return (
 		<Layout>

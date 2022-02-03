@@ -14,7 +14,7 @@ import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton"
 import Drawer from "/src/organisms/drawer/Drawer"
 
 // useStore
-import useStore from "../ions/hooks/state/useStore";
+import useStore from "/src/ions/hooks/state/useStore";
 
 
 const Page = () => {

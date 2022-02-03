@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../organisms/layout";
 
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
@@ -7,6 +7,7 @@ import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
 // MUI Imports
 import Box from "@mui/material/Box"
 import { styled } from "@mui/material/";
+import Button from "@mui/material/Button"
 //// Data-grid component
 import { DataGrid } from "@mui/x-data-grid"
 
@@ -96,6 +97,11 @@ const columns = [
 
 const Page = () => {
 	const { data, loading, error, fetchData } = useStore((state) => state)
+	const initialPageSize = 15;
+	const [pageSize, setPageSize] = useState(initialPageSize);
+
+	// Reset page-size if category switches
+	useEffect(()=>{setPageSize(initialPageSize)}, [data])
 
 	// Initial fetch if data = 0
 	if(data === null) {
@@ -124,12 +130,12 @@ const Page = () => {
 						<DataGrid
 							hideFooter
 							autoHeight
+							pageSize={pageSize}
 							rows={data}
 							columns={columns}
 							loading={loading}
 							density="standard"
 							headerHeight={35}
-							//scrollbarSize={0}
 							sx={{".MuiDataGrid-columnSeparator": {
 									visibility: "hidden",
 								},
@@ -139,8 +145,12 @@ const Page = () => {
 							},
 								m: .5,
 							}}
+							//scrollbarSize={0}
+							onPageSizeChange={(newPage) => setPageSize(newPage)}
 						/>
 					</Box>
+					<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}><Button onClick={()=>{setPageSize(pageSize + 10)}}>load more</Button></Box>
+
 				</>
 			)}
 		</Layout>

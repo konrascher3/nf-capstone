@@ -105,7 +105,7 @@ const Page = () => {
 	// Reset page-size if category switches
 	useEffect(()=>{setPageSize(initialPageSize)}, [data])
 
-	// Initial fetch if data = 0
+	// Initial fetch if data = null
 	if(data === null) {
 		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
 	}

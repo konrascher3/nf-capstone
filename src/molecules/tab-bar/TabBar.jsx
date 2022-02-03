@@ -54,8 +54,7 @@ const TabBar = () => {
 	}
 
 	const [value, setValue] = React.useState(0);
-	const fetchData = useStore((state) => state.fetchData)
-	const loading = useStore((state)  => state.loading)
+	const {fetchData, loading} = useStore((state) => state)
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);

@@ -88,10 +88,15 @@ const columns = [
 ];
 
 const CoinsDataGrid = () => {
-	const { data, loading, error, coins } = useStore((state) => state)
-	const initialPageSize = useStore((state) => state.initialPageSize);
-	const setPageSize = useStore((state) => state.setPageSize);
-	const pageSize = useStore((state) => state.pageSize);
+	const {
+		data,
+		loading,
+		error,
+		coins,
+		initialPageSize,
+		setPageSize,
+		pageSize
+	} = useStore((state) => state)
 
 	// Reset page-size if category switches
 	useEffect(()=>{

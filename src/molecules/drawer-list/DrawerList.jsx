@@ -1,11 +1,10 @@
+// MUI Imports
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import React from 'react';
-
-// MUI Imports
 
 // Material-design-icons Imports
 import Icon from '@mdi/react'
@@ -15,7 +14,7 @@ import { mdiMagnify } from '@mdi/js';
 import { mdiNewspaperVariant } from '@mdi/js';
 
 
-
+// TODO: add map function to map list items over nav-links
 const DrawerList = () => {
 	return (
 		<List sx={{ width: 200, padding: 0 }}>

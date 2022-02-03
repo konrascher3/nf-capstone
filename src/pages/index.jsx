@@ -34,11 +34,11 @@ const {data, error, fetchData} = useStore((state) => state);
 			{error && <div>{error.message}</div>}
 			{data && (
 				<>
-					{/*Drawer component*/}
-					<Drawer />
-
 					{/*Tab-bar component*/}
 					< TabBar />
+
+					{/*Drawer component*/}
+					<Drawer />
 
 					{/*Marquee component*/}
 					<Box sx={{ m: .75 }}>

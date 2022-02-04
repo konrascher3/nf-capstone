@@ -12,7 +12,7 @@ import meme from "/src/ions/img/memes/jurassic-park.webp"
 
 
 const Page = () => {
-	const { coins, loading, error } = useStore((state) => state);
+	const { loading, error } = useStore((state) => state);
 
 	return (
 		<Layout>
@@ -22,13 +22,11 @@ const Page = () => {
 			</Head>
 			{loading && <div>Loading...</div>}
 			{error && <div>{error.message}</div>}
-			{coins && (
-				<div>
-					<Box sx={{ display: "flex", m: 5, alignItems: "center", justifyContent: "center" }}>
-						<Image layout="intrinsic" placeholder="blur" src={meme} alt="Ah ah ah! You didn't say the magic word!"/>
-					</Box>
-				</div>
-			)}
+			<div>
+				<Box sx={{ display: "flex", m: 5, alignItems: "center", justifyContent: "center" }}>
+					<Image layout="intrinsic" placeholder="blur" src={meme} alt="Ah ah ah! You didn't say the magic word!"/>
+				</Box>
+			</div>
 		</Layout>
 	);
 };

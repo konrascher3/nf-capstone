@@ -9,9 +9,10 @@ const useStore = create((set) => ({
 	coins: null,
 	pageSize: null,
 	open: false,
+	favorited: false,
 	meta: {
 		"bitcoin": {
-			favorited: false
+			favorited: true
 		}
 	},
 	toggleFavorited: (id) => {

@@ -33,6 +33,11 @@ const CoinsDataGrid = () => {
 			{error && <Typography variant="caption">{error.message}</Typography>}
 			{data &&
 				<DataGrid
+					disableSelectionOnClick
+					disableColumnSelector
+					disableDensitySelector
+					disableColumnFilter
+					disableColumnMenu
 					hideFooter
 					autoHeight
 					pageSize={pageSize}
@@ -49,6 +54,9 @@ const CoinsDataGrid = () => {
 							overflow: "visible"
 						},
 						m: .5,
+						".MuiDataGrid-cell:focus-within": {
+							outline: "none !important"
+						}
 					}}
 					onPageSizeChange={(newPage) => setPageSize(newPage)} />}
 		</>

@@ -1,5 +1,6 @@
 import create from "zustand";
 import axios from "axios";
+import merge from "deepmerge";
 
 const useStore = create((set) => ({
 	data: null,
@@ -8,6 +9,18 @@ const useStore = create((set) => ({
 	coins: null,
 	pageSize: null,
 	open: false,
+	meta: {
+		"bitcoin": {
+			favorited: false
+		}
+	},
+	toggleFavorited: (id) => {
+		set((state) => ({
+			meta: merge(state.meta, {
+				[id]: { favorited: !state.meta[id]?.favorited },
+			}),
+		}));
+	},
 
 	setOpen: (open) => (
 		set({ open: open })

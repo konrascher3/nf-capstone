@@ -2,6 +2,7 @@ import create from "zustand";
 import axios from "axios";
 import merge from "deepmerge";
 
+
 const useStore = create((set) => ({
 	data: null,
 	loading: false,
@@ -9,18 +10,7 @@ const useStore = create((set) => ({
 	coins: null,
 	pageSize: null,
 	open: false,
-	favorited: false,
-	meta: {
-		"bitcoin": {
-			favorited: true
-		},
-		"polkadot": {
-			favorited: true
-		},
-		"ethereum": {
-			favorited: true
-		},
-	},
+	meta: {},
 	toggleFavorited: (id) => {
 		set((state) => ({
 			meta: merge(state.meta, {
@@ -35,14 +25,11 @@ const useStore = create((set) => ({
 	setPageSize: (page) => (
 		set({ pageSize: page })
 	),
-	setCoins: (data) => ({
-		coins: data,
-		error: null,
-		loading: true,
-	}),
+	setCoins: (data) => (
+		set({ coins: data })
+	),
 	setUrl: (url) => ({
 		url: url
-
 	}),
 	fetchData: (url) => {
 		axios

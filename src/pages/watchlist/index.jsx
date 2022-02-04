@@ -72,7 +72,7 @@ const Page = () => {
 						minHeight: "50vh"
 					}}
 					>
-						<LottieTumbleweed />
+						<Box sx={{ maxWidth: "600px" }}><LottieTumbleweed /></Box>
 						<Typography variant="h6">It looks kinda empty here...</Typography>
 					</Box>
 				</div>)}

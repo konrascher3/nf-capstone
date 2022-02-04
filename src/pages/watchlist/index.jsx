@@ -48,6 +48,8 @@ const Page = () => {
 		}
 	}, [meta])
 
+	console.log(favoritedCoins)
+
 	return (
 		<Layout>
 			<Head>

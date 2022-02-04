@@ -8,6 +8,7 @@ const useStore = create((set) => ({
 	coins: null,
 	pageSize: null,
 	open: false,
+
 	setOpen: (open) => (
 		set({ open: open })
 	),

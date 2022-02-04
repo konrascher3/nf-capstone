@@ -58,21 +58,22 @@ const Page = () => {
 			<Box sx={{ m: .75 }}>
 				<FastMarquee />
 			</Box>
-			{!coins && (<div>
-				<Box sx={{
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "center",
-					alignItems: "center",
-					gap: 5,
-					m: 5,
-					minHeight: "50vh"
-				}}
-				>
-					<LottieTumbleweed />
-					<Typography variant="h6">It looks kinda empty here...</Typography>
-				</Box>
-			</div>)}
+			{!coins && (
+				<div>
+					<Box sx={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+						gap: 5,
+						m: 5,
+						minHeight: "50vh"
+					}}
+					>
+						<LottieTumbleweed />
+						<Typography variant="h6">It looks kinda empty here...</Typography>
+					</Box>
+				</div>)}
 			{loading && <div>Loading...</div>}
 			{error && <div>{error.message}</div>}
 			{coins && (

@@ -1,8 +1,12 @@
 import React from "react";
+
 import { formatCurrency } from "@coingecko/cryptoformat";
 
-// Styled-components import
+// Styled-components Import
 import {StyledRankColumn, StyledNameColumn} from "/src/ions/data-grid-columns/styled"
+
+// Custom-components Imports
+import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox"
 
 
 const DataGridColumns = [
@@ -10,15 +14,14 @@ const DataGridColumns = [
 		field: "market_cap_rank",
 		width: 0,
 		headerName: "#",
-		renderCell: (params) => (
-			/* TODO: Decide on bookmark */
-			<StyledRankColumn>
-				{/* Checkbox */}
-				{/*<button style={{position: "absolute", left: 0, top: 0, border: "10px solid", borderColor: "red transparent transparent red" }}>*/}
-				{/*</button>*/}
-				<span>{params.value}.</span>
-			</StyledRankColumn>
-		)
+		renderCell: (params) => {
+			return (
+				/* TODO: Decide on bookmark */
+				<StyledRankColumn style={{ position: "relative" }}>
+					<CustomCheckbox params={params} />
+					<span>{params.value}.</span>
+				</StyledRankColumn>
+			)}
 	},
 	{
 		field: "name",

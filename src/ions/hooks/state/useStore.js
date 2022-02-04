@@ -13,7 +13,13 @@ const useStore = create((set) => ({
 	meta: {
 		"bitcoin": {
 			favorited: true
-		}
+		},
+		"polkadot": {
+			favorited: true
+		},
+		"ethereum": {
+			favorited: true
+		},
 	},
 	toggleFavorited: (id) => {
 		set((state) => ({
@@ -22,7 +28,6 @@ const useStore = create((set) => ({
 			}),
 		}));
 	},
-
 	setOpen: (open) => (
 		set({ open: open })
 	),

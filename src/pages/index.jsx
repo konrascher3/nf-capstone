@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../organisms/layout";
 
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
@@ -17,12 +17,16 @@ import useStore from "/src/ions/hooks/state/useStore";
 
 
 const Page = () => {
-const {data, error, fetchData} = useStore((state) => state);
+const {data, error, fetchData, coins} = useStore((state) => state);
 
-	// Initial fetch if data = null
-	if(data === null) {
+// Initial fetch
+	if (coins === null){
 		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
 	}
+// Reset coins-array
+	useEffect(()=>{
+		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+	})
 
 	return (
 		<Layout>

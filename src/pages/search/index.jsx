@@ -1,5 +1,6 @@
+import axios from "axios";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 
 import Layout from "/src/organisms/layout/index";
 
@@ -16,7 +17,32 @@ import Searchbar from "../../molecules/searchbar/Searchbar";
 
 
 const Page = () => {
-	const { error, coins } = useStore((state) => state);
+	const { error, coins, setCoins, setLoading } = useStore((state) => state);
+
+	// Get trending coins in search if search-page is opened
+	useEffect( ()=>{
+		const getTrending = async () => {
+			setLoading(true)
+			const { data } = await axios.get("https://api.coingecko.com/api/v3/search/trending");
+			if (data){
+				const fetchData = async () => {
+					const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets",
+						{ params:
+								{
+									vs_currency: "usd",
+									ids: data.coins.map(({ item }) => item.id).join(",")
+								}
+						});
+					setCoins(response.data);
+					console.log(response.data)
+					setLoading(false)
+				};
+				fetchData()
+			} else {
+				setLoading(false)}
+		}
+		getTrending()
+	}, [])
 
 	return (
 		<Layout>

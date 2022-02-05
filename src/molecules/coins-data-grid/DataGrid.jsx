@@ -13,26 +13,30 @@ import useStore from "/src/ions/hooks/state/useStore"
 
 const CoinsDataGrid = () => {
 	const {
-		data,
 		loading,
 		error,
-		coins,
 		initialPageSize,
 		setPageSize,
-		pageSize
+		pageSize,
+		coins
 	} = useStore((state) => state)
 
 	// Reset page-size if category switches
 	useEffect(()=>{
 			setPageSize(initialPageSize)},
-		[data, initialPageSize, setPageSize]
+		[initialPageSize, setPageSize]
 	)
 
 	return (
 		<>
 			{error && <Typography variant="caption">{error.message}</Typography>}
-			{data &&
+			{coins &&
 				<DataGrid
+					disableSelectionOnClick
+					disableColumnSelector
+					disableDensitySelector
+					disableColumnFilter
+					disableColumnMenu
 					hideFooter
 					autoHeight
 					pageSize={pageSize}
@@ -49,6 +53,9 @@ const CoinsDataGrid = () => {
 							overflow: "visible"
 						},
 						m: .5,
+						".MuiDataGrid-cell:focus-within": {
+							outline: "none !important"
+						}
 					}}
 					onPageSizeChange={(newPage) => setPageSize(newPage)} />}
 		</>

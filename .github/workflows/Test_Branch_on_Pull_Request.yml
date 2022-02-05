@@ -45,8 +45,8 @@ jobs:
       - name: Lint all files
         run: npm run lint
 
-      - name: Build before e2e tests
-        run: npm run build:dev
+      - name: Build app
+        run: npm run build
 
       - name: Run all tests
         run: npm test

@@ -48,10 +48,13 @@ const Header = (props) => {
 					<AppBar elevation={1}>
 						<Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
 							<img style={{width: "170px"}} src={logoDarkMode.src} alt="Coin ghost logo" />
-							<IconButton color="inherit" aria-label="open drawer" edge="end">
-								<MenuIcon onClick={() => {
-									setOpen(!open)
-								}} />
+							<IconButton
+								color="inherit" aria-label="open drawer" edge="end"
+								onClick={() => {
+								setOpen(!open)
+								}}
+							>
+								<MenuIcon />
 							</IconButton>
 						</Toolbar>
 					</AppBar>

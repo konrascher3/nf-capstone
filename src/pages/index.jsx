@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../organisms/layout";
 
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
@@ -11,19 +11,22 @@ import Box from "@mui/material/Box"
 import TabBar from "/src/molecules/tab-bar/TabBar"
 import CoinsDataGrid from "/src/molecules/coins-data-grid/DataGrid"
 import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton"
-import Drawer from "/src/organisms/drawer/Drawer"
 
 // useStore
-import useStore from "../ions/hooks/state/useStore";
+import useStore from "/src/ions/hooks/state/useStore";
 
 
 const Page = () => {
-const {data, error, fetchData} = useStore((state) => state);
+const {data, error, fetchData, coins} = useStore((state) => state);
 
-	// Initial fetch if data = null
-	if(data === null) {
+// Initial fetch
+	if (coins === null){
 		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
 	}
+// Reset coins-array
+	useEffect(()=>{
+		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+	}, [fetchData])
 
 	return (
 		<Layout>
@@ -36,9 +39,6 @@ const {data, error, fetchData} = useStore((state) => state);
 				<>
 					{/*Tab-bar component*/}
 					< TabBar />
-
-					{/*Drawer component*/}
-					<Drawer />
 
 					{/*Marquee component*/}
 					<Box sx={{ m: .75 }}>

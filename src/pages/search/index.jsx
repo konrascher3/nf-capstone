@@ -1,7 +1,13 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import Layout from "/src/organisms/layout/index";
+
+// react-hook-form
+import { useForm } from 'react-hook-form'
+
+// debounce
+import debounce from 'debounce'
 
 // MUI Import
 import Box from "@mui/material/Box";
@@ -29,13 +35,61 @@ const RoundSearchField = styled(TextField)(() => ({
 	},
 	".MuiOutlinedInput-notchedOutline": {
 		borderColor: "transparent",
-	}
+	},
+	".Mui-disabled .MuiOutlinedInput-notchedOutline": {
+		borderColor: "transparent",
+	},
 }));
 
 
+
+
 const Page = () => {
+	const { handleSubmit } = useForm();
+
+	const onSubmit = () => {
+		console.log(`I am submitting: ${value}`);
+		setValue("");
+	}
+
+	const handleDebounceFn = (input) => {
+		console.log(`Fetching: ${input}`)
+		// axios.post('/endpoint', {
+		// 	value: inputValue,
+		// }).then((res) => {
+		// 	console.log(res.data);
+		// });
+	}
+
+	const debounceFn = useCallback(debounce(handleDebounceFn, 1000), []);
+
+	const handleChange = (event_) => {
+		const searchTerm = event_.target.value
+		setValue(searchTerm);
+
+		// Make input-validation
+		setTimeout(() => {
+			setInputError(false);
+			setHelperText("");
+			if (searchTerm.length === 0) {
+				setInputError(false);
+				setHelperText("");
+			} else if (searchTerm.length < 3) {
+				setInputError(true);
+				setHelperText("Please provide at least 3 characters")
+			} else {
+				// If everything passes
+
+				debounceFn(searchTerm);
+			}
+		}, 500)
+	}
+
 	const { loading, error } = useStore((state) => state);
 	const [value, setValue] = useState("")
+	const [inputError, setInputError] = useState(false)
+	const [helperText, setHelperText] = useState("")
+
 	return (
 		<Layout>
 			<Head>
@@ -53,29 +107,38 @@ const Page = () => {
 				}}
 				>
 					<Paper
-						component="form"
 						elevation={1}
+						component="form"
 						sx={{
 							p: "2px 4px",
 							display: "flex",
 							alignItems: "center",
 							width: 350,
 							borderRadius: 2.5,
-							// border: ".5px solid grey",
 						}}
+						onSubmit={handleSubmit(onSubmit)}
 					>
 						<RoundSearchField
+							type="input"
+							error={inputError}
+							label={helperText}
+							disabled={false}
 							variant="outlined"
 							placeholder="Search Coins"
 							inputProps={{ "aria-label": "search coins" }}
 							size="small"
 							value={value}
 							onChange={(event_)=>{
-								setValue(event_.target.value)
+								handleChange(event_)
 							}}
 						/>
 						<Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-						<IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+						<IconButton
+							disabled={inputError}
+							type="submit"
+							sx={{ p: '10px' }}
+							aria-label="search"
+						>
 							<Icon path={mdiMagnify} size={1} title="Search coins"/>
 						</IconButton>
 					</Paper>

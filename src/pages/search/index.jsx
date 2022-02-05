@@ -3,6 +3,8 @@ import React, { useState, useCallback } from "react";
 
 import Layout from "/src/organisms/layout/index";
 
+import CircularProgress from '@mui/material/CircularProgress';
+
 // react-hook-form
 import { useForm } from 'react-hook-form'
 
@@ -37,15 +39,17 @@ const RoundSearchField = styled(TextField)(() => ({
 		borderColor: "transparent",
 	},
 	".Mui-disabled .MuiOutlinedInput-notchedOutline": {
-		borderColor: "transparent",
+		border: "none"
 	},
 }));
 
 
-
-
 const Page = () => {
 	const { handleSubmit } = useForm();
+	const { setLoading, loading, error } = useStore((state) => state);
+	const [value, setValue] = useState("")
+	const [inputError, setInputError] = useState(false)
+	const [helperText, setHelperText] = useState(undefined)
 
 	const onSubmit = () => {
 		console.log(`I am submitting: ${value}`);
@@ -54,11 +58,24 @@ const Page = () => {
 
 	const handleDebounceFn = (input) => {
 		console.log(`Fetching: ${input}`)
+		// Disable input-field
+
+		// Replace search-icon with spinner
+
+		// Set loading to true
+		setLoading(true)
+		// Fetching
+		setTimeout(()=>{
+			setLoading(false)
+			console.log("Fetching complete")
+		}, 5000)
 		// axios.post('/endpoint', {
 		// 	value: inputValue,
 		// }).then((res) => {
 		// 	console.log(res.data);
 		// });
+		// Set loading to true
+
 	}
 
 	const debounceFn = useCallback(debounce(handleDebounceFn, 1000), []);
@@ -66,29 +83,29 @@ const Page = () => {
 	const handleChange = (event_) => {
 		const searchTerm = event_.target.value
 		setValue(searchTerm);
-
 		// Make input-validation
 		setTimeout(() => {
+			// Reset errors
 			setInputError(false);
-			setHelperText("");
+			setHelperText(undefined);
 			if (searchTerm.length === 0) {
+				// Resets errors if search field is empty
 				setInputError(false);
-				setHelperText("");
+				setHelperText(undefined);
 			} else if (searchTerm.length < 3) {
+				// Error if term has less than 3 characters
 				setInputError(true);
 				setHelperText("Please provide at least 3 characters")
+			} else if (/^[A-Za-z0-9]+$/.test(searchTerm) === false) {
+				// Error if term contains invalid characters
+				setInputError(true);
+				setHelperText("Please provide valid characters")
 			} else {
 				// If everything passes
-
 				debounceFn(searchTerm);
 			}
 		}, 500)
 	}
-
-	const { loading, error } = useStore((state) => state);
-	const [value, setValue] = useState("")
-	const [inputError, setInputError] = useState(false)
-	const [helperText, setHelperText] = useState("")
 
 	return (
 		<Layout>
@@ -122,7 +139,7 @@ const Page = () => {
 							type="input"
 							error={inputError}
 							label={helperText}
-							disabled={false}
+							disabled={loading}
 							variant="outlined"
 							placeholder="Search Coins"
 							inputProps={{ "aria-label": "search coins" }}
@@ -133,14 +150,15 @@ const Page = () => {
 							}}
 						/>
 						<Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+						{loading ? <CircularProgress style={{padding: "10px",  margin: 0}} /> :
 						<IconButton
 							disabled={inputError}
 							type="submit"
-							sx={{ p: '10px' }}
+							sx={{ p: "10px" }}
 							aria-label="search"
 						>
-							<Icon path={mdiMagnify} size={1} title="Search coins"/>
-						</IconButton>
+							<Icon path={mdiMagnify} size={1} title="Search coins" />
+						</IconButton>}
 					</Paper>
 				</Box>
 

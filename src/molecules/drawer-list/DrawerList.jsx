@@ -23,7 +23,7 @@ import useStore from "/src/ions/hooks/state/useStore";
 // TODO: Improve DRY 😪
 const DrawerList = () => {
 	const router = useRouter();
-	const { setOpen } = useStore((state) => state)
+	const setOpen = useStore((state) => state.setOpen)
 	return (
 		<List sx={{ width: "100vw", padding: 0 }}>
 			<ListItem button onClick={()=>{router.push("/"); setOpen(false)}}>
@@ -32,17 +32,17 @@ const DrawerList = () => {
 			</ListItem>
 			<Divider />
 			<ListItem button onClick={()=>{router.push("/watchlist"); setOpen(false)}}>
-				<ListItemIcon><Icon path={mdiFileStar} size={1} title="Explore coins"/></ListItemIcon>
+				<ListItemIcon><Icon path={mdiFileStar} size={1} title="Watchlist"/></ListItemIcon>
 				<ListItemText>Watchlist</ListItemText>
 			</ListItem>
 			<Divider />
-			<ListItem button onClick={()=>{router.push("/easteregg"); setOpen(false)}}>
-				<ListItemIcon><Icon path={mdiMagnify} size={1} title="Explore coins"/></ListItemIcon>
+			<ListItem button onClick={()=>{router.push("/search"); setOpen(false)}}>
+				<ListItemIcon><Icon path={mdiMagnify} size={1} title="Search coins"/></ListItemIcon>
 				<ListItemText>Search</ListItemText>
 			</ListItem>
 			<Divider />
 			<ListItem button onClick={()=>{router.push("/easteregg"); setOpen(false)}}>
-				<ListItemIcon><Icon path={mdiNewspaperVariant} size={1} title="Explore coins"/></ListItemIcon>
+				<ListItemIcon><Icon path={mdiNewspaperVariant} size={1} title="News"/></ListItemIcon>
 				<ListItemText>News</ListItemText>
 			</ListItem>
 		</List>

@@ -2,7 +2,6 @@ import create from "zustand";
 import axios from "axios";
 import merge from "deepmerge";
 
-
 const useStore = create((set) => ({
 	data: null,
 	loading: false,
@@ -31,6 +30,8 @@ const useStore = create((set) => ({
 	setUrl: (url) => ({
 		url: url
 	}),
+	setLoading: (loading) => set({ loading }),
+	setSearchDataIds: (array) => set({ searchDataIds: array }),
 	fetchData: (url) => {
 		axios
 			.get(url)
@@ -49,7 +50,7 @@ const useStore = create((set) => ({
 					loading: false,
 				}));
 			});
-	}
+	},
 }))
 
 export default useStore

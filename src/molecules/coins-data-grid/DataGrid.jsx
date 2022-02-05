@@ -12,14 +12,13 @@ import useStore from "/src/ions/hooks/state/useStore"
 
 
 const CoinsDataGrid = () => {
-	const {
-		loading,
-		error,
-		initialPageSize,
-		setPageSize,
-		pageSize,
-		coins
-	} = useStore((state) => state)
+	const error = useStore((state) => state.error);
+	const coins = useStore((state) => state.coins);
+	const loading = useStore((state) => state.loading);
+	const initialPageSize = useStore((state) => state.initialPageSize);
+	const setPageSize = useStore((state) => state.setPageSize);
+	const pageSize = useStore((state) => state.pageSize);
+
 
 	// Reset page-size if category switches
 	useEffect(()=>{

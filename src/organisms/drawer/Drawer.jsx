@@ -13,7 +13,8 @@ import SidebarAppBar from "/src/molecules/sidebar-appbar/SidebarAppBar";
 
 
 const Drawer = () => {
-	const { open, setOpen } = useStore((state) => state)
+	const open = useStore((state) => state.open);
+	const setOpen = useStore((state) => state.setOpen);
 
 	return (
 		<SwipeableDrawer

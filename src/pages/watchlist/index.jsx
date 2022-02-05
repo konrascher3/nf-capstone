@@ -26,10 +26,11 @@ import filterObject from "/src/ions/utils/filter-objects"
 
 
 const Page = () => {
-	const { coins, loading, error, meta, setCoins } = useStore((state) => state);
-
-	// Coins with favorited: true from meta
-
+	const error = useStore((state) => state.error);
+	const coins = useStore((state) => state.coins);
+	const loading = useStore((state) => state.loading);
+	const setCoins = useStore((state) => state.setCoins);
+	const meta = useStore((state) => state.meta);
 
 	useEffect(() => {
 		const favoritedCoins = filterObject(meta, "favorited", false)
@@ -56,6 +57,7 @@ const Page = () => {
 				<title key="title">coin ghost</title>
 				<meta key="description" name="description" content="This is my project" />
 			</Head>
+
 			{/*Marquee component*/}
 			<Box sx={{ m: .75 }}>
 				<FastMarquee />
@@ -80,6 +82,7 @@ const Page = () => {
 			{error && <div>{error.message}</div>}
 			{coins && (
 				<div>
+
 					{/*Drawer component*/}
 					<Drawer />
 
@@ -89,9 +92,10 @@ const Page = () => {
 					</Box>
 
 					{/*Load-More-Button component*/}
-					<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}>
-						<LoadMoreButton />
-					</Box>
+					{coins.length >= 20 ?
+						<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}>
+							<LoadMoreButton disabled={coins} />
+						</Box> : ""}
 				</div>
 			)}
 		</Layout>

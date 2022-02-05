@@ -17,19 +17,19 @@ import { mdiClose } from "@mdi/js";
 
 
 const SidebarAppBar = () => {
-	const { open, setOpen } = useStore((state) => state)
+	const open = useStore((state) => state.open);
+	const setOpen = useStore((state) => state.setOpen);
+
 	return (
 		<Box sx={{flexGrow: 1}}>
 			<AppBar elevation={3} position="static">
 				<Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
 					<img style={{width: "170px"}} src={logoDarkMode.src} alt="Coin ghost logo" />
-					<IconButton color="inherit" aria-label="open drawer" edge="end">
+					<IconButton color="inherit" aria-label="open drawer" edge="end" onClick={() => {setOpen(!open)}}>
 						<Icon
 							path={mdiClose} size={1}
 							title="Close navbar"
-							onClick={() => {
-							setOpen(!open)
-							}} />
+						/>
 					</IconButton>
 				</Toolbar>
 			</AppBar>

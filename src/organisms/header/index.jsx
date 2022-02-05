@@ -56,19 +56,22 @@ const Header = (props) => {
 							<img style={{width: "170px"}} src={logoDarkMode.src} alt="Coin ghost logo" />
 							{/* TODO: Disale search-icon if on search-page */}
 							<Box sx={{ display: "flex", gap: 1.5, alignItems: "center", justifyContent: "center"}}>
+								{ router.pathname === "/search" ?   "" :
 								<IconButton
 									color="inherit" aria-label="open drawer" edge="end"
-									onClick={()=>{router.push("/search")}}
+									onClick={() => {
+									router.push("/search");
+									}}
 								>
-									<Icon path={mdiMagnify} size={1} title="Explore coins"/>
-								</IconButton>
+									<Icon path={mdiMagnify} size={1} title="Search coins" />
+								</IconButton>}
 								<IconButton
 									color="inherit" aria-label="open drawer" edge="end"
 									onClick={() => {
 									setOpen(!open)
 									}}
 								>
-									<Icon path={mdiMenu} size={1} title="Explore coins"/>
+									<Icon path={mdiMenu} size={1} title="Menu"/>
 								</IconButton>
 							</Box>
 						</Toolbar>

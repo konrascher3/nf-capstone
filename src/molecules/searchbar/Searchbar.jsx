@@ -35,7 +35,6 @@ const RoundSearchField = styled(TextField)(() => ({
 }));
 
 
-
 const Searchbar = () => {
 	const { handleSubmit } = useForm();
 	const { setLoading, loading, setCoins } = useStore((state) => state);

@@ -29,8 +29,10 @@ const Page = () => {
 	const { coins, loading, error, meta, setCoins } = useStore((state) => state);
 
 	// Coins with favorited: true from meta
-	const favoritedCoins = filterObject(meta, "favorited", false)
+
+
 	useEffect(() => {
+		const favoritedCoins = filterObject(meta, "favorited", false)
 		if (Object.keys(favoritedCoins).length > 0){
 			const fetchData = async () => {
 				const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets",
@@ -46,9 +48,7 @@ const Page = () => {
 		} else {
 			setCoins(null)
 		}
-	}, [meta])
-
-	console.log(favoritedCoins)
+	}, [meta, setCoins])
 
 	return (
 		<Layout>

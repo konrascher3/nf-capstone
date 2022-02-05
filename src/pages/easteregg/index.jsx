@@ -12,7 +12,7 @@ import meme from "/src/ions/img/memes/jurassic-park.webp"
 
 const Page = () => {
 	const { loading, error } = useStore((state) => state);
-
+	console.log("Test")
 	return (
 		<Layout>
 			<Head>

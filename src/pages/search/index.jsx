@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 
 import Layout from "/src/organisms/layout/index";
 
@@ -35,6 +35,7 @@ const RoundSearchField = styled(TextField)(() => ({
 
 const Page = () => {
 	const { loading, error } = useStore((state) => state);
+	const [value, setValue] = useState("")
 	return (
 		<Layout>
 			<Head>
@@ -68,6 +69,10 @@ const Page = () => {
 							placeholder="Search Coins"
 							inputProps={{ "aria-label": "search coins" }}
 							size="small"
+							value={value}
+							onChange={(event_)=>{
+								setValue(event_.target.value)
+							}}
 						/>
 						<Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 						<IconButton type="submit" sx={{ p: '10px' }} aria-label="search">

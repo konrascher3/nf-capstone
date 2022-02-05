@@ -24,7 +24,7 @@ const Page = () => {
 			{error && <div>{error.message}</div>}
 			<div>
 				<Box sx={{ display: "flex", m: 5, alignItems: "center", justifyContent: "center" }}>
-					<Image layout="intrinsic" placeholder="blur" src={meme} alt="Ah ah ah! You didn't say the magic word!"/>
+					<img src={meme.src} alt="Ah ah ah! You didn't say the magic word!"/>
 				</Box>
 			</div>
 		</Layout>

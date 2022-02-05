@@ -31,6 +31,7 @@ const useStore = create((set) => ({
 		url: url
 	}),
 	setLoading: (loading) => set({ loading: loading }),
+	setSearchDataIds: (array) => set({ searchDataIds: array }),
 	fetchData: (url) => {
 		axios
 			.get(url)
@@ -49,7 +50,7 @@ const useStore = create((set) => ({
 					loading: false,
 				}));
 			});
-	}
+	},
 }))
 
 export default useStore

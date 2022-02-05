@@ -7,7 +7,7 @@ import Layout from "/src/organisms/layout/index";
 import useStore from "/src/ions/hooks/state/useStore"
 
 // Import meme
-import meme from "/src/ions/img/memes/jurassic-park.webp"
+import meme from "/src/ions/img/memes/jurassic-park.gif"
 
 
 const Page = () => {

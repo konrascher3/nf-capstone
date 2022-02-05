@@ -23,7 +23,7 @@ import useStore from "/src/ions/hooks/state/useStore";
 // TODO: Improve DRY 😪
 const DrawerList = () => {
 	const router = useRouter();
-	const { setOpen } = useStore((state) => state)
+	const setOpen = useStore((state) => state.setOpen)
 	return (
 		<List sx={{ width: "100vw", padding: 0 }}>
 			<ListItem button onClick={()=>{router.push("/"); setOpen(false)}}>

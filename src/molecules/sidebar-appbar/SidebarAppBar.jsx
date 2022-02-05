@@ -17,7 +17,9 @@ import { mdiClose } from "@mdi/js";
 
 
 const SidebarAppBar = () => {
-	const { open, setOpen } = useStore((state) => state)
+	const open = useStore((state) => state.open);
+	const setOpen = useStore((state) => state.setOpen);
+
 	return (
 		<Box sx={{flexGrow: 1}}>
 			<AppBar elevation={3} position="static">

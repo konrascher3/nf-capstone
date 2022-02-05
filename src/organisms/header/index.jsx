@@ -44,7 +44,9 @@ HideOnScroll.propTypes = {
 
 const Header = (props) => {
 	const router = useRouter();
-	const { open, setOpen } = useStore((state) => state)
+	const open = useStore((state) => state.open);
+	const setOpen = useStore((state) => state.setOpen);
+
 	return (
 		<header>
 			<Box sx={{flexGrow: 1}}>

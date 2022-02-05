@@ -14,7 +14,10 @@ import meme from "/src/ions/img/memes/jurassic-park.gif"
 
 
 const Page = () => {
-	const { loading, error } = useStore((state) => state);
+	const error = useStore((state) => state.error);
+	const loading = useStore((state) => state.loading);
+
+
 	console.log("Test")
 	return (
 		<Layout>

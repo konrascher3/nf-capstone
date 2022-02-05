@@ -8,12 +8,10 @@ import useStore from "/src/ions/hooks/state/useStore";
 
 
 const LoadMoreButton = () => {
-	const {
-		loading,
-		coins,
-		pageSize,
-		setPageSize
-	} = useStore((state) => state);
+	const loading = useStore((state) => state.loading);
+	const coins = useStore((state) => state.coins);
+	const pageSize = useStore((state) => state.pageSize);
+	const setPageSize = useStore((state) => state.setPageSize);
 
 	return (
 		<LoadingButton loading={loading} disabled={pageSize === 100 || pageSize >= coins?.length} onClick={()=>{setPageSize(pageSize + 10)}}>

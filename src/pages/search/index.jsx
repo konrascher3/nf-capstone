@@ -17,7 +17,10 @@ import Searchbar from "../../molecules/searchbar/Searchbar";
 
 
 const Page = () => {
-	const { error, coins, setCoins, setLoading } = useStore((state) => state);
+	const error = useStore((state) => state.error);
+	const coins = useStore((state) => state.coins);
+	const setCoins = useStore((state) => state.setCoins);
+	const setLoading = useStore((state) => state.setLoading);
 
 	// Get trending coins in search if search-page is opened
 	useEffect( ()=>{

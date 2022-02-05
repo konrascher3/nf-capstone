@@ -17,7 +17,10 @@ import useStore from "/src/ions/hooks/state/useStore";
 
 
 const Page = () => {
-const {data, error, fetchData, coins} = useStore((state) => state);
+const data = useStore((state) => state.data);
+const error = useStore((state) => state.error);
+const fetchData = useStore((state) => state.fetchData);
+const coins = useStore((state) => state.coins);
 
 // Initial fetch
 	if (coins === null){

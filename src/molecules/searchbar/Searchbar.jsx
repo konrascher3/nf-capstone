@@ -37,7 +37,9 @@ const RoundSearchField = styled(TextField)(() => ({
 
 const Searchbar = () => {
 	const { handleSubmit } = useForm();
-	const { setLoading, loading, setCoins } = useStore((state) => state);
+	const setLoading = useStore((state) => state.setLoading);
+	const setCoins = useStore((state) => state.setCoins);
+	const loading = useStore((state) => state.loading);
 	const [value, setValue] = useState("")
 	const [inputError, setInputError] = useState(false)
 	const [helperText, setHelperText] = useState(undefined)

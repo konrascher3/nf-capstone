@@ -8,9 +8,11 @@ import useStore from "/src/ions/hooks/state/useStore";
 
 
 const CustomCheckbox = ({ params  }) => {
-	const { meta, toggleFavorited } = useStore((state) => state);
+	const meta = useStore((state) => state.meta);
+	const toggleFavorited = useStore((state) => state.toggleFavorited);
 	const metaData = meta[params.id];
 	const favorited = metaData?.favorited;
+
 	return (
 		<label>
 			{/*Checkbox-component*/}

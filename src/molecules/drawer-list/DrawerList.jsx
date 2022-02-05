@@ -36,7 +36,7 @@ const DrawerList = () => {
 				<ListItemText>Watchlist</ListItemText>
 			</ListItem>
 			<Divider />
-			<ListItem button onClick={()=>{router.push("/easteregg"); setOpen(false)}}>
+			<ListItem button onClick={()=>{router.push("/search"); setOpen(false)}}>
 				<ListItemIcon><Icon path={mdiMagnify} size={1} title="Explore coins"/></ListItemIcon>
 				<ListItemText>Search</ListItemText>
 			</ListItem>

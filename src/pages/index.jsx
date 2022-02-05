@@ -51,7 +51,7 @@ const {data, error, fetchData, coins} = useStore((state) => state);
 					</Box>
 
 					{/*Load-More-Button component*/}
-					{coins.length >= 20 ?
+					{coins?.length >= 20 ?
 						<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}>
 							<LoadMoreButton disabled={coins} />
 						</Box> : ""}

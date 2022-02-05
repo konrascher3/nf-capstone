@@ -30,7 +30,7 @@ const useStore = create((set) => ({
 	setUrl: (url) => ({
 		url: url
 	}),
-	setLoading: (loading) => set({ loading: loading }),
+	setLoading: (loading) => set({ loading }),
 	setSearchDataIds: (array) => set({ searchDataIds: array }),
 	fetchData: (url) => {
 		axios

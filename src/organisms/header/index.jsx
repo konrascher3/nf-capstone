@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -14,10 +15,14 @@ import Slide from '@mui/material/Slide';
 
 // Icon Imports
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore"
+
+// Material-design-icons Imports
+import Icon from '@mdi/react'
+import { mdiMenu } from '@mdi/js';
+import { mdiMagnify } from '@mdi/js'
 
 // Hide-on-scroll helper-functions
 const HideOnScroll = (props) => {
@@ -38,6 +43,7 @@ HideOnScroll.propTypes = {
 };
 
 const Header = (props) => {
+	const router = useRouter();
 	const { open, setOpen } = useStore((state) => state)
 	return (
 		<header>
@@ -48,14 +54,23 @@ const Header = (props) => {
 					<AppBar elevation={1}>
 						<Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
 							<img style={{width: "170px"}} src={logoDarkMode.src} alt="Coin ghost logo" />
-							<IconButton
-								color="inherit" aria-label="open drawer" edge="end"
-								onClick={() => {
-								setOpen(!open)
-								}}
-							>
-								<MenuIcon />
-							</IconButton>
+							{/* TODO: Disale search-icon if on search-page */}
+							<Box sx={{ display: "flex", gap: 1.5, alignItems: "center", justifyContent: "center"}}>
+								<IconButton
+									color="inherit" aria-label="open drawer" edge="end"
+									onClick={()=>{router.push("/search")}}
+								>
+									<Icon path={mdiMagnify} size={1} title="Explore coins"/>
+								</IconButton>
+								<IconButton
+									color="inherit" aria-label="open drawer" edge="end"
+									onClick={() => {
+									setOpen(!open)
+									}}
+								>
+									<Icon path={mdiMenu} size={1} title="Explore coins"/>
+								</IconButton>
+							</Box>
 						</Toolbar>
 					</AppBar>
 				</HideOnScroll>

@@ -1,7 +1,10 @@
-import Box from "@mui/material/Box";
 import Head from "next/head";
 import React from "react";
+
 import Layout from "/src/organisms/layout/index";
+
+// MUI Import
+import Box from "@mui/material/Box";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore"

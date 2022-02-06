@@ -36,6 +36,7 @@
     "cheerio": "^1.0.0-rc.10",
     "debounce": "^1.2.1",
     "deepmerge": "^4.2.2",
+    "dotenv": "^16.0.0",
     "immer": "^9.0.12",
     "javascript-time-ago": "^2.3.11",
     "lottie-react": "^2.2.1",

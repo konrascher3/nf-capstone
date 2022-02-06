@@ -65,6 +65,8 @@ const Page = () => {
 						{articles.map(article => {
 							return (
 								// TODO: put borderRadius in theme
+								// TODO: remove duplicates by title
+								// TODO: fix no-wrap
 								<Card key={article._id} sx={{ borderRadius: 4.5 }} elevation={2}>
 									<CardActionArea href={article.link} target="_blank">
 										<CardContent sx={{

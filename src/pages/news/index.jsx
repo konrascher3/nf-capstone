@@ -9,10 +9,10 @@ import useStore from "/src/ions/hooks/state/useStore";
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 
+import {v4 as uuid} from "uuid"
+
 import NewsCard from "/src/organisms/news-card/NewsCard"
 
-// import "dotenv/config"
-// require('dotenv').config()
 
 const Page = () => {
 	const loading  = useStore((state) => state.loading)
@@ -59,7 +59,7 @@ const Page = () => {
 								// TODO: put borderRadius in theme
 								// TODO: remove duplicates by title
 								// TODO: fix no-wrap
-								<NewsCard key={article.id} article={article} />
+								<NewsCard key={uuid()} article={article} />
 							)
 						})}
 					</Stack>

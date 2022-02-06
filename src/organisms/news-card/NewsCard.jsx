@@ -26,7 +26,8 @@ const NewsCard = ({ article }) => {
 					justifyContent: "start",
 					gap: .5,
 					// height: 120
-				}}>
+				}}
+				>
 					<Box sx={{display: "flex",
 					}}
 					>
@@ -54,11 +55,10 @@ const NewsCard = ({ article }) => {
 								width: "100%",
 								overflow:"hidden",
 								whiteSpace: "wrap",
-								maxHeight: 40
+								maxHeight: 50
 							}}
 							>
 								<Typography
-									variant="subtitle2"
 									color="text.primary"
 									sx={{
 										textOverflow: "ellipsis",

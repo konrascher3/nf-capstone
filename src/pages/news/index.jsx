@@ -73,12 +73,10 @@ const Page = () => {
 											display: "flex",
 											alignItems: "center",
 											justifyContent: "start",
-											// border: "1px solid red",
 											gap: .5,
 											height: 120 }}
 										>
 											<Box sx={{display: "flex",
-												// border: "1px solid pink"
 											}}
 											>
 												<CardMedia
@@ -99,7 +97,6 @@ const Page = () => {
 												width: "100%",
 												overflow:"hidden",
 												whiteSpace: "wrap",
-												// border: "1px solid black",
 												}}
 												>
 													<Box sx={{
@@ -113,7 +110,6 @@ const Page = () => {
 															variant="subtitle2"
 															color="text.primary"
 															sx={{
-																// border: "1px solid green",
 																textOverflow: "ellipsis",
 																overflow: "hidden",
 																textTransform: "capitalize"}}
@@ -122,10 +118,8 @@ const Page = () => {
 														</Typography>
 													</Box>
 													<Box sx={{
-														// border: "1px solid orange",
 														display: "flex",
 														m: 0
-														// justifyContent: "space-between",
 													}}
 													>
 														<Typography

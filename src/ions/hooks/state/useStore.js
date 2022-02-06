@@ -10,6 +10,10 @@ const useStore = create((set) => ({
 	pageSize: null,
 	open: false,
 	meta: {},
+	articles: null,
+	setArticles: (array) => (
+		set({ articles: array })
+	),
 	toggleFavorited: (id) => {
 		set((state) => ({
 			meta: merge(state.meta, {

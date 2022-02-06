@@ -25,8 +25,8 @@ const NewsCard = ({ article }) => {
 					alignItems: "center",
 					justifyContent: "start",
 					gap: .5,
-					height: 120 }}
-				>
+					// height: 120
+				}}>
 					<Box sx={{display: "flex",
 					}}
 					>
@@ -70,7 +70,9 @@ const NewsCard = ({ article }) => {
 							</Box>
 							<Box sx={{
 								display: "flex",
-								m: 0
+								m: 0,
+								justifyContent: "start",
+								alignItems: "center"
 							}}
 							>
 								<Typography

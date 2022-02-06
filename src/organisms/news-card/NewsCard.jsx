@@ -10,14 +10,15 @@ import ReactTimeAgo from "react-time-ago";
 // Time ago
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
-
-TimeAgo.addDefaultLocale(en)
+//
+TimeAgo.setDefaultLocale(en.locale)
+TimeAgo.addLocale(en)
 
 
 const NewsCard = ({ article }) => {
 
 	return (
-		<Card sx={{ borderRadius: 4.5 }} elevation={2}>
+		<Card key={article.id} sx={{ borderRadius: 4.5 }} elevation={2}>
 			<CardActionArea href={article.link} target="_blank">
 				<CardContent sx={{
 					display: "flex",
@@ -85,7 +86,7 @@ const NewsCard = ({ article }) => {
 									</Typography>
 								</Box>
 								<Typography variant="caption" color="text.secondary">
-									about <ReactTimeAgo date={article.published_date} locale="en-US" timeStyle="round-minute"/>
+									about <ReactTimeAgo date={Date.parse(article.published_date)} locale="en-US" timeStyle="round-minute"/>
 								</Typography>
 							</Box>
 						</Box>

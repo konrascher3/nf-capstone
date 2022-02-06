@@ -11,8 +11,8 @@ import Box from "@mui/material/Box"
 
 import NewsCard from "/src/organisms/news-card/NewsCard"
 
-
-
+// import "dotenv/config"
+// require('dotenv').config()
 
 const Page = () => {
 	const loading  = useStore((state) => state.loading)
@@ -29,7 +29,7 @@ const Page = () => {
 		params: {q: "Crypto,Cryptocurrency", lang: 'en'},
 		headers: {
 			"x-rapidapi-host": "free-news.p.rapidapi.com",
-			"x-rapidapi-key": "ea63b3156dmsh6da329c497ccafap175621jsn97465587449c"
+			"x-rapidapi-key": process.env.X_RAPIDAPI_KEY
 		}
 	};
 

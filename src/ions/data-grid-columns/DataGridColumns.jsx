@@ -33,7 +33,6 @@ const DataGridColumns = [
 			const router = useRouter();
 			return (
 				<label style={{
-					border: "1px solid green",
 					width: "100%",
 					height: "100%",
 					display: "flex",

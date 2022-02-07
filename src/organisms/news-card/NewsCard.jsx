@@ -10,37 +10,49 @@ import ReactTimeAgo from "react-time-ago";
 // Time ago
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
-//
+
 TimeAgo.setDefaultLocale(en.locale)
 TimeAgo.addLocale(en)
 
+import placeholderSvg from "/src/ions/img/placeholder/placeholder.svg"
 
 const NewsCard = ({ article }) => {
-
 	return (
-		<Card key={article.id} sx={{ borderRadius: 4.5 }} elevation={2}>
-			<CardActionArea href={article.link} target="_blank">
+		<Card key={article.source.id} sx={{ borderRadius: 4.5 }} elevation={2}>
+			<CardActionArea href={article.url} target="_blank">
 				<CardContent sx={{
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "start",
 					gap: .5,
-					// height: 120
 				}}
 				>
 					<Box sx={{display: "flex",
 					}}
 					>
-						<CardMedia
-							sx={{
+						{ article.urlToImage  ?
+							<CardMedia
+								sx={{
 								border: "1px solid #D3D3D366",
 								height: 75,
 								width: 75,
-								borderRadius: 2 }}
-							component="img"
-							image={article.media}
-							alt={article.title}
-						/>
+								borderRadius: 2,
+								}}
+								component="img"
+								image={article.urlToImage}
+								alt={`Article-preview from ${article.source.name}`}
+							/> :
+							<CardMedia
+								sx={{
+									border: "1px solid #D3D3D366",
+									height: 75,
+									width: 75,
+									borderRadius: 2,
+								}}
+								component="img"
+								image={placeholderSvg.src}
+								alt={`Article-preview from ${article.source.name}`}
+							/>}
 						<Box sx={{
 							pl: 1,
 							display: "flex",
@@ -51,6 +63,7 @@ const NewsCard = ({ article }) => {
 							whiteSpace: "wrap",
 						}}
 						>
+							{/*TODO: fix no-wrap ... for long titles*/}
 							<Box sx={{
 								width: "100%",
 								overflow:"hidden",
@@ -78,9 +91,8 @@ const NewsCard = ({ article }) => {
 								<Typography
 									variant="caption"
 									color="text.secondary"
-									sx={{ textTransform: "capitalize" }}
 								>
-									{article.clean_url.split(".")[0]}
+									{article.source.name}
 								</Typography>
 								<Box sx={{ ml: .75, mr: .75 }}>
 									<Typography variant="caption" color="text.secondary">
@@ -88,7 +100,7 @@ const NewsCard = ({ article }) => {
 									</Typography>
 								</Box>
 								<Typography variant="caption" color="text.secondary">
-									about <ReactTimeAgo date={Date.parse(article.published_date)} locale="en-US" timeStyle="round-minute"/>
+									<ReactTimeAgo date={Date.parse(article.publishedAt)} locale="en-US" timeStyle="round-minute"/>
 								</Typography>
 							</Box>
 						</Box>

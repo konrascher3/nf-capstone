@@ -15,7 +15,7 @@ TimeAgo.setDefaultLocale(en.locale)
 TimeAgo.addLocale(en)
 
 import placeholderSvg from "/src/ions/img/placeholder/placeholder.svg"
-
+// TODO: Refactor to components; map within this component to avoid prop-drilling
 const NewsCard = ({ article }) => {
 	return (
 		<Card key={article.source.id} sx={{ borderRadius: 4.5 }} elevation={2}>
@@ -88,6 +88,7 @@ const NewsCard = ({ article }) => {
 								alignItems: "center"
 							}}
 							>
+								{/* TODO: Fix wrap: no-wrap for long source-names and time-ago*/}
 								<Typography
 									variant="caption"
 									color="text.secondary"

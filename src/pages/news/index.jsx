@@ -1,3 +1,4 @@
+import axios from "axios";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import Layout from "/src/organisms/layout/index";
@@ -21,27 +22,17 @@ const Page = () => {
 	const articles = useStore((state) => state.articles)
 	const setArticles = useStore((state) => state.setArticles)
 
-	const axios = require("axios").default;
-
-	const options = {
-		method: "GET",
-		url: "https://free-news.p.rapidapi.com/v1/search",
-		params: {q: "Crypto,Cryptocurrency", lang: 'en'},
-		headers: {
-			"x-rapidapi-host": "free-news.p.rapidapi.com",
-			"x-rapidapi-key": process.env.X_RAPIDAPI_KEY
-		}
-	};
-
 	useEffect(()=>{
 		setLoading(true)
-		axios.request(options).then(function (response) {
-			setArticles(response.data.articles)
+		axios.get("/api/newsapi/v2/everything?q=(crypto OR cryptocurrency OR cryptocurrencies)&sortBy=publishedAt&pageSize=100").then(function (response) {
+			setArticles(response.data.data.articles)
 		}).catch(function (error) {
 			console.error(error);
 		});
 		setLoading(false)
 	},[])
+
+
 
 	return (
 		<Layout>

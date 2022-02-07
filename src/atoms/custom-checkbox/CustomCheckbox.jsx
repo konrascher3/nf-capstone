@@ -19,7 +19,6 @@ const CustomCheckbox = ({ params  }) => {
 			<input
 				type="checkbox"
 				style={{
-					backgroundColor: "green",
 					position: "fixed",
 					top: "-100%",
 					left: "-100vw"

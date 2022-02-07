@@ -92,7 +92,7 @@ const NewsCard = ({ article }) => {
 									variant="caption"
 									color="text.secondary"
 								>
-									{article.source.name}
+									{article.source.name.split(".")[0]}
 								</Typography>
 								<Box sx={{ ml: .75, mr: .75 }}>
 									<Typography variant="caption" color="text.secondary">

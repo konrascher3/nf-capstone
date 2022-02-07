@@ -20,7 +20,9 @@
     "storybook:build": "build-storybook",
     "test:e2e": "npx start-server-and-test@1 start http://localhost:3000 cypress:run",
     "test:unit": "npm run jest",
-    "test": "npm run test:unit && npm run"
+    "test": "npm run test:unit && npm run",
+    "server": "node src/pages/api/server.js",
+    "dev-server": "nodemon src/pages/api/server.js localhost 1337"
   },
   "dependencies": {
     "@coingecko/cryptoformat": "^0.4.4",
@@ -34,6 +36,7 @@
     "@mui/x-data-grid": "^5.4.0",
     "axios": "0.24.0",
     "cheerio": "^1.0.0-rc.10",
+    "cors": "^2.8.5",
     "debounce": "^1.2.1",
     "deepmerge": "^4.2.2",
     "dotenv": "^16.0.0",
@@ -41,7 +44,9 @@
     "immer": "^9.0.12",
     "javascript-time-ago": "^2.3.11",
     "lottie-react": "^2.2.1",
+    "newsapi": "^2.4.1",
     "next": "12.0.8",
+    "nodemon": "^2.0.15",
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",

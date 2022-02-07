@@ -41,7 +41,7 @@ const DrawerList = () => {
 				<ListItemText>Search</ListItemText>
 			</ListItem>
 			<Divider />
-			<ListItem button onClick={()=>{router.push("/easteregg"); setOpen(false)}}>
+			<ListItem button onClick={()=>{router.push("/news"); setOpen(false)}}>
 				<ListItemIcon><Icon path={mdiNewspaperVariant} size={1} title="News"/></ListItemIcon>
 				<ListItemText>News</ListItemText>
 			</ListItem>

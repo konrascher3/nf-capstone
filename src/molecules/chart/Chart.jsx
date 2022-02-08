@@ -163,11 +163,11 @@ const Chart = ({ dataArray }) => {
 				src={CompleteLogoChart.src}
 				alt="Coin ghost logo"
 				style={{
-					height: 20,
+					height: 25,
 					alignSelf: "flex-end",
 					position: "relative",
-					top: -55,
-					right: 7
+					top: -57,
+					right: 5
 				}}
 			/>
 		</Box>

@@ -44,7 +44,7 @@ const Chart = ({ dataArray }) => {
 		setAlignment(7);
 		setInterval("daily");
 		setTimeFrame(7)
-	},[])
+	},[setInterval, setTimeFrame])
 
 	return (
 		<Box sx={{ width: "100%", display: "flex", flexDirection: "column", p: .5}}>

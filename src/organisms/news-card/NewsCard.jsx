@@ -76,9 +76,9 @@ const NewsCard = ({ article }) => {
 									sx={{
 										textOverflow: "ellipsis",
 										overflow: "hidden",
-										textTransform: "capitalize"}}
+									}}
 								>
-									{article.title.toLowerCase()}
+									{article.title}
 								</Typography>
 							</Box>
 							<Box sx={{

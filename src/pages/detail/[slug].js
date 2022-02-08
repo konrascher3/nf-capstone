@@ -47,7 +47,7 @@ const Page = () => {
 					<h5>Price chart for {slug}</h5>
 					{/* TODO: Change header-data based on tooltip-payload-change (tooltip) */}
 					{/*Chart component*/}
-					<Box sx={{ p: .5 }}>
+					<Box>
 						<Chart dataArray={dataArray} />
 					</Box>
 				</>

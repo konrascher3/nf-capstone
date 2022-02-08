@@ -57,7 +57,6 @@ const Chart = ({ dataArray }) => {
 					disabled={loading}
 					size="small"
 					onChange={handleChange}
-
 				>
 					<ToggleButton
 						variant="outlined"

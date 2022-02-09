@@ -138,7 +138,7 @@ const DetailHeaderComponent = () => {
 						<Box sx={{
 							display: "flex",
 							alignItems: "center",
-							gap: .5
+							gap: .75
 						}}
 						>
 							<Typography
@@ -149,13 +149,16 @@ const DetailHeaderComponent = () => {
 							</Typography>
 							<Box sx={{
 								display: "flex",
-								alignItems: "center"
+								alignItems: "center",
+								gap: .25
 							}}
 							>
 								<Typography
 									variant="body2"
 									fontWeight={600}
-									sx={{ padding: 0, margin:0 }}
+									sx={{
+										padding: 0,
+										margin:0 }}
 									color={
 										detailData.market_data.price_change_percentage_24h  >= 0
 											? "green"

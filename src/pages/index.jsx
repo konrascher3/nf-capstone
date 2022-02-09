@@ -20,19 +20,16 @@ const Page = () => {
 const setTimeFrame = useStore((state) => state.setTimeFrame);
 const setInterval = useStore((state) => state.setInterval);
 
-const data = useStore((state) => state.data);
 const error = useStore((state) => state.error);
 const fetchData = useStore((state) => state.fetchData);
 const coins = useStore((state) => state.coins);
 
-// Initial fetch
-	if (coins === null){
-		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
-	}
 // Reset coins-array
 	useEffect(()=>{
-		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
-	}, [fetchData])
+		if (coins === null) {
+			fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false", "coins")
+		}
+	}, [coins, fetchData])
 
 	// Initialize toggle-button group
 	useEffect(()=>{
@@ -47,7 +44,7 @@ const coins = useStore((state) => state.coins);
 				<meta key="description" name="description" content="This is my project" />
 			</Head>
 			{error && <div>{error.message}</div>}
-			{data && (
+			{coins && (
 				<>
 					{/*Tab-bar component*/}
 					< TabBar />

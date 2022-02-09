@@ -6,7 +6,6 @@ import merge from "deepmerge";
 const useStore = create(
 	persist(
 		(set) => ({
-			data: null,
 			detailData: null,
 			loading: false,
 			error: null,
@@ -48,40 +47,20 @@ const useStore = create(
 			}),
 			setLoading: (loading) => set({ loading }),
 			setSearchDataIds: (array) => set({ searchDataIds: array }),
-			fetchData: (url) => {
+			fetchData: (url, key) => {
 				axios
 					.get(url)
 					.then(({ data }) => {
 						set({
 							error: null,
-							data,
-							coins: data,
+							[key]: data,
 							loading: false,
 						});
 					})
 					.catch(error => {
-						set(({ data }) => ({
-							data,
+						set(() => ({
 							error,
-							loading: false,
-						}));
-					});
-			},
-			fetchDetailData: (url) => {
-				axios
-					.get(url)
-					.then(({ data }) => {
-						set({
-							error: null,
-							detailData: data,
-							loading: false,
-						});
-					})
-					.catch(error => {
-						set(({ data }) => ({
-							detailData: data,
-							error,
-							loading: false,
+							loading: false
 						}));
 					});
 			},

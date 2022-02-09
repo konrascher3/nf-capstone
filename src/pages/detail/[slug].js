@@ -19,10 +19,9 @@ import useStore from "/src/ions/hooks/state/useStore";
 
 
 const Page = () => {
-	const router = useRouter();
-	const { slug } = router.query
-
-	const fetchDetailData = useStore((state) => state.fetchDetailData);
+	const { query: { slug } } = useRouter();
+	console.log(slug)
+	const fetchData = useStore((state) => state.fetchData);
 	const detailData = useStore((state) => state.detailData);
 
 	const setTimeFrame = useStore((state) => state.setTimeFrame);
@@ -35,8 +34,8 @@ const Page = () => {
 	},[setInterval, setTimeFrame])
 
 	useEffect(()=>{
-		fetchDetailData(`https://api.coingecko.com/api/v3/coins/${slug}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`)
-	}, [fetchDetailData, slug])
+		fetchData(`https://api.coingecko.com/api/v3/coins/${slug}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`, "detailData")
+	}, [fetchData, slug])
 
 	return (
 		<Layout>
@@ -75,3 +74,8 @@ const Page = () => {
 	);
 };
 export default Page;
+export const getServerSideProps = () => {
+	return {
+		props: {},
+	}
+}

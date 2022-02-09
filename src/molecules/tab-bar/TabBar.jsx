@@ -61,25 +61,25 @@ const TabBar = () => {
 		setValue(newValue);
 		switch (newValue) {
 			case 0:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`, "coins")
 				break
 			case 1:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.stableCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.stableCoins}`, "coins")
 				break
 			case 2:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.memeCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.memeCoins}`, "coins")
 				break
 			case 3:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.nftCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.nftCoins}`, "coins")
 				break
 			case 4:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`, "coins")
 				break
 			case 5:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`, "coins")
 				break
 			case 6:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`, "coins")
 				break
 		}
 	};

@@ -52,7 +52,12 @@ const DataGridColumns = [
 							src={`${params.row.image}`}
 							alt={`Project-icon of ${params.row.name}`}
 						/>
-						<div style={{ width: "100%", overflow: "hidden", whiteSpace: "no-wrap" }}>
+						<div style={{
+							width: "100%",
+							overflow: "hidden",
+							whiteSpace: "no-wrap"
+						}}
+						>
 							<div style={{ textOverflow: "ellipsis", overflow: "hidden" }}>
 								{params.value}
 							</div>
@@ -67,13 +72,9 @@ const DataGridColumns = [
 		headerName: "24h",
 		flex: 1,
 		renderCell: ({ value }) => {
-			const decimals = 0.0001;
 			return (
 				<div style={value > 0 ? { color: "green" } : { color: "red" }}>
-					{new Intl.NumberFormat("en-US", {
-						style: "percent",
-						maximumSignificantDigits: 5
-					}).format(Math.round(value / 1000 / decimals) * decimals)}
+					{`${parseFloat(value).toFixed(2)}%`}
 				</div>
 			);
 		}

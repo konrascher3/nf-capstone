@@ -19,6 +19,7 @@ const CoinsDataGrid = () => {
 	const setPageSize = useStore((state) => state.setPageSize);
 	const pageSize = useStore((state) => state.pageSize);
 
+	console.log(coins)
 
 	// Reset page-size if category switches
 	useEffect(()=>{

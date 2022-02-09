@@ -1,12 +1,16 @@
-import Box from "@mui/material/Box";
-import React from "react";
-import useStore from "../../ions/hooks/state/useStore";
+import React, { useEffect } from "react";
+import PropTypes from 'prop-types';
 
 // MUI Imports
-import PropTypes from 'prop-types';
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+
+// useStore
+import useStore from "/src/ions/hooks/state/useStore";
+
 
 const TabPanel = (props) => {
 	const { children, value, index, ...other } = props;
@@ -54,35 +58,39 @@ const TabBar = () => {
 		musicCoins: "coins/markets?vs_currency=usd&category=music&order=market_cap_desc&sparkline=false"
 	}
 
-	const [value, setValue] = React.useState(0);
+	const tabPosition = useStore((state) => state.tabPosition)
+	const setTabPosition = useStore((state) => state.setTabPosition)
 	const {fetchData, loading} = useStore((state) => state)
 
 	const handleChange = (event, newValue) => {
-		setValue(newValue);
-		switch (newValue) {
+		setTabPosition(newValue);
+	};
+
+	useEffect(() => {
+		switch (tabPosition) {
 			case 0:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`, "coins")
 				break
 			case 1:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.stableCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.stableCoins}`, "coins")
 				break
 			case 2:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.memeCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.memeCoins}`, "coins")
 				break
 			case 3:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.nftCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.nftCoins}`, "coins")
 				break
 			case 4:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`, "coins")
 				break
 			case 5:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`, "coins")
 				break
 			case 6:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`)
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`, "coins")
 				break
 		}
-	};
+	}, [tabPosition])
 
 	return (
 		<Box sx={{ width: '100%' }}>
@@ -90,7 +98,7 @@ const TabBar = () => {
 				<Tabs
 					// TODO: Add breakpoint-switch for centered and varant="scrollable"
 					// centered
-					value={value}
+					value={tabPosition}
 					aria-label="Coin categories"
 					variant="scrollable"
 					scrollButtons="auto"

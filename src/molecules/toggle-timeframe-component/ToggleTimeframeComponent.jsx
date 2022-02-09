@@ -28,7 +28,13 @@ const ToggleTimeframeComponent = () => {
 	},[setInterval, setTimeFrame])
 
 	return (
-		<Box sx={{ m: .5, alignSelf: "flex-end" }}>
+		<Box sx={{
+			position: "relative",
+			// top: -40,
+			m: .5,
+			alignSelf: "flex-end"
+		}}
+		>
 			<ToggleButtonGroup
 				exclusive
 				color="primary"

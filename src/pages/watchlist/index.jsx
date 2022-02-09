@@ -29,11 +29,12 @@ const Page = () => {
 	const error = useStore((state) => state.error);
 	const coins = useStore((state) => state.coins);
 	const loading = useStore((state) => state.loading);
-	const setCoins = useStore((state) => state.setCoins);
+	// const setCoins = useStore((state) => state.setCoins);
 	const meta = useStore((state) => state.meta);
 
 	useEffect(() => {
 		const favoritedCoins = filterObject(meta, "favorited", false)
+		const setCoins = useStore.getState().setCoins;
 		if (Object.keys(favoritedCoins).length > 0){
 			const fetchData = async () => {
 				const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets",
@@ -49,7 +50,7 @@ const Page = () => {
 		} else {
 			setCoins(null)
 		}
-	}, [meta, setCoins])
+	}, [meta])
 
 	return (
 		<Layout>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
 
 // MUI Imports
@@ -64,7 +64,10 @@ const TabBar = () => {
 
 	const handleChange = (event, newValue) => {
 		setTabPosition(newValue);
-		switch (newValue) {
+	};
+
+	useEffect(() => {
+		switch (tabPosition) {
 			case 0:
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`, "coins")
 				break
@@ -87,7 +90,7 @@ const TabBar = () => {
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`, "coins")
 				break
 		}
-	};
+	}, [tabPosition])
 
 	return (
 		<Box sx={{ width: '100%' }}>

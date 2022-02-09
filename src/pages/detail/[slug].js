@@ -20,7 +20,6 @@ import useStore from "/src/ions/hooks/state/useStore";
 
 const Page = () => {
 	const { query: { slug } } = useRouter();
-	console.log(slug)
 	const fetchData = useStore((state) => state.fetchData);
 	const detailData = useStore((state) => state.detailData);
 

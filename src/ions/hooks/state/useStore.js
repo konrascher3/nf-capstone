@@ -16,6 +16,10 @@ const useStore = create(
 			articles: null,
 			timeFrame: 7,
 			interval: "daily",
+			tabPosition: 0,
+			setTabPosition: (index) => (
+				set({ tabPosition: index })
+			),
 			setTimeFrame: (days) => (
 				set({ timeFrame: days })
 			),

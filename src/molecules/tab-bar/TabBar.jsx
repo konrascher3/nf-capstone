@@ -1,12 +1,16 @@
-import Box from "@mui/material/Box";
 import React from "react";
-import useStore from "../../ions/hooks/state/useStore";
+import PropTypes from 'prop-types';
 
 // MUI Imports
-import PropTypes from 'prop-types';
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+
+// useStore
+import useStore from "/src/ions/hooks/state/useStore";
+
 
 const TabPanel = (props) => {
 	const { children, value, index, ...other } = props;
@@ -54,11 +58,12 @@ const TabBar = () => {
 		musicCoins: "coins/markets?vs_currency=usd&category=music&order=market_cap_desc&sparkline=false"
 	}
 
-	const [value, setValue] = React.useState(0);
+	const tabPosition = useStore((state) => state.tabPosition)
+	const setTabPosition = useStore((state) => state.setTabPosition)
 	const {fetchData, loading} = useStore((state) => state)
 
 	const handleChange = (event, newValue) => {
-		setValue(newValue);
+		setTabPosition(newValue);
 		switch (newValue) {
 			case 0:
 				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`, "coins")
@@ -90,7 +95,7 @@ const TabBar = () => {
 				<Tabs
 					// TODO: Add breakpoint-switch for centered and varant="scrollable"
 					// centered
-					value={value}
+					value={tabPosition}
 					aria-label="Coin categories"
 					variant="scrollable"
 					scrollButtons="auto"

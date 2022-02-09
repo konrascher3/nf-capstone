@@ -17,9 +17,6 @@ import useStore from "/src/ions/hooks/state/useStore";
 
 
 const Page = () => {
-const setTimeFrame = useStore((state) => state.setTimeFrame);
-const setInterval = useStore((state) => state.setInterval);
-
 const data = useStore((state) => state.data);
 const error = useStore((state) => state.error);
 const fetchData = useStore((state) => state.fetchData);
@@ -33,12 +30,6 @@ const coins = useStore((state) => state.coins);
 	useEffect(()=>{
 		fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
 	}, [fetchData])
-
-	// Initialize toggle-button group
-	useEffect(()=>{
-		setTimeFrame(7);
-		setInterval("daily")
-	},[setInterval, setTimeFrame])
 
 	return (
 		<Layout>

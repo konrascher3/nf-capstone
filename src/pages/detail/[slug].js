@@ -5,21 +5,14 @@ import Layout from "/src/organisms/layout/index";
 import useGet from "/src/ions/hooks/fetch/get";
 
 import { useRouter } from "next/router"
-import useStore from "../../ions/hooks/state/useStore";
 import FastMarquee from "../../molecules/fast-marquee/FastMarquee";
 
 import Chart from "/src/molecules/chart/Chart"
 
 const Page = () => {
-
-	const setTimeFrame = useStore((state) => state.setTimeFrame);
-	const setInterval = useStore((state) => state.setInterval);
-	const timeFrame = useStore((state) => state.timeFrame);
-	const interval = useStore((state) => state.interval);
-
 	const router = useRouter();
 	const { slug } = router.query
-	const { data, error } = useGet(`https://api.coingecko.com/api/v3/coins/${slug}/market_chart?vs_currency=usd&days=${timeFrame}&interval=${interval}`);
+	const { data, loading, error } = useGet(`https://api.coingecko.com/api/v3/coins/${slug}/market_chart?vs_currency=usd&days=14&interval=daily`);
 
 	const [dataArray, setDataArray] = useState(null)
 
@@ -35,13 +28,6 @@ const Page = () => {
 		setDataArray(mappedPriceArray)
 	}, [data])
 
-
-	// Initialize toggle-button group
-	useEffect(()=>{
-		setTimeFrame(7);
-		setInterval("daily")
-	},[setInterval, setTimeFrame])
-
 	return (
 		<Layout>
 			<Head>
@@ -54,17 +40,16 @@ const Page = () => {
 				<FastMarquee />
 			</Box>
 
+			{loading && <div>Loading...</div>}
 			{error && <div>{error.message}</div>}
 			{dataArray && (
 				<>
 					<h5>Price chart for {slug}</h5>
-
+					{/* TODO: Change header-data based on tooltip-payload-change (tooltip) */}
 					{/*Chart component*/}
 					<Box>
 						<Chart dataArray={dataArray} />
 					</Box>
-
-
 				</>
 			)}
 		</Layout>

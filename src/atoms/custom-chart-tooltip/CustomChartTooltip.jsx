@@ -8,12 +8,8 @@ import { formatCurrency } from "@coingecko/cryptoformat";
 
 import moment from "moment";
 
-import useState from "/src/ions/hooks/state/useStore"
-
 
 const CustomChartTooltip = ({active, payload, label}) => {
-	const interval = useState((state) => state.interval)
-
 	if (active) {
 		return (
 			<Box sx={{
@@ -23,16 +19,9 @@ const CustomChartTooltip = ({active, payload, label}) => {
 				textAlign: "center"
 			}}
 			>
-				<Typography
-					variant="body2"
-				>
-					{interval === "hourly" ? moment.utc(label).format("MMM Do, h:mm a")
-						: interval === "monthly" ? moment.utc(label).format("ll")
-							: moment.utc(label).format("MMM Do")}
-				</Typography>
-				<Typography variant="caption">
-					{ payload ? formatCurrency(payload[0].payload.price, "USD", "en", false) : ""}
-				</Typography>
+				{/* TODO: Add data-formatting based on selected timeframe */}
+				<Typography variant="body2">{moment.utc(label).format("MMM Do")}</Typography>
+				<Typography variant="caption">{ payload ? formatCurrency(payload[0].payload.price, "USD", "en", false) : ""}</Typography>
 			</Box>
 		)
 	}

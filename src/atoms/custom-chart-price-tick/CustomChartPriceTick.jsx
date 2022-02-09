@@ -5,7 +5,7 @@ import React from "react";
 
 const CustomChartPriceTick = ({ x, y, payload, height, width, ...props }) => {
 	return (
-		<foreignObject x={x + 55} y={y - 20} height={height} width={width + width} {...props}>
+		<foreignObject x={x + 52} y={y - 20} height={height} width={width + width} {...props}>
 			<Typography
 				variant="subtitle2"
 				component="p"

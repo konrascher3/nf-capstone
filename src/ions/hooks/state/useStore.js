@@ -11,14 +11,6 @@ const useStore = create((set) => ({
 	open: false,
 	meta: {},
 	articles: null,
-	timeFrame: 7,
-	interval: "daily",
-	setTimeFrame: (days) => (
-		set({ timeFrame: days })
-	),
-	setInterval: (interval) => (
-		set({ interval: interval })
-	),
 	setArticles: (array) => (
 		set({ articles: array })
 	),

@@ -18,7 +18,7 @@ const Drawer = () => {
 
 	return (
 		<SwipeableDrawer
-			anchor="left"
+			anchor="right"
 			open={open}
 			onOpen={()=>{setOpen(!open)}}
 			onClose={()=>{setOpen(!open)}}

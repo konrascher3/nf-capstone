@@ -31,6 +31,7 @@ const CustomCheckbox = ({ params  }) => {
 			<div style={{
 				height: 51,
 				width: 51,
+				cursor: "pointer",
 				position: "absolute",
 				bottom: -16,
 				left: -10 }}

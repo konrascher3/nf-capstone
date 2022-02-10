@@ -56,8 +56,6 @@ const MacroDataTable = () => {
 			createData("Circulating Supply", new Intl.NumberFormat("en-US").format(detailData.market_data.circulating_supply.toFixed()))
 		]
 		setMacroRows(macroRows)
-		console.log(detailData.market_data.max_supply
-		)
 	}, [detailData?.name])
 
 	return (

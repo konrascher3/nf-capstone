@@ -59,7 +59,8 @@ const DetailHeaderComponent = () => {
 								width: 1000,
 								position: "relative",
 								bottom: 9,
-								left: -10
+								left: -9,
+								cursor: "pointer"
 							}}
 							>
 								{/*Represents the custom-checkbox*/}

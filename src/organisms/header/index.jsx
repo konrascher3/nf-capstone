@@ -55,7 +55,7 @@ const Header = (props) => {
 				<HideOnScroll {...props}>
 					<AppBar elevation={1}>
 						<Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-							<Box sx={{ display: "flex" }} onClick={()=>{router.push("/")}}><img style={{width: "170px"}} src={logoDarkMode.src} alt="Coin ghost logo" /></Box>
+							<Box sx={{ display: "flex", cursor: "pointer" }} onClick={()=>{router.push("/")}}><img style={{width: "170px"}} src={logoDarkMode.src} alt="Coin ghost logo" /></Box>
 							<Box sx={{ display: "flex", gap: 1.5, alignItems: "center", justifyContent: "center"}}>
 								{ router.pathname === "/search" ?   "" :
 								<IconButton

@@ -13,6 +13,7 @@ import Layout from "/src/organisms/layout/index";
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee";
 import Chart from "/src/molecules/chart/Chart";
 import DetailHeaderComponent from "/src/molecules/detail-header-component/DetailHeaderComponent";
+import MacroDataTable from "/src/molecules/macro-data-table/MacroDataTable"
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
@@ -27,12 +28,12 @@ const Page = () => {
 	const setInterval = useStore((state) => state.setInterval);
 
 	// Initialize toggle-button group
-	useEffect(()=>{
+	useEffect(() => {
 		setTimeFrame(7);
 		setInterval("daily")
 	},[setInterval, setTimeFrame])
 
-	useEffect(()=>{
+	useEffect(() => {
 		fetchData(`https://api.coingecko.com/api/v3/coins/${slug}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`, "detailData")
 	}, [fetchData, slug])
 
@@ -50,7 +51,7 @@ const Page = () => {
 
 			{detailData && (
 				<Stack
-					spacing={2}
+					spacing={3}
 					sx={{ m: .25 }}
 				>
 					{/* Detail-header-component */}
@@ -67,6 +68,12 @@ const Page = () => {
 							<Chart />
 						</Card>
 					</Box>
+
+					{/* Macro-data-component*/}
+					<Box>
+						<MacroDataTable />
+					</Box>
+
 				</Stack>
 			)}
 		</Layout>

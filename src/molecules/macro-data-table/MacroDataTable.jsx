@@ -62,8 +62,7 @@ const MacroDataTable = () => {
 		<>
 			{detailData && (
 				<Card sx={{
-				ml: .75,
-				mr: .75,
+				mx: .75,
 				p: 1,
 				position: "relative" }}
 				>

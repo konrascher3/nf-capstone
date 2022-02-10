@@ -51,12 +51,13 @@ const MacroDataTable = () => {
 			createData("All-Time-Low", formatCurrency(detailData.market_data.atl.usd, "USD", "en", false)),
 			createData("Max. Supply", detailData.market_data.max_supply === null
 					? "none"
-					: new Intl.NumberFormat("en-US").format(detailData.market_data.max_supply)
+					: new Intl.NumberFormat("en-US").format(detailData.market_data.max_supply.toFixed())
 			),
-			createData("Circulating Supply", new Intl.NumberFormat("en-US").format(detailData.market_data.circulating_supply))
+			createData("Circulating Supply", new Intl.NumberFormat("en-US").format(detailData.market_data.circulating_supply.toFixed()))
 		]
 		setMacroRows(macroRows)
-
+		console.log(detailData.market_data.max_supply
+		)
 	}, [detailData?.name])
 
 	return (

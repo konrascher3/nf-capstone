@@ -24,7 +24,7 @@ const Page = () => {
 
 	useEffect(()=>{
 		setLoading(true)
-		axios.get("/api/newsapi/v2/everything?q=(crypto OR cryptocurrency OR cryptocurrencies)&sortBy=publishedAt&pageSize=100").then(function (response) {
+		axios.get("/api/newsapi/v2/everything?q=(crypto OR cryptocurrency OR cryptocurrencies)&sortBy=publishedAt&pageSize=100&language=en").then(function (response) {
 			setArticles(response.data.data.articles)
 		}).catch(function (error) {
 			console.error(error);

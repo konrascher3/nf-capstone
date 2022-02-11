@@ -25,10 +25,6 @@ const CoinsDataGrid = () => {
 		[initialPageSize, setPageSize]
 	)
 
-	console.log("Grid:", coins)
-	console.log(coins)
-	console.log(coins)
-
 	return (
 		<>
 

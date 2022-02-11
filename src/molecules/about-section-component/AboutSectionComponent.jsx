@@ -105,7 +105,7 @@ const AboutSectionComponent = () => {
 											paddingBottom: 40,
 											paddingTop: 150,
 											textAlign: "center",
-											backgroundImage: showMore ? "" : "linear-gradient(to bottom, transparent, white 90%)"}}
+											backgroundImage: showMore ? "" : "linear-gradient(to bottom, rgba(255,255,255,0) 0%, white 90%)"}}
 										>
 											{ detailData?.description.en.length > maxDetailLength ?
 												<Button

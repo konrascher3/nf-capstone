@@ -48,8 +48,8 @@ const AboutSectionComponent = () => {
 								width: 200,
 								position: "absolute",
 								zIndex: -1,
-								opacity: 0.20,
-								filter: "grayscale(50%)" }}
+								opacity: 0.25,
+								filter: "grayscale(10%)" }}
 						/>
 						<Box sx={{ zIndex: 1 }}>
 							<Stack spacing={.75}>
@@ -105,7 +105,7 @@ const AboutSectionComponent = () => {
 											paddingBottom: 40,
 											paddingTop: 150,
 											textAlign: "center",
-											backgroundImage: showMore ? "" : "linear-gradient(to bottom, rgba(255,255,255,0) 0%, white 90%)"}}
+											backgroundImage: showMore ? "" : "linear-gradient(to bottom, rgba(255,255,255,0) 0%, white 80%)"}}
 										>
 											{ detailData?.description.en.length > maxDetailLength ?
 												<Button

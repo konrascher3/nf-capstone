@@ -19,8 +19,11 @@ const AboutSectionComponent = () => {
 
 	const [showMore, setShowMore] = useState(false);
 
-	// if the about-text exceeds 250 chars, the about section is rendered within a
+	// If the about-text exceeds 250 chars, the about section is rendered within a
 	// MUI-collapse-component.
+
+	// TODO: Improve by pre-rendering the component and
+	//  adjusting the collapse-behavior based on the component's height instead of the char-count.
 	const maxDetailLength = 250;
 
 	return (

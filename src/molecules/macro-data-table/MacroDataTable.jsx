@@ -53,7 +53,9 @@ const MacroDataTable = () => {
 					? "none"
 					: new Intl.NumberFormat("en-US").format(detailData.market_data.max_supply.toFixed())
 			),
-			createData("Circulating Supply", new Intl.NumberFormat("en-US").format(detailData.market_data.circulating_supply.toFixed()))
+			createData("Circulating Supply", detailData.market_data.circulating_supply === null
+				? "none"
+				: new Intl.NumberFormat("en-US").format(detailData.market_data.circulating_supply.toFixed()))
 		]
 		setMacroRows(macroRows)
 	}, [detailData?.name])

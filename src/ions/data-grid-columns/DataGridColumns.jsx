@@ -9,13 +9,13 @@ import {StyledRankColumn, StyledNameColumn} from "/src/ions/data-grid-columns/st
 // Custom-components Imports
 import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox"
 
-
 const DataGridColumns = [
 	{
 		field: "market_cap_rank",
 		width: 0,
 		headerName: "#",
 		renderCell: (params) => {
+			console.log(params)
 			return (
 				/* TODO: Decide on bookmark */
 				<StyledRankColumn style={{ position: "relative" }}>

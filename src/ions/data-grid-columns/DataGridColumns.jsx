@@ -15,7 +15,6 @@ const DataGridColumns = [
 		width: 0,
 		headerName: "#",
 		renderCell: (params) => {
-			console.log(params)
 			return (
 				/* TODO: Decide on bookmark */
 				<StyledRankColumn style={{ position: "relative" }}>

@@ -8,6 +8,9 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
 
+// useStore
+import useStore from "/src/ions/hooks/state/useStore";
+
 // Custom Imports
 import Layout from "/src/organisms/layout/index";
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee";
@@ -15,9 +18,6 @@ import Chart from "/src/molecules/chart/Chart";
 import DetailHeaderComponent from "/src/molecules/detail-header-component/DetailHeaderComponent";
 import MacroDataTable from "/src/molecules/macro-data-table/MacroDataTable"
 import AboutSectionComponent from "/src/molecules/about-section-component/AboutSectionComponent"
-
-// useStore
-import useStore from "/src/ions/hooks/state/useStore";
 
 
 const Page = () => {

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 
 // MUI Import
 import { DataGrid } from "@mui/x-data-grid"
+import Box from "@mui/material/Box"
 
 // Custom-components Imports
 import DataGridColumns from "/src/ions/data-grid-columns/DataGridColumns"
@@ -25,37 +26,47 @@ const CoinsDataGrid = () => {
 		[initialPageSize, setPageSize]
 	)
 
+	console.log("Grid:", coins)
+	console.log(coins)
+	console.log(coins)
+
 	return (
 		<>
+
 			{error && <Typography variant="caption">{error.message}</Typography>}
 			{coins &&
-				<DataGrid
-					disableSelectionOnClick
-					disableColumnSelector
-					disableDensitySelector
-					disableColumnFilter
-					disableColumnMenu
-					hideFooter
-					autoHeight
-					pageSize={pageSize}
-					rows={coins}
-					columns={DataGridColumns}
-					loading={loading}
-					density="standard"
-					headerHeight={35}
-					sx={{".MuiDataGrid-columnSeparator": {
-							visibility: "hidden",
-						},
-						".MuiDataGrid-cell": {
-							position: "relative",
-							overflow: "visible"
-						},
-						m: .5,
-						".MuiDataGrid-cell:focus-within": {
-							outline: "none !important"
-						}
-					}}
-					onPageSizeChange={(newPage) => setPageSize(newPage)} />}
+				<>
+					<Box sx={{ display: "flex", mx: .5, alignItems: "center", justifyContent: "center" }}>
+						<DataGrid
+							disableSelectionOnClick
+							disableColumnSelector
+							disableDensitySelector
+							disableColumnFilter
+							disableColumnMenu
+							hideFooter
+							autoHeight
+							pageSize={pageSize}
+							rows={coins}
+							columns={DataGridColumns}
+							loading={loading}
+							density="standard"
+							headerHeight={35}
+							sx={{".MuiDataGrid-columnSeparator": {
+									visibility: "hidden",
+								},
+								".MuiDataGrid-cell": {
+									position: "relative",
+									overflow: "visible"
+								},
+								".MuiDataGrid-cell:focus-within": {
+									outline: "none !important"
+								},
+								width: "98%"
+							}}
+							onPageSizeChange={(newPage) => setPageSize(newPage)} />
+					</Box>
+				</>}
+
 		</>
 	)
 }

@@ -4,19 +4,21 @@ import axios from "axios";
 const web3 = new Web3(Web3.givenProvider);
 
 // Signup helper-function
-const handleSignup = publicAddress => {
+const handleSignup = async (publicAddress) => {
 	// Add new user to data-base
-	axios.post("/api/users/", {"publicAddress": `${publicAddress}`})
+	await axios.post("/api/users/", { "publicAddress": `${publicAddress}` })
 		.then(
 			response => {
-				console.log("New user added successfully:", response)
+				console.log("New user added successfully:", response);
 			}
 		)
 		.catch(
 			error => {
-				console.error("Could not add new user:", error)
+				console.error("Could not add new user:", error);
 			}
 		);
+
+
 };
 
 // Sign-message helper-function

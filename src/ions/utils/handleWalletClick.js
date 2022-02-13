@@ -102,7 +102,6 @@ const handleWalletClick = async () => {
 		console.log(`${account} is a valid eth-address!`)
 		publicAddress = account.toLowerCase();
 	}
-
 	// Check if publicAddress already exists on back-end
 	try {
 		await axios.get(`/api/users?publicAddress=${publicAddress}`)

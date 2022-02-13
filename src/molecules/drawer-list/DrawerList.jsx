@@ -41,8 +41,6 @@ const useStyles = makeStyles({
 })
 
 
-
-
 // TODO: add map function to map list items over nav-links
 // TODO: Improve DRY 😪
 const DrawerList = () => {

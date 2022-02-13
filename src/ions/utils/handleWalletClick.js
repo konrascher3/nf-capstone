@@ -103,6 +103,7 @@ const handleWalletClick = async () => {
 		publicAddress = account.toLowerCase();
 	}
 	// Check if publicAddress already exists on back-end
+
 	try {
 		await axios.get(`/api/users?publicAddress=${publicAddress}`)
 			.then(response => {

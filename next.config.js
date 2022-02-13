@@ -7,7 +7,9 @@ const nextConfig = {
 	reactStrictMode: true,
 	env: {
 		X_NEWSAPI_KEY: process.env.X_NEWSAPI_KEY,
-		X_RAPIDAPI_KEY: process.env.X_RAPIDAPI_KEY
+		X_RAPIDAPI_KEY: process.env.X_RAPIDAPI_KEY,
+		MONGODB_COINGHOST_URI: process.env.MONGODB_COINGHOST_URI,
+		JWT_SECRET_KEY: process.env.JWT_SECRET_KEY
 	}
 }
 

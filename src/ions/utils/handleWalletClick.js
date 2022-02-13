@@ -6,10 +6,11 @@ const web3 = new Web3(Web3.givenProvider);
 // Signup helper-function
 const handleSignup = publicAddress => {
 	// Add new user to data-base
-	axios.post("/api/users/", {"publicAddress": `${publicAddress}`})
+	return axios.post("/api/users/", {"publicAddress": `${publicAddress}`})
 		.then(
 			response => {
 				console.log("New user added successfully:", response)
+				return response
 			}
 		)
 		.catch(
@@ -21,7 +22,6 @@ const handleSignup = publicAddress => {
 
 // Sign-message helper-function
 const handleSignMessage = async (publicAddress) => {
-
 	// Retrieve nonce from database
 	console.log("Retrieving nonce from database")
 	const nonce = await axios.get(`/api/users?publicAddress=${publicAddress}`)
@@ -56,11 +56,7 @@ const handleSignMessage = async (publicAddress) => {
 };
 
 // Handle authentication helper-function
-const handleAuthenticate = ({ publicAddress, userSignature }) => {
-	// Handle MetaMask not installed
-
-	// Verify signature
-	// Defining request-header
+const handleAuthenticate = async ({ publicAddress, userSignature}) => {
 	const options = {
 		headers: {},
 		data: {
@@ -84,60 +80,50 @@ const handleAuthenticate = ({ publicAddress, userSignature }) => {
 };
 
 const handleWalletClick = async () => {
+
 	// Allow site to connect to MetaMask
 	if(window.ethereum) {
 		try {
 			await ethereum.enable();
 		} catch (error) {
 			window.alert("You need to allow MetaMask.");
-			return;
 		}
 	} else if(!window.ethereum) {
 		window.open("https://metamask.io/download/");
-		return;
 	}
 
-	// Request public ethereum-address
-	const account = web3.eth.getAccounts((error,result) => {
-		if (error) {
-			console.error(".getAccounts failed:", error);
-		} else {
-			try {
-				const ethAddress = web3.currentProvider.selectedAddress;
-				// Check if ethereum-address is valid
-				console.log("Checking address")
+	// Request public ethereum-accounts
+	const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+	const account = accounts[0];
+	let publicAddress = null;
 
-				if(web3.utils.isAddress(ethAddress)) {
-					console.log("Valid ethAddress!", ethAddress)
+	// Check if selected account is valid and assign it
+	if(web3.utils.isAddress(account)){
+		console.log(`${account} is a valid eth-address!`)
+		publicAddress = account.toLowerCase();
+	}
 
-					// Set ethAddress to lower-case
-					const publicAddress = ethAddress.toLowerCase();
-
-					// Check if publicAddress already exists on back-end
-					axios.get(`/api/users?publicAddress=${publicAddress}`)
-						.then(response => {
-							// If yes, retrieve it, if no, create new user;
-							(response.data.length
-								? (console.log("User already registered:", response.data[0]))
-								: handleSignup(publicAddress))
-						})
-						// Popup MetaMask confirmation modal to sign message
-						.then(handleSignMessage(publicAddress)
-							// Send signature to back end on the /auth route
-							.then(handleAuthenticate)
-							.catch(
-								error => {
-									console.error(error)
-								}
-							)
-						)
+	// Check if publicAddress already exists on back-end
+	try {
+		await axios.get(`/api/users?publicAddress=${publicAddress}`)
+			.then(response => {
+				if(response.data.length){
+					handleSignMessage(publicAddress)
+						.then(({ publicAddress, userSignature}) => {
+							handleAuthenticate({ publicAddress, userSignature});
+						});
 				} else {
-					console.error("Invalid ethAddress:", ethAddress)
+					handleSignup(publicAddress)
+						.then(response => (handleSignMessage(publicAddress)))
+						.then(({ publicAddress, userSignature}) => {
+							handleAuthenticate({ publicAddress, userSignature});
+						});
 				}
-			} catch(error) {
-				console.error(error)
-			}
-		}
-	});}
+				}
+			)
+	} catch (error) {
+		console.error("Error fetching public address from database:", error)
+	}
+}
 
 export default handleWalletClick

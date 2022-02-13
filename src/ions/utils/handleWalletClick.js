@@ -26,35 +26,37 @@ const handleSignMessage = async (publicAddress) => {
 
 	// Retrieve nonce from database
 	console.log("Retrieving nonce from database")
+	console.log(publicAddress)
 	const nonce = await axios.get(`/api/users?publicAddress=${publicAddress}`)
 		.then(
 			response => {
 				console.log(response)
 				console.log(`Nonce found for ${publicAddress}:`, response.data[0].nonce)
-				return response.data[0].nonce
 			}
 		)
 		.catch(error => {
 			console.error(`Couldn't retrieve nonce for ${publicAddress}:`, error)
+
 		});
 
 	// Sign nonce
-	return new Promise((resolve, reject) => {
-		console.log("Asking user to sign nonce:", nonce)
-		web3.eth.personal.sign(
-			`Please sign this message to confirm ownership of your public-address.\n
-				No transaction-cost occur.\n
-				Your personal code is ${nonce}.`,
-
-			publicAddress,
-			(err, signature) => {
-				if (err) return reject(err);
-				const userSignature = signature
-				console.log(signature)
-				return resolve({ publicAddress, userSignature});
-			}
-		)
-	})
+	if (nonce){
+		return new Promise((resolve, reject) => {
+			console.log("Asking user to sign nonce:", nonce)
+			web3.eth.personal.sign(
+				`Please sign this message to confirm ownership of your public-address.\n
+					No transaction-cost occur.\n
+					Your personal code is ${nonce}.`,
+				publicAddress,
+				(err, signature) => {
+					if (err) return reject(err);
+					const userSignature = signature
+					console.log(signature)
+					return resolve({ publicAddress, userSignature});
+				}
+			)
+		})
+	}
 };
 
 // Handle authentication helper-function

@@ -83,7 +83,6 @@ const handleAuthenticate = ({ publicAddress, userSignature }) => {
 	console.log(`Authenticating publicAddress ${publicAddress} with signature ${userSignature}`)
 };
 
-
 const handleWalletClick = async () => {
 	// Allow site to connect to MetaMask
 	if(window.ethereum) {

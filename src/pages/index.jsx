@@ -2,21 +2,23 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import Layout from "../organisms/layout";
 
-import FastMarquee from "/src/molecules/fast-marquee/FastMarquee"
+import FastMarquee from "/src/molecules/fast-marquee/FastMarquee";
 
-// MUI Imports
-import Box from "@mui/material/Box"
+// MUI Import
+import Box from "@mui/material/Box";
 
 // Custom-components Imports
-import TabBar from "/src/molecules/tab-bar/TabBar"
-import CoinsDataGrid from "/src/molecules/coins-data-grid/DataGrid"
-import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton"
+import TabBar from "/src/molecules/tab-bar/TabBar";
+import CoinsDataGrid from "/src/molecules/coins-data-grid/DataGrid";
+import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
 
+
 const Page = () => {
+
 const setTimeFrame = useStore((state) => state.setTimeFrame);
 const setInterval = useStore((state) => state.setInterval);
 

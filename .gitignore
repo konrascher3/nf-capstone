@@ -43,4 +43,4 @@ cypress/cucumber-json
 .idea
 
 # misc
-.env
+.env.local

@@ -51,28 +51,28 @@ const DrawerList = () => {
 	return (
 		<List sx={{ width: "100vw", padding: 0 }}>
 			<ListItem button onClick={()=>{router.push("/"); setOpen(false)}}>
-				<ListItemIcon><Icon path={mdiTelescope} size={1} title="Explore coins"/></ListItemIcon>
+				<ListItemIcon><Icon path={mdiTelescope} size={1} /></ListItemIcon>
 				<ListItemText>
 					<Typography variant="body1">Explore</Typography>
 				</ListItemText>
 			</ListItem>
 			<Divider />
 			<ListItem button onClick={()=>{router.push("/watchlist"); setOpen(false)}}>
-				<ListItemIcon><Icon path={mdiFileStar} size={1} title="Watchlist"/></ListItemIcon>
+				<ListItemIcon><Icon path={mdiFileStar} size={1} /></ListItemIcon>
 				<ListItemText>
 					<Typography variant="body1">Watchlist</Typography>
 				</ListItemText>
 			</ListItem>
 			<Divider />
 			<ListItem button onClick={()=>{router.push("/search"); setOpen(false)}}>
-				<ListItemIcon><Icon path={mdiMagnify} size={1} title="Search coins"/></ListItemIcon>
+				<ListItemIcon><Icon path={mdiMagnify} size={1} /></ListItemIcon>
 				<ListItemText>
 					<Typography variant="body1">Search</Typography>
 				</ListItemText>
 			</ListItem>
 			<Divider />
 			<ListItem button onClick={()=>{router.push("/news"); setOpen(false)}}>
-				<ListItemIcon><Icon path={mdiNewspaperVariant} size={1} title="News"/></ListItemIcon>
+				<ListItemIcon><Icon path={mdiNewspaperVariant} size={1} /></ListItemIcon>
 				<ListItemText>
 					<Typography variant="body1">News</Typography>
 				</ListItemText>
@@ -84,7 +84,7 @@ const DrawerList = () => {
 					aria-controls="connect-wallet"
 					id="connect-wallet-header"
 				>
-					<ListItemIcon><Icon path={mdiWallet} size={1} title="News"/></ListItemIcon>
+					<ListItemIcon><Icon path={mdiWallet} size={1} /></ListItemIcon>
 
 					<Typography variant="body1">Connect a wallet</Typography>
 				</AccordionSummary>

@@ -175,8 +175,8 @@ const DetailHeaderComponent = () => {
 								>
 									{
 										detailData.market_data.price_change_percentage_24h  >= 0
-											? <Icon path={mdiArrowUpRight} padding={0} title={`${detailData.name} is trending up`} size={.75} color="green" />
-											: <Icon path={mdiArrowDownRight} padding={0} title={`${detailData.name} is trending down`} size={.75} color="red" />
+											? <Icon path={mdiArrowUpRight} padding={0} size={.75} color="green" />
+											: <Icon path={mdiArrowDownRight} padding={0} size={.75} color="red" />
 									}
 								</Box>
 							</Box>

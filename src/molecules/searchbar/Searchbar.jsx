@@ -131,7 +131,7 @@ const Searchbar = () => {
 				sx={{ p: "10px" }}
 				aria-label="search"
 			>
-				<Icon path={mdiMagnify} size={1} title="Search coins" />
+				<Icon path={mdiMagnify} size={1} />
 			</IconButton>}
 		</Paper>
 	)

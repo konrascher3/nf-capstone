@@ -59,12 +59,13 @@ const Header = (props) => {
 							<Box sx={{ display: "flex", gap: 1.5, alignItems: "center", justifyContent: "center"}}>
 								{ router.pathname === "/search" ?   "" :
 								<IconButton
+									id="foo"
 									color="inherit" aria-label="open drawer" edge="end"
 									onClick={() => {
 									router.push("/search");
 									}}
 								>
-									<Icon path={mdiMagnify} size={1} title="Search coins" />
+									<Icon path={mdiMagnify} size={1} />
 								</IconButton>}
 								<IconButton
 									color="inherit" aria-label="open drawer" edge="end"
@@ -72,7 +73,7 @@ const Header = (props) => {
 									setOpen(!open)
 									}}
 								>
-									<Icon path={mdiMenu} size={1} title="Menu"/>
+									<Icon path={mdiMenu} size={1} />
 								</IconButton>
 							</Box>
 						</Toolbar>

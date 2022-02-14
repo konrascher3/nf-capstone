@@ -28,7 +28,6 @@ const SidebarAppBar = () => {
 					<IconButton color="inherit" aria-label="open drawer" edge="end" onClick={() => {setOpen(!open)}}>
 						<Icon
 							path={mdiClose} size={1}
-							title="Close navbar"
 						/>
 					</IconButton>
 				</Toolbar>

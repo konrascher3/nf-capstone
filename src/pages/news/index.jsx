@@ -10,8 +10,6 @@ import useStore from "/src/ions/hooks/state/useStore";
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 
-import {v4 as uuid} from "uuid"
-
 import NewsCard from "/src/organisms/news-card/NewsCard"
 
 
@@ -50,7 +48,7 @@ const Page = () => {
 								// TODO: put borderRadius in theme
 								// TODO: remove duplicates by title
 								// TODO: fix no-wrap
-								<NewsCard key={uuid()} article={article} />
+								<NewsCard key={article.id} article={article} />
 							)
 						})}
 					</Stack>

@@ -10,11 +10,11 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		unique: true,
 		lowercase: true,
-		type: String
+		type: String,
 	},
 	favorites: {
 		type: Map,
-		of: Boolean
+		of: Boolean,
 	},
 });
 

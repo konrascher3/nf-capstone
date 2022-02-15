@@ -16,27 +16,31 @@ import Layout from "/src/organisms/layout/index";
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee";
 import Chart from "/src/molecules/chart/Chart";
 import DetailHeaderComponent from "/src/molecules/detail-header-component/DetailHeaderComponent";
-import MacroDataTable from "/src/molecules/macro-data-table/MacroDataTable"
-import AboutSectionComponent from "/src/molecules/about-section-component/AboutSectionComponent"
-
+import MacroDataTable from "/src/molecules/macro-data-table/MacroDataTable";
+import AboutSectionComponent from "/src/molecules/about-section-component/AboutSectionComponent";
 
 const Page = () => {
-	const { query: { slug } } = useRouter();
-	const fetchData = useStore((state) => state.fetchData);
-	const detailData = useStore((state) => state.detailData);
+	const {
+		query: { slug },
+	} = useRouter();
+	const fetchData = useStore(state => state.fetchData);
+	const detailData = useStore(state => state.detailData);
 
-	const setTimeFrame = useStore((state) => state.setTimeFrame);
-	const setInterval = useStore((state) => state.setInterval);
+	const setTimeFrame = useStore(state => state.setTimeFrame);
+	const setInterval = useStore(state => state.setInterval);
 
 	// Initialize toggle-button group
 	useEffect(() => {
 		setTimeFrame(7);
-		setInterval("daily")
-	},[setInterval, setTimeFrame])
+		setInterval("daily");
+	}, [setInterval, setTimeFrame]);
 
 	useEffect(() => {
-		fetchData(`https://api.coingecko.com/api/v3/coins/${slug}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`, "detailData")
-	}, [fetchData, slug])
+		fetchData(
+			`https://api.coingecko.com/api/v3/coins/${slug}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`,
+			"detailData"
+		);
+	}, [fetchData, slug]);
 
 	return (
 		<Layout>
@@ -46,25 +50,23 @@ const Page = () => {
 			</Head>
 
 			{/*Marquee component*/}
-			<Box sx={{ m: .75 }}>
+			<Box sx={{ m: 0.75 }}>
 				<FastMarquee />
 			</Box>
 
 			{detailData && (
-				<Stack
-					spacing={3}
-					sx={{ m: .25 }}
-				>
+				<Stack spacing={3} sx={{ m: 0.25 }}>
 					{/* Detail-header-component */}
-					<DetailHeaderComponent />
+					<DetailHeaderComponent id={slug} />
 
 					{/*Chart component*/}
 					<Box>
-						<Card sx={{
-							ml: .75,
-							mr: .75,
-							p: .5
-						}}
+						<Card
+							sx={{
+								ml: 0.75,
+								mr: 0.75,
+								p: 0.5,
+							}}
 						>
 							<Chart />
 						</Card>
@@ -83,13 +85,11 @@ const Page = () => {
 			)}
 		</Layout>
 	);
-
 };
-
 
 export default Page;
 export const getServerSideProps = () => {
 	return {
 		props: {},
-	}
-}
+	};
+};

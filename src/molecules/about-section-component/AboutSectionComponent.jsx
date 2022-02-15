@@ -13,9 +13,8 @@ import useStore from "/src/ions/hooks/state/useStore";
 
 import HTMLparse from "html-react-parser";
 
-
 const AboutSectionComponent = () => {
-	const detailData = useStore((state) => state.detailData);
+	const detailData = useStore(state => state.detailData);
 
 	const [showMore, setShowMore] = useState(false);
 
@@ -30,14 +29,15 @@ const AboutSectionComponent = () => {
 		<>
 			{detailData.description.en && (
 				<Box>
-					<Card sx={{
-						ml: .75,
-						mr: .75,
-						p: 1.25,
-						overflow: "hidden",
-						position: "relative",
-						zIndex: 0
-					}}
+					<Card
+						sx={{
+							ml: 0.75,
+							mr: 0.75,
+							p: 1.25,
+							overflow: "hidden",
+							position: "relative",
+							zIndex: 0,
+						}}
 					>
 						<img
 							src={`${detailData.image.large}`}
@@ -49,53 +49,46 @@ const AboutSectionComponent = () => {
 								position: "absolute",
 								zIndex: -1,
 								opacity: 0.25,
-								filter: "grayscale(10%)" }}
+								filter: "grayscale(10%)",
+							}}
 						/>
 						<Box sx={{ zIndex: 1 }}>
-							<Stack spacing={.75}>
-								{detailData?.description.en.length > maxDetailLength
-									?
-										<Collapse in={showMore} collapsedSize={200}>
-											<Box sx={{ pb: showMore ? 3.5 : 0 }}>
-												<Typography
-													variant="h6"
-													sx={{ fontWeight: 600 }}
-												>
-													About {`${detailData.name} (${detailData.symbol.toUpperCase()})`}
-												</Typography>
-												<Typography
-													variant="body1"
-													display="inline"
-												>
-													{HTMLparse(`${detailData.description.en}`)}
-												</Typography>
-											</Box>
-										</Collapse>
-									:
-										<Box
-											sx={{
-												// border: "1px solid red",
-												pb: showMore
-													? 3.5
-													: 0
-											}}
-										>
-											<Typography
-												variant="h6"
-												sx={{ fontWeight: 600 }}
-											>
-												About {`${detailData.name} (${detailData.symbol.toUpperCase()})`}
+							<Stack spacing={0.75}>
+								{detailData?.description.en.length > maxDetailLength ? (
+									<Collapse in={showMore} collapsedSize={200}>
+										<Box sx={{ pb: showMore ? 3.5 : 0 }}>
+											<Typography variant="h6" sx={{ fontWeight: 600 }}>
+												About{" "}
+												{`${
+													detailData.name
+												} (${detailData.symbol.toUpperCase()})`}
 											</Typography>
-											<Typography
-												variant="body1"
-												display="inline"
-											>
+											<Typography variant="body1" display="inline">
 												{HTMLparse(`${detailData.description.en}`)}
 											</Typography>
-										</Box>}
-								{ detailData?.description.en.length > maxDetailLength
-									?
-										<Box style={{
+										</Box>
+									</Collapse>
+								) : (
+									<Box
+										sx={{
+											// border: "1px solid red",
+											pb: showMore ? 3.5 : 0,
+										}}
+									>
+										<Typography variant="h6" sx={{ fontWeight: 600 }}>
+											About{" "}
+											{`${
+												detailData.name
+											} (${detailData.symbol.toUpperCase()})`}
+										</Typography>
+										<Typography variant="body1" display="inline">
+											{HTMLparse(`${detailData.description.en}`)}
+										</Typography>
+									</Box>
+								)}
+								{detailData?.description.en.length > maxDetailLength ? (
+									<Box
+										style={{
 											position: "absolute",
 											bottom: 0,
 											right: 0,
@@ -105,24 +98,34 @@ const AboutSectionComponent = () => {
 											paddingBottom: 40,
 											paddingTop: 150,
 											textAlign: "center",
-											backgroundImage: showMore ? "" : "linear-gradient(to bottom, rgba(255,255,255,0) 0%, white 80%)"}}
-										>
-											{ detailData?.description.en.length > maxDetailLength ?
-												<Button
-													sx={{ pb: 1 }}
-													onClick={() => {
-														setShowMore(!showMore);
-													}}
-												>
-													{showMore ? "show less" : "show more"}
-												</Button> : ""}
-										</Box> : ""}
+											backgroundImage: showMore
+												? ""
+												: "linear-gradient(to bottom, rgba(255,255,255,0) 0%, white 80%)",
+										}}
+									>
+										{detailData?.description.en.length > maxDetailLength ? (
+											<Button
+												sx={{ pb: 1 }}
+												onClick={() => {
+													setShowMore(!showMore);
+												}}
+											>
+												{showMore ? "show less" : "show more"}
+											</Button>
+										) : (
+											""
+										)}
+									</Box>
+								) : (
+									""
+								)}
 							</Stack>
 						</Box>
 					</Card>
-				</Box>)}
+				</Box>
+			)}
 		</>
-	)
-}
+	);
+};
 
-export default AboutSectionComponent
+export default AboutSectionComponent;

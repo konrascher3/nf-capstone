@@ -7,30 +7,32 @@ import Layout from "/src/organisms/layout/index";
 import useStore from "/src/ions/hooks/state/useStore";
 
 // MUI Imports
-import Stack from "@mui/material/Stack"
-import Box from "@mui/material/Box"
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
 
-import NewsCard from "/src/organisms/news-card/NewsCard"
-
+import NewsCard from "/src/organisms/news-card/NewsCard";
 
 const Page = () => {
-	const loading  = useStore((state) => state.loading)
-	const error  = useStore((state) => state.error)
-	const setLoading  = useStore((state) => state.setLoading)
-	const articles = useStore((state) => state.articles)
-	const setArticles = useStore((state) => state.setArticles)
+	const loading = useStore(state => state.loading);
+	const error = useStore(state => state.error);
+	const setLoading = useStore(state => state.setLoading);
+	const articles = useStore(state => state.articles);
+	const setArticles = useStore(state => state.setArticles);
 
-	useEffect(()=>{
-		setLoading(true)
-		axios.get("/api/newsapi/v2/everything?q=(crypto OR cryptocurrency OR cryptocurrencies)&sortBy=publishedAt&pageSize=100&language=en").then(function (response) {
-			setArticles(response.data.data.articles)
-		}).catch(function (error) {
-			console.error(error);
-		});
-		setLoading(false)
-	},[])
-
-
+	useEffect(() => {
+		setLoading(true);
+		axios
+			.get(
+				"/api/newsapi/v2/everything?q=(crypto OR cryptocurrency OR cryptocurrencies)&sortBy=publishedAt&pageSize=100&language=en"
+			)
+			.then(function (response) {
+				setArticles(response.data.data.articles);
+			})
+			.catch(function (error) {
+				console.error(error);
+			});
+		setLoading(false);
+	}, []);
 
 	return (
 		<Layout>
@@ -49,7 +51,7 @@ const Page = () => {
 								// TODO: remove duplicates by title
 								// TODO: fix no-wrap
 								<NewsCard key={article.id} article={article} />
-							)
+							);
 						})}
 					</Stack>
 				</Box>

@@ -1,8 +1,7 @@
 // Lottie Import
 import { useLottie } from "lottie-react";
 //// Tumbleweed Import
-import animationData from "/src/ions/lotties/tumbleweed-light-theme.json"
-
+import animationData from "/src/ions/lotties/tumbleweed-light-theme.json";
 
 const LottieTumbleweed = () => {
 	const options = {

@@ -1,19 +1,19 @@
-import { createTheme } from "@mui/material/styles"
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
 	palette: {},
 	typography: {
-		fontFamily: `"Roboto Condensed", Helvetica, Arial, sans-serif`
+		fontFamily: `"Roboto Condensed", Helvetica, Arial, sans-serif`,
 	},
 	components: {
-		MuiTab : {
+		MuiTab: {
 			styleOverrides: {
 				root: {
 					fontFamily: `"Roboto Condensed", Helvetica, Arial, sans-serif`,
-				}
-			}
-		}
-	}
+				},
+			},
+		},
+	},
 });
 
-export default theme
+export default theme;

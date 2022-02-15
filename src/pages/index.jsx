@@ -15,29 +15,29 @@ import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
-
-
 const Page = () => {
+	const setTimeFrame = useStore(state => state.setTimeFrame);
+	const setInterval = useStore(state => state.setInterval);
 
-const setTimeFrame = useStore((state) => state.setTimeFrame);
-const setInterval = useStore((state) => state.setInterval);
+	const error = useStore(state => state.error);
+	const fetchData = useStore(state => state.fetchData);
+	const coins = useStore(state => state.coins);
 
-const error = useStore((state) => state.error);
-const fetchData = useStore((state) => state.fetchData);
-const coins = useStore((state) => state.coins);
-
-// Reset coins-array
-	useEffect(()=>{
+	// Reset coins-array
+	useEffect(() => {
 		if (coins === null) {
-			fetchData("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false", "coins")
+			fetchData(
+				"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+				"coins"
+			);
 		}
-	}, [coins, fetchData])
+	}, [coins, fetchData]);
 
 	// Initialize toggle-button group
-	useEffect(()=>{
+	useEffect(() => {
 		setTimeFrame(7);
-		setInterval("daily")
-	},[setInterval, setTimeFrame])
+		setInterval("daily");
+	}, [setInterval, setTimeFrame]);
 
 	return (
 		<Layout>
@@ -49,23 +49,26 @@ const coins = useStore((state) => state.coins);
 			{coins && (
 				<>
 					{/*Tab-bar component*/}
-					< TabBar />
+					<TabBar />
 
 					{/*Marquee component*/}
-					<Box sx={{ m: .75 }}>
+					<Box sx={{ m: 0.75 }}>
 						<FastMarquee />
 					</Box>
 
 					{/*Data-grid component*/}
-					<Box >
+					<Box>
 						<CoinsDataGrid />
 					</Box>
 
 					{/*Load-More-Button component*/}
-					{coins?.length >= 20 ?
-						<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}>
+					{coins?.length >= 20 ? (
+						<Box sx={{ m: 0.75, display: "flex", justifyContent: "center" }}>
 							<LoadMoreButton disabled={coins} />
-						</Box> : ""}
+						</Box>
+					) : (
+						""
+					)}
 				</>
 			)}
 		</Layout>

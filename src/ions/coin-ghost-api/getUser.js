@@ -1,4 +1,4 @@
-import dbConnect from "../database";
+import dbConnect from "/src/ions/database/index";
 import Item from "/src/ions/models/user.model";
 
 import Web3 from "web3";

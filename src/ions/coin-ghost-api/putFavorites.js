@@ -1,5 +1,5 @@
-import dbConnect from "../database";
-import Favorites from "../models/Favorites.model";
+import dbConnect from "/src/ions/database/index";
+import Favorites from "/src/ions/models/favorites.model";
 
 import protect from "/src/ions/middleware/authMiddleware";
 

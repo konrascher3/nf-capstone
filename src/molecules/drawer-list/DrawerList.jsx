@@ -154,17 +154,6 @@ const DrawerList = () => {
 			});
 	};
 
-	const isMobileDevice = () => {
-		return "ontouchstart" in window || "onmsgesturechange" in window;
-	};
-
-	if (isMobileDevice()) {
-		const dappUrl = window.location.hostname;
-		const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
-		window.location = metamaskAppDeepLink;
-		console.log("Is on mobile", metamaskAppDeepLink);
-	}
-
 	const handleWalletClick = async () => {
 		// Allow site to connect to MetaMask
 		if (window.ethereum) {
@@ -332,6 +321,20 @@ const DrawerList = () => {
 								<CardActionArea
 									onClick={() => {
 										handleWalletClick();
+										const isMobileDevice = () => {
+											return (
+												"ontouchstart" in window ||
+												"onmsgesturechange" in window
+											);
+										};
+
+										if (isMobileDevice()) {
+											const dappUrl = window.location.hostname;
+											const metamaskAppDeepLink =
+												"https://metamask.app.link/dapp/" + dappUrl;
+											window.location = metamaskAppDeepLink;
+											console.log("Is on mobile", metamaskAppDeepLink);
+										}
 									}}
 								>
 									<Box

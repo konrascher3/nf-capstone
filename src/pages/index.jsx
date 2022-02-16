@@ -1,3 +1,4 @@
+import Stack from "@mui/material/Stack";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import Layout from "../organisms/layout";
@@ -57,9 +58,9 @@ const Page = () => {
 					</Box>
 
 					{/*Data-grid component*/}
-					<Box>
+					<Stack spacing={3} sx={{ m: 0.5 }}>
 						<CoinsDataGrid />
-					</Box>
+					</Stack>
 
 					{/*Load-More-Button component*/}
 					{coins?.length >= 20 ? (

@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 // MUI Imports
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 
 // Axios Import
 import axios from "axios";
@@ -116,7 +117,9 @@ const Page = () => {
 							{/*Drawer component*/}
 							<Drawer />
 							{/*Data-grid component*/}
-							<CoinsDataGrid />
+							<Stack spacing={3} sx={{ m: 0.5 }}>
+								<CoinsDataGrid />
+							</Stack>
 							{/*Load-More-Button component*/}
 							{coins?.length >= 20 ? (
 								<Box sx={{ m: 0.75, display: "flex", justifyContent: "center" }}>

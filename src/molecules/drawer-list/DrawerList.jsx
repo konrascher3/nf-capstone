@@ -159,10 +159,10 @@ const DrawerList = () => {
 	};
 
 	if (isMobileDevice()) {
-		const dappUrl = "metamask-auth.ilamanov.repl.co";
+		const dappUrl = window.location.hostname;
 		const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
-		console.log("Is on mobile");
-		window.location.assign(metamaskAppDeepLink);
+		window.location = metamaskAppDeepLink;
+		console.log("Is on mobile", metamaskAppDeepLink);
 	}
 
 	const handleWalletClick = async () => {

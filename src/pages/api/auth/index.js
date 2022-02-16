@@ -1,9 +1,6 @@
 import dbConnect from "/src/ions/database/index";
 import Item from "../../../ions/models/user.model";
 
-import Web3 from "web3";
-const web3 = new Web3(Web3.givenProvider);
-
 import process from "node:process";
 
 require("dotenv").config();

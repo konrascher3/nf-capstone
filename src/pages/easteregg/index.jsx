@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 
 import Layout from "/src/organisms/layout/index";
+import Image from "next/image";
 
 // MUI Import
 import Box from "@mui/material/Box";
@@ -26,7 +27,11 @@ const Page = () => {
 			{error && <div>{error.message}</div>}
 			<div>
 				<Box sx={{ display: "flex", m: 5, alignItems: "center", justifyContent: "center" }}>
-					<img src={meme.src} alt="Ah ah ah! You didn't say the magic word!" />
+					<Image
+						src={meme.src}
+						height={250}
+						alt="Ah ah ah! You didn't say the magic word!"
+					/>
 				</Box>
 			</div>
 		</Layout>

@@ -21,23 +21,23 @@ const DetailHeaderComponent = ({ id }) => {
 	const setLoading = useStore(state => state.setLoading);
 
 	const meta = useStore(state => state.meta);
-	// const metaData = meta[detailData?.id];
+	const loggedIn = useStore(state => state.loggedIn);
 	const toggleFavorited = useStore(state => state.toggleFavorited);
 	const publicAddress = useStore(state => state.publicAddress);
 
 	useEffect(() => {
-		setLoading(true);
-		axios
-			.put("/api/users/", {
-				publicAddress: `${publicAddress}`,
-				favorites: meta,
-			})
-			.then(favorites => {
-				setLoading(false);
-			});
+		if (loggedIn) {
+			setLoading(true);
+			axios
+				.put("/api/users/", {
+					publicAddress: `${publicAddress}`,
+					favorites: meta,
+				})
+				.then(favorites => {
+					setLoading(false);
+				});
+		}
 	}, [meta]);
-
-	const loggedIn = useStore(state => state.loggedIn);
 
 	return (
 		<>

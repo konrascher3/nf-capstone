@@ -24,21 +24,25 @@ const CoinsDataGrid = () => {
 
 	const setLoading = useStore(state => state.setLoading);
 
+	const loggedIn = useStore(state => state.loggedIn);
+
 	// Reset page-size if category switches
 	useEffect(() => {
 		setPageSize(initialPageSize);
 	}, [initialPageSize, setPageSize]);
 
 	useEffect(() => {
-		setLoading(true);
-		axios
-			.put("/api/users/", {
-				publicAddress: `${publicAddress}`,
-				favorites: meta,
-			})
-			.then(favorites => {
-				setLoading(false);
-			});
+		if (loggedIn) {
+			setLoading(true);
+			axios
+				.put("/api/users/", {
+					publicAddress: `${publicAddress}`,
+					favorites: meta,
+				})
+				.then(favorites => {
+					setLoading(false);
+				});
+		}
 	}, [meta]);
 
 	return (

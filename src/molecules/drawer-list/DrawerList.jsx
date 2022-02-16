@@ -154,6 +154,17 @@ const DrawerList = () => {
 			});
 	};
 
+	const isMobileDevice = () => {
+		return "ontouchstart" in window || "onmsgesturechange" in window;
+	};
+
+	if (isMobileDevice()) {
+		const dappUrl = "metamask-auth.ilamanov.repl.co";
+		const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
+		console.log("Is on mobile");
+		window.location.assign(metamaskAppDeepLink);
+	}
+
 	const handleWalletClick = async () => {
 		// Allow site to connect to MetaMask
 		if (window.ethereum) {

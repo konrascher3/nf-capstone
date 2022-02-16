@@ -1,21 +1,21 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-	nonce: {
-		required: true,
-		type: Number,
-		default: () => Math.floor(Math.random() * 1000000),
+const userSchema = new mongoose.Schema(
+	{
+		nonce: {
+			required: true,
+			type: Number,
+			default: () => Math.floor(Math.random() * 1000000),
+		},
+		publicAddress: {
+			required: true,
+			unique: true,
+			lowercase: true,
+			type: String,
+		},
 	},
-	publicAddress: {
-		required: true,
-		unique: true,
-		lowercase: true,
-		type: String,
-	},
-	favorites: {
-		type: Map,
-		of: Boolean,
-	},
-});
+	{ timestamps: true },
+	{ collection: "users" }
+);
 
 export default mongoose.models.User || mongoose.model("User", userSchema);

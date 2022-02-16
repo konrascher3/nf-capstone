@@ -8,7 +8,7 @@ import { StyledRankColumn, StyledNameColumn } from "/src/ions/data-grid-columns/
 
 // Custom-components Imports
 import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox";
-import useStore from "../hooks/state/useStore";
+import useStore from "/src/ions/hooks/state/useStore";
 
 const DataGridColumns = [
 	{

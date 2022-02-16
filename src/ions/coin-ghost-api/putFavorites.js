@@ -1,5 +1,5 @@
 import dbConnect from "../database";
-import Item from "../models/user.model";
+import Favorites from "../models/Favorites.model";
 
 import protect from "/src/ions/middleware/authMiddleware";
 
@@ -11,11 +11,11 @@ const putFavorites = async (request, response) => {
 	await protect(request, response);
 
 	try {
-		const filter = response.userId;
+		const filter = request.userId.userId;
 		const update = { favorites };
-		const mongoresponse = await Item.findOneAndUpdate(filter, update);
+		const mongoresponse = await Favorites.findOneAndUpdate(filter, update);
 		response.status(201).json(mongoresponse);
-		console.log("Favorites updated successfully");
+		console.log("Updated array", mongoresponse);
 	} catch (err) {
 		console.log(err);
 	}

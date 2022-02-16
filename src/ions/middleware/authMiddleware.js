@@ -17,8 +17,12 @@ const protect = async (request, response) => {
 			// Get userId from token
 
 			request.userId = await Favorites.findOne({ ObjectId: id });
+
 			// next();
 		} catch (error) {
+			if (error.name === "TokenExpiredError") {
+				console.log("Token expired. Please login again!");
+			}
 			console.log("Could not verify token:", error);
 			response.status(401);
 		}

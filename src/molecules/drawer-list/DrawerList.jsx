@@ -81,7 +81,6 @@ const DrawerList = () => {
 
 		// After user has been generated, add initial favorites to account
 
-		console.log(user.data._id);
 		const initialFavorites = await axios
 			.put("/api/favorites/set", {
 				publicAddress: user.data.publicAddress,
@@ -89,11 +88,11 @@ const DrawerList = () => {
 			})
 			.then(response => {
 				console.log("Initial favorites added successfully!");
+				return response;
 			})
 			.catch(error => {
 				console.error("Could not add initial favorites:", error);
 			});
-		console.log(initialFavorites);
 		return initialFavorites;
 	};
 
@@ -104,7 +103,7 @@ const DrawerList = () => {
 		const nonce = await axios
 			.get(`/api/user/get?publicAddress=${publicAddress}`)
 			.then(response => {
-				return response.data[0].nonce;
+				return response.data.nonce;
 			})
 			.catch(error => {
 				console.error(`Couldn't retrieve nonce for ${publicAddress}:`, error);
@@ -141,10 +140,8 @@ const DrawerList = () => {
 			.post("/api/auth", options)
 			.then(response => {
 				const { token } = response.data;
-				console.log(token);
 				// Store token in browser-cookies for 1 hour
-				const one_hour = new Date(new Date().getTime + 3600 * 1000);
-				Cookies.set("coin-ghost-auth", token, { expires: one_hour });
+				Cookies.set("coin-ghost-auth", token);
 				const authToken = Cookies.get("coin-ghost-auth");
 				if (authToken) {
 					setLoggedIn(true);
@@ -182,7 +179,7 @@ const DrawerList = () => {
 		// Check if publicAddress already exists on back-end
 		try {
 			await axios.get(`/api/user/get?publicAddress=${publicAddress}`).then(response => {
-				if (response.data.length) {
+				if (response.data.hasOwnProperty("publicAddress")) {
 					handleSignMessage(publicAddress).then(({ publicAddress, userSignature }) => {
 						handleAuthenticate({ publicAddress, userSignature });
 					});

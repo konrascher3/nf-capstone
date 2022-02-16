@@ -36,8 +36,8 @@ const handler = async (request, response) => {
 		// Step 1: Get the user with the given publicAddress
 		try {
 			// Retrieve nonce for the requested publicAddress from the database
-			await Item.findOne({ publicAddress: `${publicAddress}` }).then(mongooseresponse => {
-				if (!mongooseresponse[0].publicAddress) {
+			Item.findOne({ publicAddress: `${publicAddress}` }).then(mongooseresponse => {
+				if (!mongooseresponse.publicAddress) {
 					response.status(400).send({
 						error: `Couldn't find public address ${publicAddress} in the database`,
 					});
@@ -46,7 +46,7 @@ const handler = async (request, response) => {
 				// Step 2: Verify digital signature
 				const msg = `Please sign this message to confirm ownership of your public-address.\n
 				No transaction-cost occur.\n
-				Your personal code is ${mongooseresponse[0].nonce}.`;
+				Your personal code is ${mongooseresponse.nonce}.`;
 
 				// We now are in possession of msg, publicAddress and signature. We
 				// will use a helper from eth-sig-util to extract the address from the signature
@@ -74,12 +74,11 @@ const handler = async (request, response) => {
 						jwt.sign(
 							{
 								payload: {
-									id: mongooseresponse[0]._id,
+									id: mongooseresponse._id,
 									publicAddress,
 								},
 							},
 							config.secret,
-							{ expiresIn: "1h" },
 							(err, token) => {
 								if (err) {
 									return reject(err);

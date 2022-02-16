@@ -9,6 +9,8 @@ const setUser = async (request, response) => {
 
 	const publicAddress = request.query.publicAddress ?? request.body.publicAddress;
 
+	console.log("CREATING USER");
+
 	if (web3.utils.isAddress(publicAddress)) {
 		try {
 			const mongoresponse = await Item.create({

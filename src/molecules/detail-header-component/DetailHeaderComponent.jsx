@@ -9,39 +9,29 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 
+// useStore
+import useStore from "/src/ions/hooks/state/useStore";
+
 // Material Design Icons Imports
 import { mdiArrowDownRight, mdiArrowUpRight } from "@mdi/js";
 import Icon from "@mdi/react";
 
-// useStore
-import useStore from "/src/ions/hooks/state/useStore";
-
 const DetailHeaderComponent = ({ id }) => {
 	const detailData = useStore(state => state.detailData);
-
-	const setLoading = useStore(state => state.setLoading);
-
 	const meta = useStore(state => state.meta);
-	const setMeta = useStore(state => state.setMeta);
 	const loggedIn = useStore(state => state.loggedIn);
 	const toggleFavorited = useStore(state => state.toggleFavorited);
 
 	useEffect(() => {
+		// Update remote favorites with local ones
 		const authToken = Cookies.get("coin-ghost-auth");
-
 		if (authToken && loggedIn) {
 			const options = {
 				headers: {
 					Authorization: `Bearer ${authToken}`,
 				},
 			};
-			axios.post("/api/favorites/put", { favorites: meta }, options).then(response => {
-				const favorites = response.data[0].favorites;
-				const condition = Object.keys(favorites).filter(Boolean).length;
-				if (condition) {
-					setMeta(favorites);
-				}
-			});
+			axios.post("/api/favorites/put", { favorites: meta }, options);
 		}
 	}, [meta]);
 

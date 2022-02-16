@@ -33,98 +33,48 @@ const Page = () => {
 	const loggedIn = useStore(state => state.loggedIn);
 	const setMeta = useStore(state => state.setMeta);
 
-	const setPublicAddress = useStore(state => state.setPublicAddress);
-	const publicAddress = useStore(state => state.publicAddress);
 	const meta = useStore(state => state.meta);
 
 	const setLoading = useStore(state => state.setLoading);
 
 	useEffect(() => {
+		// Get and set initial favorites from the server
 		const authToken = Cookies.get("coin-ghost-auth");
-
 		if (authToken && loggedIn) {
 			const options = {
 				headers: {
 					Authorization: `Bearer ${authToken}`,
 				},
 			};
-
-			// Get favorites from server only with valid JWT
 			axios.post(`/api/favorites/get`, {}, options).then(response => {
 				const favorites = response.data.favorites;
-				const condition = Object.keys(favorites).filter(Boolean).length;
-				console.log(response.data);
-				if (condition) {
-					setLoading(true);
-					const fetchData = async () => {
-						const response = await axios.get(
-							"https://api.coingecko.com/api/v3/coins/markets",
-							{
-								params: {
-									vs_currency: "usd",
-									ids: Object.keys(favorites)
-										.filter(key => favorites[key])
-										.join(","),
-								},
-							}
-						);
-						setCoins(response.data);
-						setMeta(favorites);
-						setPublicAddress(publicAddress);
-						setLoading(false);
-					};
-					fetchData();
-				} else {
-					setCoins(null);
-				}
+				setMeta(favorites);
 			});
 		}
 	}, []);
 
-	// useEffect(() => {
-	// 	const authToken = Cookies.get("coin-ghost-auth");
-	//
-	// 	if (authToken && loggedIn) {
-	// 		const options = {
-	// 			headers: {
-	// 				Authorization: `Bearer ${authToken}`,
-	// 			},
-	// 		};
-	// 		axios.post("/api/favorites/get", {}, options).then(response => {
-	// 			console.log(response.data);
-	// 			return;
-	// 			const favorites = response.data[0].favorites;
-	// 			const condition = Object.keys(favorites).filter(Boolean).length;
-	// 			if (condition) {
-	// 				setMeta(favorites);
-	// 			}
-	// 		});
-	// 	}
-	// 	if (
-	// 		Object.keys(
-	// 			Object.keys(meta)
-	// 				.filter(key => meta[key])
-	// 				.join(",")
-	// 		).length > 0
-	// 	) {
-	// 		setLoading(true);
-	// 		const fetchData = async () => {
-	// 			const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets", {
-	// 				params: {
-	// 					vs_currency: "usd",
-	// 					ids: Object.keys(meta)
-	// 						.filter(key => meta[key])
-	// 						.join(","),
-	// 				},
-	// 			});
-	// 			setCoins(response.data);
-	// 			setLoading(false);
-	// 		};
-	// 		fetchData();
-	// 	} else {
-	// 		setCoins(null);
-	// 	}
-	// }, [meta]);
+	useEffect(() => {
+		// Get price-data from Coin-Gecko-API
+		const condition = Object.values(meta).filter(Boolean).length > 0;
+		if (condition) {
+			setLoading(true);
+			const fetchData = async () => {
+				const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets", {
+					params: {
+						vs_currency: "usd",
+						ids: Object.keys(meta)
+							.filter(key => meta[key])
+							.join(","),
+					},
+				});
+				setCoins(response.data);
+				setLoading(false);
+			};
+			fetchData();
+		} else {
+			setCoins(null);
+		}
+	}, [meta]);
 
 	return (
 		<Layout>

@@ -39,7 +39,7 @@ const handler = async (request, response) => {
 	// Add password to header
 	request.headers["authorization"] = API_ROUTE_KEY;
 
-	if (request.headers.authorization === API_ROUTE_KEY && web3.utils.isAddress(publicAddress)) {
+	if (request.headers.authorization === API_ROUTE_KEY) {
 		// Step 1: Get the user with the given publicAddress
 		try {
 			// Retrieve nonce for the requested publicAddress from the database

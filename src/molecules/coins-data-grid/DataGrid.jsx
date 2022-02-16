@@ -52,7 +52,7 @@ const CoinsDataGrid = () => {
 						".MuiDataGrid-cell:focus-within": {
 							outline: "none !important",
 						},
-						mx: 0.5,
+						// mx: 0.5,
 						width: "100%",
 					}}
 					onPageSizeChange={newPage => setPageSize(newPage)}

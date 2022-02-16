@@ -3,8 +3,6 @@ import Head from "next/head";
 
 import Cookies from "js-cookie";
 
-import jwtDecode from "jwt-decode";
-
 // MUI Imports
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";

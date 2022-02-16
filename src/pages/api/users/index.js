@@ -3,8 +3,6 @@ import dbConnect from "/src/ions/database/index";
 
 import process from "node:process";
 
-require("dotenv").config();
-
 const API_ROUTE_KEY = process.env.API_ROUTE_KEY;
 
 import Web3 from "web3";

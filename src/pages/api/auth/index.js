@@ -1,9 +1,10 @@
 import dbConnect from "/src/ions/database/index";
 import Item from "../../../ions/models/user.model";
 
-import process from "node:process";
+import Web3 from "web3";
+const web3 = new Web3(Web3.givenProvider);
 
-require("dotenv").config();
+import process from "node:process";
 
 const API_ROUTE_KEY = process.env.API_ROUTE_KEY;
 
@@ -36,7 +37,7 @@ const handler = async (request, response) => {
 	// Add password to header
 	request.headers["authorization"] = API_ROUTE_KEY;
 
-	if (request.headers.authorization === API_ROUTE_KEY) {
+	if (request.headers.authorization === API_ROUTE_KEY && web3.utils.isAddress(publicAddress)) {
 		// Step 1: Get the user with the given publicAddress
 		try {
 			// Retrieve nonce for the requested publicAddress from the database

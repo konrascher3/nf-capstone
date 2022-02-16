@@ -10,7 +10,7 @@ import authUser from "/src/ions/coin-ghost-api/authUser";
 const handler = (request, response) => {
 	const {
 		args: [route, operation],
-		...params
+		// ...params
 	} = request.query;
 
 	switch (route) {

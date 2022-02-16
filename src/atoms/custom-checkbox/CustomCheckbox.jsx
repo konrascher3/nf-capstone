@@ -6,12 +6,9 @@ import Box from "@mui/material/Box";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
-
-const CustomCheckbox = ({ params  }) => {
-	const meta = useStore((state) => state.meta);
-	const toggleFavorited = useStore((state) => state.toggleFavorited);
-	const metaData = meta[params.id];
-	const favorited = metaData?.favorited;
+const CustomCheckbox = ({ params }) => {
+	const meta = useStore(state => state.meta);
+	const toggleFavorited = useStore(state => state.toggleFavorited);
 
 	return (
 		<label>
@@ -21,32 +18,36 @@ const CustomCheckbox = ({ params  }) => {
 				style={{
 					position: "fixed",
 					top: "-100%",
-					left: "-100vw"
-				}} onChange={()=>{
-				toggleFavorited(params.id)
-				// console.log(meta[params.id].favorited)
+					left: "-100vw",
+				}}
+				onChange={() => {
+					toggleFavorited(params.id);
 				}}
 			/>
 			{/*Increase tap-target*/}
-			<div style={{
-				height: 51,
-				width: 51,
-				cursor: "pointer",
-				position: "absolute",
-				bottom: -16,
-				left: -10 }}
+			<div
+				style={{
+					height: 51,
+					width: 51,
+					cursor: "pointer",
+					position: "absolute",
+					bottom: -16,
+					left: -10,
+				}}
 			>
 				{/*Represents the custom-checkbox*/}
-				<Box sx={{
-					height:51,
-					width: 5,
-					backgroundColor: favorited ? "#BD93F9" : "#BD93F966",
-					position: "absolute",
-					top: -.5 }}
+				<Box
+					sx={{
+						height: 51,
+						width: 5,
+						backgroundColor: meta[params.id] ? "#BD93F9" : "#BD93F966",
+						position: "absolute",
+						top: -0.5,
+					}}
 				/>
 			</div>
 		</label>
-	)
-}
+	);
+};
 
-export default CustomCheckbox
+export default CustomCheckbox;

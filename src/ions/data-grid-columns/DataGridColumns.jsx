@@ -4,46 +4,51 @@ import React from "react";
 import { formatCurrency } from "@coingecko/cryptoformat";
 
 // Styled-components Import
-import {StyledRankColumn, StyledNameColumn} from "/src/ions/data-grid-columns/styled"
+import { StyledRankColumn, StyledNameColumn } from "/src/ions/data-grid-columns/styled";
 
 // Custom-components Imports
-import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox"
+import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox";
+import useStore from "/src/ions/hooks/state/useStore";
 
 const DataGridColumns = [
 	{
 		field: "market_cap_rank",
 		width: 0,
 		headerName: "#",
-		renderCell: (params) => {
+		renderCell: params => {
+			const loggedIn = useStore(state => state.loggedIn);
+
 			return (
 				/* TODO: Decide on bookmark */
 				<StyledRankColumn style={{ position: "relative" }}>
-					<CustomCheckbox params={params} />
+					{loggedIn ? <CustomCheckbox params={params} /> : ""}
 					<span>{params.value}.</span>
 				</StyledRankColumn>
-			)}
+			);
+		},
 	},
 	{
 		field: "name",
 		headerName: "Name",
 		minWidth: 100,
 		flex: 1,
-		renderCell: (params) => {
+		renderCell: params => {
 			const router = useRouter();
 			return (
-				<label style={{
-					width: "100%",
-					height: "100%",
-					display: "flex",
-					alignItems: "center",
-					cursor: "pointer"
-				}}
+				<label
+					style={{
+						width: "100%",
+						height: "100%",
+						display: "flex",
+						alignItems: "center",
+						cursor: "pointer",
+					}}
 				>
 					<input
 						type="button"
 						style={{ position: "fixed", top: "-100%", left: "-100vw" }}
 						onClick={() => {
-							router.push(`/detail/${params.id}`)
+							router.push(`/detail/${params.id}`);
 						}}
 					/>
 					<StyledNameColumn>
@@ -52,11 +57,12 @@ const DataGridColumns = [
 							src={`${params.row.image}`}
 							alt={`Project-icon of ${params.row.name}`}
 						/>
-						<div style={{
-							width: "100%",
-							overflow: "hidden",
-							whiteSpace: "no-wrap"
-						}}
+						<div
+							style={{
+								width: "100%",
+								overflow: "hidden",
+								whiteSpace: "no-wrap",
+							}}
 						>
 							<div style={{ textOverflow: "ellipsis", overflow: "hidden" }}>
 								{params.value}
@@ -65,7 +71,8 @@ const DataGridColumns = [
 						</div>
 					</StyledNameColumn>
 				</label>
-)}
+			);
+		},
 	},
 	{
 		field: "price_change_percentage_24h",
@@ -77,14 +84,13 @@ const DataGridColumns = [
 					{`${parseFloat(value).toFixed(2)}%`}
 				</div>
 			);
-		}
+		},
 	},
 	{
 		field: "current_price",
 		headerName: "Price",
 		width: 110,
-		valueFormatter: ({ value }) =>
-			formatCurrency(value, "USD", "en", false)
+		valueFormatter: ({ value }) => formatCurrency(value, "USD", "en", false),
 	},
 ];
 

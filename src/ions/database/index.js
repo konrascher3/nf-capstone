@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
 import process from "node:process";
 
-require('dotenv').config();
+require("dotenv").config();
 
 const MONGODB_COINGHOST_URI = process.env.MONGODB_COINGHOST_URI;
 
 if (!MONGODB_COINGHOST_URI) {
-	throw new Error("Please define the MONGODB_COINGHOST_URI environment variable inside .env.local");
+	throw new Error(
+		"Please define the MONGODB_COINGHOST_URI environment variable inside .env.local"
+	);
 }
 
 /**

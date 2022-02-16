@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // MUI Imports
 
@@ -11,9 +11,7 @@ import Box from "@mui/material/Box";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
-
-
-const TabPanel = (props) => {
+const TabPanel = props => {
 	const { children, value, index, ...other } = props;
 
 	return (
@@ -31,7 +29,7 @@ const TabPanel = (props) => {
 			)}
 		</div>
 	);
-}
+};
 
 TabPanel.propTypes = {
 	children: PropTypes.node,
@@ -42,26 +40,31 @@ TabPanel.propTypes = {
 function a11yProps(index) {
 	return {
 		id: `tab-${index}`,
-		'aria-controls': `tabpanel-${index}`,
+		"aria-controls": `tabpanel-${index}`,
 	};
 }
 
-
 const TabBar = () => {
-
 	const endpoints = {
-		topCoins: "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
-		stableCoins: "coins/markets?vs_currency=usd&category=stablecoins&order=market_cap_desc&sparkline=false",
-		memeCoins: "coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&sparkline=false",
-		nftCoins: "coins/markets?vs_currency=usd&category=non-fungible-tokens-nft&order=market_cap_desc&sparkline=false",
-		dexCoins: "coins/markets?vs_currency=usd&category=decentralized-exchange&order=market_cap_desc&sparkline=false",
-		gameCoins: "coins/markets?vs_currency=usd&category=gaming&order=market_cap_desc&sparkline=false",
-		musicCoins: "coins/markets?vs_currency=usd&category=music&order=market_cap_desc&sparkline=false"
-	}
+		topCoins:
+			"coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+		stableCoins:
+			"coins/markets?vs_currency=usd&category=stablecoins&order=market_cap_desc&sparkline=false",
+		memeCoins:
+			"coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&sparkline=false",
+		nftCoins:
+			"coins/markets?vs_currency=usd&category=non-fungible-tokens-nft&order=market_cap_desc&sparkline=false",
+		dexCoins:
+			"coins/markets?vs_currency=usd&category=decentralized-exchange&order=market_cap_desc&sparkline=false",
+		gameCoins:
+			"coins/markets?vs_currency=usd&category=gaming&order=market_cap_desc&sparkline=false",
+		musicCoins:
+			"coins/markets?vs_currency=usd&category=music&order=market_cap_desc&sparkline=false",
+	};
 
-	const tabPosition = useStore((state) => state.tabPosition)
-	const setTabPosition = useStore((state) => state.setTabPosition)
-	const {fetchData, loading} = useStore((state) => state)
+	const tabPosition = useStore(state => state.tabPosition);
+	const setTabPosition = useStore(state => state.setTabPosition);
+	const { fetchData, loading } = useStore(state => state);
 
 	const handleChange = (event, newValue) => {
 		setTabPosition(newValue);
@@ -70,32 +73,32 @@ const TabBar = () => {
 	useEffect(() => {
 		switch (tabPosition) {
 			case 0:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`, "coins")
-				break
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.topCoins}`, "coins");
+				break;
 			case 1:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.stableCoins}`, "coins")
-				break
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.stableCoins}`, "coins");
+				break;
 			case 2:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.memeCoins}`, "coins")
-				break
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.memeCoins}`, "coins");
+				break;
 			case 3:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.nftCoins}`, "coins")
-				break
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.nftCoins}`, "coins");
+				break;
 			case 4:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`, "coins")
-				break
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.dexCoins}`, "coins");
+				break;
 			case 5:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`, "coins")
-				break
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.gameCoins}`, "coins");
+				break;
 			case 6:
-				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`, "coins")
-				break
+				fetchData(`https://api.coingecko.com/api/v3/${endpoints.musicCoins}`, "coins");
+				break;
 		}
-	}, [tabPosition])
+	}, [tabPosition]);
 
 	return (
-		<Box sx={{ width: '100%' }}>
-			<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+		<Box sx={{ width: "100%" }}>
+			<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
 				<Tabs
 					// TODO: Add breakpoint-switch for centered and varant="scrollable"
 					// centered
@@ -104,7 +107,6 @@ const TabBar = () => {
 					variant="scrollable"
 					scrollButtons="auto"
 					onChange={handleChange}
-
 				>
 					{/* Custom Categories */}
 					<Tab disabled={loading} label="Top Coins 👑" {...a11yProps("show_top_coins")} />
@@ -120,6 +122,6 @@ const TabBar = () => {
 			</Box>
 		</Box>
 	);
-}
+};
 
-export default TabBar
+export default TabBar;

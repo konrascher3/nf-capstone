@@ -6,18 +6,23 @@ import LoadingButton from "@mui/lab/LoadingButton";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
-
 const LoadMoreButton = () => {
-	const loading = useStore((state) => state.loading);
-	const coins = useStore((state) => state.coins);
-	const pageSize = useStore((state) => state.pageSize);
-	const setPageSize = useStore((state) => state.setPageSize);
+	const loading = useStore(state => state.loading);
+	const coins = useStore(state => state.coins);
+	const pageSize = useStore(state => state.pageSize);
+	const setPageSize = useStore(state => state.setPageSize);
 
 	return (
-		<LoadingButton loading={loading} disabled={pageSize === 100 || pageSize >= coins?.length} onClick={()=>{setPageSize(pageSize + 10)}}>
+		<LoadingButton
+			loading={loading}
+			disabled={pageSize === 100 || pageSize >= coins?.length}
+			onClick={() => {
+				setPageSize(pageSize + 10);
+			}}
+		>
 			load more
 		</LoadingButton>
-	)
-}
+	);
+};
 
-export default LoadMoreButton
+export default LoadMoreButton;

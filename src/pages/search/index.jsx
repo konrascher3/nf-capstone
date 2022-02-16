@@ -8,44 +8,45 @@ import Layout from "/src/organisms/layout/index";
 import Box from "@mui/material/Box";
 
 // useStore
-import useStore from "/src/ions/hooks/state/useStore"
+import useStore from "/src/ions/hooks/state/useStore";
 
 // Custom-components Imports
 import LoadMoreButton from "../../atoms/loadMoreButton/LoadMoreButton";
 import CoinsDataGrid from "../../molecules/coins-data-grid/DataGrid";
 import Searchbar from "../../molecules/searchbar/Searchbar";
 
-
 const Page = () => {
-	const error = useStore((state) => state.error);
-	const coins = useStore((state) => state.coins);
-	const setCoins = useStore((state) => state.setCoins);
-	const setLoading = useStore((state) => state.setLoading);
+	const error = useStore(state => state.error);
+	const coins = useStore(state => state.coins);
+	const setCoins = useStore(state => state.setCoins);
+	const setLoading = useStore(state => state.setLoading);
 
 	// Get trending coins in search if search-page is opened
-	useEffect( ()=>{
+	useEffect(() => {
 		const getTrending = async () => {
-			setLoading(true)
+			setLoading(true);
 			const { data } = await axios.get("https://api.coingecko.com/api/v3/search/trending");
-			if (data){
+			if (data) {
 				const fetchData = async () => {
-					const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets",
-						{ params:
-								{
-									vs_currency: "usd",
-									ids: data.coins.map(({ item }) => item.id).join(",")
-								}
-						});
+					const response = await axios.get(
+						"https://api.coingecko.com/api/v3/coins/markets",
+						{
+							params: {
+								vs_currency: "usd",
+								ids: data.coins.map(({ item }) => item.id).join(","),
+							},
+						}
+					);
 					setCoins(response.data);
-					console.log(response.data)
-					setLoading(false)
+					setLoading(false);
 				};
-				fetchData()
+				fetchData();
 			} else {
-				setLoading(false)}
-		}
-		getTrending()
-	}, [])
+				setLoading(false);
+			}
+		};
+		getTrending();
+	}, []);
 
 	return (
 		<Layout>
@@ -56,12 +57,13 @@ const Page = () => {
 			{error && <div>{error.message}</div>}
 			<div>
 				{/*Data-grid component*/}
-				<Box sx={{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-					m: 3
-				}}
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						m: 3,
+					}}
 				>
 					<Searchbar />
 				</Box>
@@ -69,18 +71,20 @@ const Page = () => {
 				{coins && (
 					<div>
 						{/*Data-grid component*/}
-						<Box >
+						<Box>
 							<CoinsDataGrid />
 						</Box>
 
 						{/*Load-More-Button component*/}
-						{coins.length >= 20 ?
-							<Box sx={{ m: .75, display: "flex", justifyContent: "center" }}>
+						{coins.length >= 20 ? (
+							<Box sx={{ m: 0.75, display: "flex", justifyContent: "center" }}>
 								<LoadMoreButton disabled={coins} />
-							</Box> : ""}
+							</Box>
+						) : (
+							""
+						)}
 					</div>
 				)}
-
 			</div>
 		</Layout>
 	);

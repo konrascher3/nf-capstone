@@ -8,32 +8,32 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
-
 const ToggleTimeframeComponent = () => {
-	const loading = useStore((state) => state.loading)
+	const loading = useStore(state => state.loading);
 
-	const setTimeFrame = useStore((state) => state.setTimeFrame);
-	const setInterval = useStore((state) => state.setInterval);
+	const setTimeFrame = useStore(state => state.setTimeFrame);
+	const setInterval = useStore(state => state.setInterval);
 
 	const [alignment, setAlignment] = useState(1);
 
 	const handleChange = (event, newAlignment) => {
-		setAlignment(newAlignment)
-	}
+		setAlignment(newAlignment);
+	};
 
-	useEffect(()=>{
+	useEffect(() => {
 		setAlignment(7);
 		setInterval("daily");
-		setTimeFrame(7)
-	},[setInterval, setTimeFrame])
+		setTimeFrame(7);
+	}, [setInterval, setTimeFrame]);
 
 	return (
-		<Box sx={{
-			position: "relative",
-			// top: -40,
-			m: .5,
-			alignSelf: "flex-end"
-		}}
+		<Box
+			sx={{
+				position: "relative",
+				// top: -40,
+				m: 0.5,
+				alignSelf: "flex-end",
+			}}
 		>
 			<ToggleButtonGroup
 				exclusive
@@ -46,9 +46,9 @@ const ToggleTimeframeComponent = () => {
 				<ToggleButton
 					variant="outlined"
 					value={1}
-					onClick={()=>{
+					onClick={() => {
 						setTimeFrame(1);
-						setInterval("hourly")
+						setInterval("hourly");
 					}}
 				>
 					24H
@@ -56,9 +56,9 @@ const ToggleTimeframeComponent = () => {
 				<ToggleButton
 					variant="outlined"
 					value={7}
-					onClick={()=>{
+					onClick={() => {
 						setTimeFrame(7);
-						setInterval("daily")
+						setInterval("daily");
 					}}
 				>
 					7D
@@ -66,9 +66,9 @@ const ToggleTimeframeComponent = () => {
 				<ToggleButton
 					variant="outlined"
 					value={14}
-					onClick={()=>{
+					onClick={() => {
 						setTimeFrame(14);
-						setInterval("daily")
+						setInterval("daily");
 					}}
 				>
 					14D
@@ -76,9 +76,9 @@ const ToggleTimeframeComponent = () => {
 				<ToggleButton
 					variant="outlined"
 					value={30}
-					onClick={()=>{
+					onClick={() => {
 						setTimeFrame(30);
-						setInterval("daily")
+						setInterval("daily");
 					}}
 				>
 					1M
@@ -86,9 +86,9 @@ const ToggleTimeframeComponent = () => {
 				<ToggleButton
 					variant="outlined"
 					value={90}
-					onClick={()=>{
+					onClick={() => {
 						setTimeFrame(90);
-						setInterval("daily")
+						setInterval("daily");
 					}}
 				>
 					3M
@@ -96,16 +96,16 @@ const ToggleTimeframeComponent = () => {
 				<ToggleButton
 					variant="outlined"
 					value={360}
-					onClick={()=>{
+					onClick={() => {
 						setTimeFrame(360);
-						setInterval("monthly")
+						setInterval("monthly");
 					}}
 				>
 					1Y
 				</ToggleButton>
 			</ToggleButtonGroup>
 		</Box>
-	)
-}
+	);
+};
 
-export default ToggleTimeframeComponent
+export default ToggleTimeframeComponent;

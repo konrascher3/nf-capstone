@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 
 import { formatCurrency } from "@coingecko/cryptoformat";
@@ -23,19 +24,20 @@ const DetailHeaderComponent = ({ id }) => {
 	const meta = useStore(state => state.meta);
 	const loggedIn = useStore(state => state.loggedIn);
 	const toggleFavorited = useStore(state => state.toggleFavorited);
-	const publicAddress = useStore(state => state.publicAddress);
 
 	useEffect(() => {
-		if (loggedIn) {
+		const authToken = Cookies.get("coin-ghost-auth");
+
+		if (authToken && loggedIn) {
+			const options = {
+				headers: {
+					Authorization: `Bearer ${authToken}`,
+				},
+			};
 			setLoading(true);
 			axios
-				.put("/api/users/", {
-					publicAddress: `${publicAddress}`,
-					favorites: meta,
-				})
-				.then(favorites => {
-					setLoading(false);
-				});
+				.post("/api/favorites/put", { favorites: meta }, options)
+				.then(favorites => setLoading(false));
 		}
 	}, [meta]);
 

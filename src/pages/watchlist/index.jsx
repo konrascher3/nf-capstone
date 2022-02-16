@@ -42,22 +42,20 @@ const Page = () => {
 	const setLoading = useStore(state => state.setLoading);
 
 	useEffect(() => {
-		// // Get session-token from cookie
 		const authToken = Cookies.get("coin-ghost-auth");
-		if (authToken) {
-			const {
-				payload: { publicAddress },
-			} = jwtDecode(authToken);
-			// Get favorites from server
-			axios.get(`/api/users?publicAddress=${publicAddress}`).then(response => {
+
+		if (authToken && loggedIn) {
+			const options = {
+				headers: {
+					Authorization: `Bearer ${authToken}`,
+				},
+			};
+
+			// Get favorites from server only with valid JWT
+			axios.post(`/api/favorites/get`, {}, options).then(response => {
 				const favorites = response.data[0].favorites;
-				if (
-					Object.keys(
-						Object.keys(favorites)
-							.filter(key => favorites[key])
-							.join(",")
-					).length > 0
-				) {
+				const condition = Object.keys(favorites).filter(Boolean).length;
+				if (condition) {
 					setLoading(true);
 					const fetchData = async () => {
 						const response = await axios.get(
@@ -85,10 +83,16 @@ const Page = () => {
 	}, []);
 
 	useEffect(() => {
-		axios.put("/api/users/", {
-			publicAddress: `${publicAddress}`,
-			favorites: meta,
-		});
+		const authToken = Cookies.get("coin-ghost-auth");
+
+		if (authToken && loggedIn) {
+			const options = {
+				headers: {
+					Authorization: `Bearer ${authToken}`,
+				},
+			};
+			axios.post("/api/favorites/put", { favorites: meta }, options);
+		}
 		if (
 			Object.keys(
 				Object.keys(meta)

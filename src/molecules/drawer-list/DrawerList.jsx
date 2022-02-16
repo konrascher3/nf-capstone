@@ -65,20 +65,36 @@ const DrawerList = () => {
 	};
 
 	// Signup helper-function
-	const handleSignup = publicAddress => {
+	const handleSignup = async publicAddress => {
 		// Add new user to data-base
-		return axios
-			.put("/api/users/", {
+		const user = await axios
+			.put("/api/user/set", {
 				publicAddress: `${publicAddress}`,
-				favorites: { bitcoin: true, ethereum: true },
 			})
 			.then(response => {
-				console.log("New user added successfully:", response);
+				console.log("New user added successfully!");
 				return response;
 			})
 			.catch(error => {
 				console.error("Could not add new user:", error);
 			});
+
+		// After user has been generated, add initial favorites to account
+
+		console.log(user.data._id);
+		const initialFavorites = await axios
+			.put("/api/favorites/set", {
+				publicAddress: user.data.publicAddress,
+				userId: user.data._id,
+			})
+			.then(response => {
+				console.log("Initial favorites added successfully!");
+			})
+			.catch(error => {
+				console.error("Could not add initial favorites:", error);
+			});
+		console.log(initialFavorites);
+		return initialFavorites;
 	};
 
 	// Sign-message helper-function
@@ -86,7 +102,7 @@ const DrawerList = () => {
 		// Retrieve nonce from database
 
 		const nonce = await axios
-			.get(`/api/users?publicAddress=${publicAddress}`)
+			.get(`/api/user/get?publicAddress=${publicAddress}`)
 			.then(response => {
 				return response.data[0].nonce;
 			})
@@ -122,9 +138,10 @@ const DrawerList = () => {
 		};
 
 		axios
-			.post("/api/auth/", options)
+			.post("/api/auth", options)
 			.then(response => {
 				const { token } = response.data;
+				console.log(token);
 				// Store token in browser-cookies for 1 hour
 				const one_hour = new Date(new Date().getTime + 3600 * 1000);
 				Cookies.set("coin-ghost-auth", token, { expires: one_hour });
@@ -144,7 +161,7 @@ const DrawerList = () => {
 		// Allow site to connect to MetaMask
 		if (window.ethereum) {
 			try {
-				await ethereum.enable();
+				await window.ethereum.enable();
 			} catch (error) {
 				window.alert("You need to allow MetaMask.");
 			}
@@ -153,7 +170,7 @@ const DrawerList = () => {
 		}
 
 		// Request public ethereum-accounts
-		const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+		const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
 		const account = accounts[0];
 		let publicAddress = null;
 
@@ -164,14 +181,14 @@ const DrawerList = () => {
 
 		// Check if publicAddress already exists on back-end
 		try {
-			await axios.get(`/api/users?publicAddress=${publicAddress}`).then(response => {
+			await axios.get(`/api/user/get?publicAddress=${publicAddress}`).then(response => {
 				if (response.data.length) {
 					handleSignMessage(publicAddress).then(({ publicAddress, userSignature }) => {
 						handleAuthenticate({ publicAddress, userSignature });
 					});
 				} else {
 					handleSignup(publicAddress)
-						.then(response => handleSignMessage(publicAddress))
+						.then(initialFavorites => handleSignMessage(publicAddress))
 						.then(({ publicAddress, userSignature }) => {
 							handleAuthenticate({ publicAddress, userSignature });
 						});

@@ -1,5 +1,4 @@
 import Typography from "@mui/material/Typography";
-import axios from "axios";
 import React, { useEffect } from "react";
 
 // MUI Import
@@ -19,31 +18,10 @@ const CoinsDataGrid = () => {
 	const setPageSize = useStore(state => state.setPageSize);
 	const pageSize = useStore(state => state.pageSize);
 
-	const publicAddress = useStore(state => state.publicAddress);
-	const meta = useStore(state => state.meta);
-
-	const setLoading = useStore(state => state.setLoading);
-
-	const loggedIn = useStore(state => state.loggedIn);
-
 	// Reset page-size if category switches
 	useEffect(() => {
 		setPageSize(initialPageSize);
 	}, [initialPageSize, setPageSize]);
-
-	useEffect(() => {
-		if (loggedIn) {
-			setLoading(true);
-			axios
-				.put("/api/users/", {
-					publicAddress: `${publicAddress}`,
-					favorites: meta,
-				})
-				.then(favorites => {
-					setLoading(false);
-				});
-		}
-	}, [meta]);
 
 	return (
 		<>

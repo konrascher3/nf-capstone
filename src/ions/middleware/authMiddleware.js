@@ -15,7 +15,8 @@ const protect = async (request, response) => {
 			} = await jwt.verify(token, config.secret);
 
 			// Get userId from token
-			request.userId = await Favorites.find({ ObjectId: id });
+
+			request.userId = await Favorites.findOne({ ObjectId: id });
 			// next();
 		} catch (error) {
 			console.log("Could not verify token:", error);

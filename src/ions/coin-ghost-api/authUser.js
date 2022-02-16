@@ -36,7 +36,7 @@ const handler = async (request, response) => {
 		// Step 1: Get the user with the given publicAddress
 		try {
 			// Retrieve nonce for the requested publicAddress from the database
-			await Item.find({ publicAddress: `${publicAddress}` }).then(mongooseresponse => {
+			await Item.findOne({ publicAddress: `${publicAddress}` }).then(mongooseresponse => {
 				if (!mongooseresponse[0].publicAddress) {
 					response.status(400).send({
 						error: `Couldn't find public address ${publicAddress} in the database`,

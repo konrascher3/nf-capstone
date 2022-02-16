@@ -15,6 +15,7 @@ const putFavorites = async (request, response) => {
 		const update = { favorites };
 		const mongoresponse = await Item.findOneAndUpdate(filter, update);
 		response.status(201).json(mongoresponse);
+		console.log("Favorites updated successfully");
 	} catch (err) {
 		console.log(err);
 	}

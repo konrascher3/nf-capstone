@@ -1,4 +1,6 @@
 import Typography from "@mui/material/Typography";
+import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 
 // MUI Import
@@ -17,11 +19,37 @@ const CoinsDataGrid = () => {
 	const initialPageSize = useStore(state => state.initialPageSize);
 	const setPageSize = useStore(state => state.setPageSize);
 	const pageSize = useStore(state => state.pageSize);
+	const meta = useStore(state => state.meta);
+	const setMeta = useStore(state => state.meta);
+
+	const loggedIn = useStore(state => state.loggedIn);
+	const setLoading = useStore(state => state.setLoading);
 
 	// Reset page-size if category switches
 	useEffect(() => {
 		setPageSize(initialPageSize);
 	}, [initialPageSize, setPageSize]);
+
+	// useEffect(() => {
+	// 	const authToken = Cookies.get("coin-ghost-auth");
+	//
+	// 	if (authToken && loggedIn) {
+	// 		const options = {
+	// 			headers: {
+	// 				Authorization: `Bearer ${authToken}`,
+	// 			},
+	// 		};
+	// 		setLoading(true);
+	// 		axios.post("/api/favorites/put", { favorites: meta }, options).then(response => {
+	// 			const favorites = response.data[0].favorites;
+	// 			const condition = Object.keys(favorites).filter(Boolean).length;
+	// 			if (condition) {
+	// 				setMeta(favorites);
+	// 			}
+	// 			setLoading(false);
+	// 		});
+	// 	}
+	// }, [meta]);
 
 	return (
 		<>

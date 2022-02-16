@@ -6,8 +6,9 @@ import protect from "/src/ions/middleware/authMiddleware";
 const getFavorites = async (request, response) => {
 	await dbConnect();
 	await protect(request, response);
+	console.log(request.userId);
 	try {
-		const mongoresponse = await Favorites.find({
+		const mongoresponse = await Favorites.findOne({
 			ObjectId: request.userId,
 		});
 		response.status(200).json(mongoresponse);

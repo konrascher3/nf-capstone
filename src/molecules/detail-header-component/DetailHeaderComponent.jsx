@@ -22,6 +22,7 @@ const DetailHeaderComponent = ({ id }) => {
 	const setLoading = useStore(state => state.setLoading);
 
 	const meta = useStore(state => state.meta);
+	const setMeta = useStore(state => state.setMeta);
 	const loggedIn = useStore(state => state.loggedIn);
 	const toggleFavorited = useStore(state => state.toggleFavorited);
 
@@ -34,10 +35,13 @@ const DetailHeaderComponent = ({ id }) => {
 					Authorization: `Bearer ${authToken}`,
 				},
 			};
-			setLoading(true);
-			axios
-				.post("/api/favorites/put", { favorites: meta }, options)
-				.then(favorites => setLoading(false));
+			axios.post("/api/favorites/put", { favorites: meta }, options).then(response => {
+				const favorites = response.data[0].favorites;
+				const condition = Object.keys(favorites).filter(Boolean).length;
+				if (condition) {
+					setMeta(favorites);
+				}
+			});
 		}
 	}, [meta]);
 

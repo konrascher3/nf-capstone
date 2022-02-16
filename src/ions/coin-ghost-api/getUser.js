@@ -10,7 +10,7 @@ const getUser = async (request, response) => {
 
 	if (web3.utils.isAddress(publicAddress)) {
 		try {
-			const mongoresponse = await Item.find({
+			const mongoresponse = await Item.findOne({
 				publicAddress,
 			});
 			response.status(200).json(mongoresponse);

@@ -20,10 +20,10 @@ const checkMobile = async () => {
 				// Do nothing
 			}
 		} catch (error) {
-			window.open(`${deepLinkAddress()}`);
 			window.alert(
 				"In order to use this app on a mobile device, please use the MetaMask-Browser!"
 			);
+			window.open(`${deepLinkAddress()}`);
 		}
 	}
 };

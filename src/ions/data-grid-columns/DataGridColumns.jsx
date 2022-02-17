@@ -73,9 +73,15 @@ const DataGridColumns = [
 								width: "100%",
 								overflow: "hidden",
 								whiteSpace: "no-wrap",
+								marginLeft: 2,
 							}}
 						>
-							<div style={{ textOverflow: "ellipsis", overflow: "hidden" }}>
+							<div
+								style={{
+									textOverflow: "ellipsis",
+									overflow: "hidden",
+								}}
+							>
 								<Typography variant={variant}>{params.value}</Typography>
 							</div>
 							<div>

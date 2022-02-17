@@ -35,6 +35,7 @@ import { mdiWallet } from "@mdi/js";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 import MetaMaskFox from "/src/ions/img/metamask/metamask-fox.svg";
+import checkMobile from "../../ions/utils/checkMobile";
 
 const useStyles = makeStyles({
 	hideBorder: {
@@ -202,7 +203,6 @@ const DrawerList = () => {
 	const handleWalletClick = async () => {
 		await initiateLogin();
 	};
-
 	return (
 		<List sx={{ width: "100vw", padding: 0 }}>
 			<ListItem

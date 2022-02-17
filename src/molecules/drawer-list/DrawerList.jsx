@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 
 import Web3 from "web3";
+const web3 = new Web3(Web3.givenProvider);
 
 import axios from "axios";
-
-const web3 = new Web3(Web3.givenProvider);
 
 import Cookies from "js-cookie";
 
@@ -36,6 +35,7 @@ import { mdiWallet } from "@mdi/js";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 import MetaMaskFox from "/src/ions/img/metamask/metamask-fox.svg";
+import checkMobile from "../../ions/utils/checkMobile";
 
 const useStyles = makeStyles({
 	hideBorder: {
@@ -55,6 +55,10 @@ const DrawerList = () => {
 
 	const setLoggedIn = useStore(state => state.setLoggedIn);
 	const loggedIn = useStore(state => state.loggedIn);
+
+	useEffect(() => {
+		checkMobile();
+	});
 
 	// handleLogout
 	const handleLogout = () => {
@@ -154,48 +158,56 @@ const DrawerList = () => {
 			});
 	};
 
-	const handleWalletClick = async () => {
+	const initiateLogin = async () => {
 		// Allow site to connect to MetaMask
-		if (window.ethereum) {
+		if (window.ethereum && window.ethereum.isMetaMask) {
 			try {
 				await window.ethereum.enable();
+				// Request public ethereum-accounts
+				const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+				const account = accounts[0];
+				let publicAddress = null;
+
+				// Check if selected account is valid and assign it
+				if (web3.utils.isAddress(account)) {
+					publicAddress = account.toLowerCase();
+					// Check if publicAddress already exists on back-end
+					try {
+						await axios
+							.get(`/api/user/get?publicAddress=${publicAddress}`)
+							.then(response => {
+								if (response.data.hasOwnProperty("publicAddress")) {
+									handleSignMessage(publicAddress).then(
+										({ publicAddress, userSignature }) => {
+											handleAuthenticate({ publicAddress, userSignature });
+										}
+									);
+								} else {
+									handleSignup(publicAddress)
+										.then(initialFavorites => handleSignMessage(publicAddress))
+										.then(({ publicAddress, userSignature }) => {
+											handleAuthenticate({ publicAddress, userSignature });
+										});
+								}
+							});
+					} catch (error) {
+						console.error("Error fetching public address from database:", error);
+					}
+				} else {
+					console.error("Invalid eth address");
+				}
 			} catch (error) {
 				window.alert("You need to allow MetaMask.");
 			}
 		} else if (!window.ethereum) {
+			console.log("Please install MetaMask");
 			window.open("https://metamask.io/download/");
-		}
-
-		// Request public ethereum-accounts
-		const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-		const account = accounts[0];
-		let publicAddress = null;
-
-		// Check if selected account is valid and assign it
-		if (web3.utils.isAddress(account)) {
-			publicAddress = account.toLowerCase();
-		}
-
-		// Check if publicAddress already exists on back-end
-		try {
-			await axios.get(`/api/user/get?publicAddress=${publicAddress}`).then(response => {
-				if (response.data.hasOwnProperty("publicAddress")) {
-					handleSignMessage(publicAddress).then(({ publicAddress, userSignature }) => {
-						handleAuthenticate({ publicAddress, userSignature });
-					});
-				} else {
-					handleSignup(publicAddress)
-						.then(initialFavorites => handleSignMessage(publicAddress))
-						.then(({ publicAddress, userSignature }) => {
-							handleAuthenticate({ publicAddress, userSignature });
-						});
-				}
-			});
-		} catch (error) {
-			console.error("Error fetching public address from database:", error);
 		}
 	};
 
+	const handleWalletClick = async () => {
+		await initiateLogin();
+	};
 	return (
 		<List sx={{ width: "100vw", padding: 0 }}>
 			<ListItem

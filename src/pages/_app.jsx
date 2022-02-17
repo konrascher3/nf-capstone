@@ -9,6 +9,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import theme from "/src/ions/theme/theme";
 
+// import checkMobile from "/src/ions/utils/checkMobile";
+
 const globalStyles = (
 	<>
 		<Global styles={globalStyle} />

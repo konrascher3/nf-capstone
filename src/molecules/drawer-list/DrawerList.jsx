@@ -210,12 +210,16 @@ const DrawerList = () => {
 	};
 
 	const handleWalletClick = async () => {
+		const { ethereum } = window;
 		// Check if user is on mobile
+		console.log(ethereum);
 		if (isMobileDevice()) {
 			// Check if user is already in MetaMask-Provider
-			if (window.ethereum.isMetaMask) {
-				await initiateLogin();
-			} else {
+			try {
+				if (ethereum.isMetaMask) {
+					await initiateLogin();
+				}
+			} catch (error) {
 				window.open(`${deepLinkAddress()}`);
 			}
 		} else if (!isMobileDevice()) {

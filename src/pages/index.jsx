@@ -70,6 +70,8 @@ const Page = () => {
 					) : (
 						""
 					)}
+
+					<Box sx={{ m: 2 }}></Box>
 				</>
 			)}
 		</Layout>

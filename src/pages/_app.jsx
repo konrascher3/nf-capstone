@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Global } from "@emotion/react";
 
@@ -19,10 +19,7 @@ const globalStyles = (
 );
 
 const App = ({ Component, pageProps }) => {
-	useEffect(() => {
-		checkMobile();
-	}, []);
-
+	checkMobile();
 	return (
 		<ThemeProvider theme={theme}>
 			{globalStyles}

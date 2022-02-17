@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 
 import Web3 from "web3";
@@ -199,33 +199,38 @@ const DrawerList = () => {
 		}
 	};
 
-	const isMobileDevice = () => {
-		return "ontouchstart" in window || "onmsgesturechange" in window;
-	};
-
-	const deepLinkAddress = () => {
-		const hostname = window.location.hostname;
-		const metaMaskDeepLink = `https://metamask.app.link/dapp/${hostname}`;
-		return metaMaskDeepLink;
-	};
-
 	const handleWalletClick = async () => {
-		const { ethereum } = window;
-		// Check if user is on mobile
-		console.log(ethereum);
+		await initiateLogin();
+	};
+
+	const checkMobile = async () => {
+		const isMobileDevice = () => {
+			return "ontouchstart" in window || "onmsgesturechange" in window;
+		};
+
+		const deepLinkAddress = () => {
+			const hostname = window.location.hostname;
+			const metaMaskDeepLink = `https://metamask.app.link/dapp/${hostname}`;
+			return metaMaskDeepLink;
+		};
 		if (isMobileDevice()) {
+			const { ethereum } = window;
 			// Check if user is already in MetaMask-Provider
 			try {
 				if (ethereum.isMetaMask) {
-					await initiateLogin();
+					// Do nothing
 				}
 			} catch (error) {
 				window.open(`${deepLinkAddress()}`);
 			}
-		} else if (!isMobileDevice()) {
-			await initiateLogin();
 		}
 	};
+
+	// If user opens app on a mobile device from a non-MetaMask-browser
+	// he is redirected to the MetaMask-browser
+	useEffect(() => {
+		checkMobile();
+	}, []);
 
 	return (
 		<List sx={{ width: "100vw", padding: 0 }}>

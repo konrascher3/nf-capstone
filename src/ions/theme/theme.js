@@ -13,6 +13,12 @@ const theme = createTheme({
 		secondary: {
 			main: "hsl(265, 89%, 78%)",
 		},
+		error: {
+			main: "#FF5555",
+		},
+		success: {
+			main: "#50FA7B",
+		},
 		text: {
 			primary: "hsl(60, 30%, 96%)",
 		},

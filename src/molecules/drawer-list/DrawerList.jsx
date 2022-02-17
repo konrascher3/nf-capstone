@@ -2,10 +2,9 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import Web3 from "web3";
+const web3 = new Web3(Web3.givenProvider);
 
 import axios from "axios";
-
-const web3 = new Web3(Web3.givenProvider);
 
 import Cookies from "js-cookie";
 

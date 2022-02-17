@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const favoritesSchema = new mongoose.Schema(
 	{
 		userId: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -18,4 +18,4 @@ const userSchema = new mongoose.Schema(
 	{ collection: "favorites" }
 );
 
-export default mongoose.models.Favorites || mongoose.model("Favorites", userSchema);
+export default mongoose.models.Favorites || mongoose.model("Favorites", favoritesSchema);

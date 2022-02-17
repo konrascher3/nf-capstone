@@ -38,6 +38,38 @@ const theme = createTheme({
 				},
 			},
 		},
+		MuiDataGrid: {
+			styleOverrides: {
+				root: {
+					width: "100%",
+					".MuiDataGrid-main": {},
+					".MuiDataGrid-columnHeaders": {
+						border: "none",
+						borderTopLeftRadius: 5,
+						borderTopRightRadius: 5,
+					},
+					"&.MuiDataGrid-root": {
+						border: "1px solid hsla(225, 27%, 54%, 50%)",
+						borderRadius: 5,
+					},
+					".MuiDataGrid-columnSeparator": {
+						visibility: "hidden",
+					},
+					".MuiDataGrid-columnHeader": {
+						backgroundColor: "hsl(225, 27%, 44%)",
+					},
+					".MuiDataGrid-cell": {
+						position: "relative",
+						overflow: "visible",
+						backgroundColor: "hsl(225, 27%, 38%)",
+						border: "none",
+					},
+					".MuiDataGrid-cell:focus-within": {
+						outline: "none !important",
+					},
+				},
+			},
+		},
 	},
 });
 

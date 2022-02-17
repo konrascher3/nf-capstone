@@ -59,20 +59,6 @@ const CoinsDataGrid = () => {
 					loading={loading}
 					density="standard"
 					headerHeight={35}
-					sx={{
-						".MuiDataGrid-columnSeparator": {
-							visibility: "hidden",
-						},
-						".MuiDataGrid-cell": {
-							position: "relative",
-							overflow: "visible",
-						},
-						".MuiDataGrid-cell:focus-within": {
-							outline: "none !important",
-						},
-
-						width: "100%",
-					}}
 					onPageSizeChange={newPage => setPageSize(newPage)}
 				/>
 			)}

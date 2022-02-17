@@ -13,17 +13,15 @@ const checkMobile = async () => {
 		return metaMaskDeepLink;
 	};
 	if (isMobileDevice()) {
-		const { ethereum } = window;
+		const { ethereum, alert, open } = window;
 		// Check if user is already in MetaMask-Provider
 		try {
 			if (ethereum.isMetaMask) {
 				// Do nothing
 			}
 		} catch (error) {
-			window.alert(
-				"In order to use this app on a mobile device, please use the MetaMask-Browser!"
-			);
-			window.open(`${deepLinkAddress()}`);
+			alert("In order to use this app on a mobile device, please use the MetaMask-Browser!");
+			open(`${deepLinkAddress()}`);
 		}
 	}
 };

@@ -56,6 +56,10 @@ const DrawerList = () => {
 	const setLoggedIn = useStore(state => state.setLoggedIn);
 	const loggedIn = useStore(state => state.loggedIn);
 
+	useEffect(() => {
+		checkMobile();
+	});
+
 	// handleLogout
 	const handleLogout = () => {
 		Cookies.remove("coin-ghost-auth");
@@ -196,7 +200,8 @@ const DrawerList = () => {
 				window.alert("You need to allow MetaMask.");
 			}
 		} else if (!window.ethereum) {
-			window.open("https://metamask.io/download/");
+			console.log("Please install MetaMask");
+			// window.open("https://metamask.io/download/");
 		}
 	};
 

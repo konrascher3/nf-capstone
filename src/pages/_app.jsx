@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Global } from "@emotion/react";
 
@@ -9,6 +9,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import theme from "/src/ions/theme/theme";
 
+import checkMobile from "/src/ions/utils/checkMobile";
+
 const globalStyles = (
 	<>
 		<Global styles={globalStyle} />
@@ -17,6 +19,10 @@ const globalStyles = (
 );
 
 const App = ({ Component, pageProps }) => {
+	useEffect(() => {
+		checkMobile();
+	}, []);
+
 	return (
 		<ThemeProvider theme={theme}>
 			{globalStyles}

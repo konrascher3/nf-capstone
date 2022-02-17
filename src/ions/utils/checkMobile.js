@@ -2,6 +2,7 @@
 // he is redirected to it by a deeplink
 
 const checkMobile = async () => {
+	console.log("Check if user is on a mobile device...");
 	const isMobileDevice = () => {
 		return "ontouchstart" in window || "onmsgesturechange" in window;
 	};
@@ -20,6 +21,9 @@ const checkMobile = async () => {
 			}
 		} catch (error) {
 			window.open(`${deepLinkAddress()}`);
+			window.alert(
+				"In order to use this app on a mobile device, please use the MetaMask-Browser!"
+			);
 		}
 	}
 };

@@ -154,12 +154,11 @@ const DrawerList = () => {
 			});
 	};
 
-	const handleWalletClick = async () => {
+	const initiateLogin = async () => {
 		// Allow site to connect to MetaMask
 		if (window.ethereum && window.ethereum.isMetaMask) {
 			try {
 				await window.ethereum.enable();
-
 				// Request public ethereum-accounts
 				const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
 				const account = accounts[0];
@@ -198,6 +197,30 @@ const DrawerList = () => {
 			}
 		} else if (!window.ethereum) {
 			window.open("https://metamask.io/download/");
+		}
+	};
+
+	const isMobileDevice = () => {
+		return "ontouchstart" in window || "onmsgesturechange" in window;
+	};
+
+	const deepLinkAddress = () => {
+		const hostname = window.location.hostname;
+		const metaMaskDeepLink = `https://metamask.app.link/dapp/${hostname}`;
+		return metaMaskDeepLink;
+	};
+
+	const handleWalletClick = async () => {
+		// Check if user is on mobile
+		if (isMobileDevice()) {
+			// Check if user is already in MetaMask-Provider
+			if (window.ethereum.isMetaMask) {
+				await initiateLogin();
+			} else {
+				window.open(`${deepLinkAddress()}`);
+			}
+		} else if (!isMobileDevice()) {
+			await initiateLogin();
 		}
 	};
 

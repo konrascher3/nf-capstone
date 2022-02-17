@@ -201,7 +201,7 @@ const DrawerList = () => {
 			}
 		} else if (!window.ethereum) {
 			console.log("Please install MetaMask");
-			// window.open("https://metamask.io/download/");
+			window.open("https://metamask.io/download/");
 		}
 	};
 

@@ -156,43 +156,48 @@ const DrawerList = () => {
 
 	const handleWalletClick = async () => {
 		// Allow site to connect to MetaMask
-		if (window.ethereum) {
+		if (window.ethereum && window.ethereum.isMetaMask) {
 			try {
 				await window.ethereum.enable();
+
+				// Request public ethereum-accounts
+				const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+				const account = accounts[0];
+				let publicAddress = null;
+
+				// Check if selected account is valid and assign it
+				if (web3.utils.isAddress(account)) {
+					publicAddress = account.toLowerCase();
+					// Check if publicAddress already exists on back-end
+					try {
+						await axios
+							.get(`/api/user/get?publicAddress=${publicAddress}`)
+							.then(response => {
+								if (response.data.hasOwnProperty("publicAddress")) {
+									handleSignMessage(publicAddress).then(
+										({ publicAddress, userSignature }) => {
+											handleAuthenticate({ publicAddress, userSignature });
+										}
+									);
+								} else {
+									handleSignup(publicAddress)
+										.then(initialFavorites => handleSignMessage(publicAddress))
+										.then(({ publicAddress, userSignature }) => {
+											handleAuthenticate({ publicAddress, userSignature });
+										});
+								}
+							});
+					} catch (error) {
+						console.error("Error fetching public address from database:", error);
+					}
+				} else {
+					console.error("Invalid eth address");
+				}
 			} catch (error) {
 				window.alert("You need to allow MetaMask.");
 			}
 		} else if (!window.ethereum) {
 			window.open("https://metamask.io/download/");
-		}
-
-		// Request public ethereum-accounts
-		const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-		const account = accounts[0];
-		let publicAddress = null;
-
-		// Check if selected account is valid and assign it
-		if (web3.utils.isAddress(account)) {
-			publicAddress = account.toLowerCase();
-		}
-
-		// Check if publicAddress already exists on back-end
-		try {
-			await axios.get(`/api/user/get?publicAddress=${publicAddress}`).then(response => {
-				if (response.data.hasOwnProperty("publicAddress")) {
-					handleSignMessage(publicAddress).then(({ publicAddress, userSignature }) => {
-						handleAuthenticate({ publicAddress, userSignature });
-					});
-				} else {
-					handleSignup(publicAddress)
-						.then(initialFavorites => handleSignMessage(publicAddress))
-						.then(({ publicAddress, userSignature }) => {
-							handleAuthenticate({ publicAddress, userSignature });
-						});
-				}
-			});
-		} catch (error) {
-			console.error("Error fetching public address from database:", error);
 		}
 	};
 

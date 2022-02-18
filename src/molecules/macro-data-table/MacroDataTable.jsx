@@ -26,61 +26,83 @@ const MacroDataTable = () => {
 
 	useEffect(() => {
 		const macroRows = [
-			createData("Market Cap Rank", detailData.market_data.market_cap_rank),
+			createData(
+				"Market Cap Rank",
+				detailData.market_data.market_cap_rank
+					? detailData.market_data.market_cap_rank
+					: "Not ranked"
+			),
 			createData(
 				"Market Cap",
-				new Intl.NumberFormat("en-US", {
-					notation: "standard",
-					style: "currency",
-					currency: "USD",
-					compactDisplay: "long",
-					minimumSignificantDigits: 1,
-				}).format(detailData.market_data.market_cap.usd)
+				detailData.market_data.market_cap.usd > 0
+					? new Intl.NumberFormat("en-US", {
+							notation: "standard",
+							style: "currency",
+							currency: "USD",
+							compactDisplay: "long",
+							minimumSignificantDigits: 1,
+					  }).format(detailData.market_data.market_cap.usd)
+					: "Not available"
 			),
 			createData(
 				"Market Cap Change",
-				`${parseFloat(
-					detailData.market_data.market_cap_change_percentage_24h_in_currency.usd
-				).toFixed(2)}%`
+				detailData.market_data.market_cap_change_percentage_24h_in_currency.usd
+					? `${parseFloat(
+							detailData.market_data.market_cap_change_percentage_24h_in_currency.usd
+					  ).toFixed(2)}%`
+					: "Not available"
 			),
 			createData(
 				"Total Volume 24h",
-				new Intl.NumberFormat("en-US", {
-					notation: "standard",
-					style: "currency",
-					currency: "USD",
-					compactDisplay: "long",
-					minimumSignificantDigits: 1,
-				}).format(detailData.market_data.total_volume.usd)
+				detailData.market_data.total_volume.usd
+					? new Intl.NumberFormat("en-US", {
+							notation: "standard",
+							style: "currency",
+							currency: "USD",
+							compactDisplay: "long",
+							minimumSignificantDigits: 1,
+					  }).format(detailData.market_data.total_volume.usd)
+					: "Not available"
 			),
 			createData(
 				"24h High",
-				formatCurrency(detailData.market_data.high_24h.usd, "USD", "en", false)
+				detailData.market_data.high_24h.usd
+					? formatCurrency(detailData.market_data.high_24h.usd, "USD", "en", false)
+					: "Not available"
 			),
 			createData(
 				"24h Low",
-				formatCurrency(detailData.market_data.low_24h.usd, "USD", "en", false)
+				detailData.market_data.low_24h.usd
+					? formatCurrency(detailData.market_data.low_24h.usd, "USD", "en", false)
+					: "Not available"
 			),
 			createData(
 				"All-Time-High",
-				formatCurrency(detailData.market_data.ath.usd, "USD", "en", false)
+				detailData.market_data.ath.usd
+					? formatCurrency(detailData.market_data.ath.usd, "USD", "en", false)
+					: "Not available"
 			),
 			createData(
 				"All-Time-Low",
-				formatCurrency(detailData.market_data.atl.usd, "USD", "en", false)
+				detailData.market_data.atl.usd
+					? formatCurrency(detailData.market_data.atl.usd, "USD", "en", false)
+					: "Not available"
 			),
 			createData(
 				"Max. Supply",
 				detailData.market_data.max_supply === null
-					? "none"
+					? "Not available"
+					: detailData.market_data.max_supply <= 0
+					? "Uncapped supply"
 					: new Intl.NumberFormat("en-US").format(
 							detailData.market_data.max_supply.toFixed()
 					  )
 			),
 			createData(
 				"Circulating Supply",
-				detailData.market_data.circulating_supply === null
-					? "none"
+				detailData.market_data.circulating_supply === null ||
+					detailData.market_data.circulating_supply <= 0
+					? "Not available"
 					: new Intl.NumberFormat("en-US").format(
 							detailData.market_data.circulating_supply.toFixed()
 					  )

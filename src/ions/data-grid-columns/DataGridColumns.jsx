@@ -31,7 +31,7 @@ const DataGridColumns = [
 					{loggedIn ? <CustomCheckbox params={params} /> : ""}
 					<span>
 						<Typography variant={variant}>
-							{params.value ? `${params.value}.` : "-"}
+							{params.value ? `${params.value}.` : ""}
 						</Typography>
 					</span>
 				</StyledRankColumn>
@@ -107,7 +107,9 @@ const DataGridColumns = [
 							: { color: theme.palette.error.main }
 					}
 				>
-					<Typography variant={variant}>{`${parseFloat(value).toFixed(2)}%`}</Typography>
+					<Typography variant={variant}>
+						{value ? `${parseFloat(value).toFixed(2)}%` : ""}
+					</Typography>
 				</div>
 			);
 		},

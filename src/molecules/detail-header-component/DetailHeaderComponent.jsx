@@ -154,9 +154,15 @@ const DetailHeaderComponent = ({ id }) => {
 									marginLeft: "auto",
 								}}
 							>
-								<Typography variant="body2" sx={{ p: 0.2 }} fontWeight={600}>
-									Rank {detailData.market_data.market_cap_rank}
-								</Typography>
+								{detailData.market_data.market_cap_rank ? (
+									<Typography variant="body2" sx={{ p: 0.2 }} fontWeight={600}>
+										Rank {detailData.market_data.market_cap_rank}
+									</Typography>
+								) : (
+									<Typography variant="body2" sx={{ p: 0.2 }} fontWeight={600}>
+										Not ranked
+									</Typography>
+								)}
 							</Box>
 						</Box>
 						<Box
@@ -194,9 +200,11 @@ const DetailHeaderComponent = ({ id }) => {
 											: theme.palette.error.main
 									}
 								>
-									{`${parseFloat(
-										detailData.market_data.price_change_percentage_24h
-									).toFixed(2)}%`}
+									{detailData.market_data.price_change_percentage_24h
+										? `${parseFloat(
+												detailData.market_data.price_change_percentage_24h
+										  ).toFixed(2)}%`
+										: ""}
 								</Typography>
 								<Box
 									sx={{
@@ -204,20 +212,24 @@ const DetailHeaderComponent = ({ id }) => {
 										justifySelf: "center",
 									}}
 								>
-									{detailData.market_data.price_change_percentage_24h >= 0 ? (
-										<Icon
-											path={mdiArrowUpRight}
-											padding={0}
-											size={0.75}
-											color={theme.palette.success.main}
-										/>
+									{detailData.market_data.price_change_percentage_24h ? (
+										detailData.market_data.price_change_percentage_24h >= 0 ? (
+											<Icon
+												path={mdiArrowUpRight}
+												padding={0}
+												size={0.75}
+												color={theme.palette.success.main}
+											/>
+										) : (
+											<Icon
+												path={mdiArrowDownRight}
+												padding={0}
+												size={0.75}
+												color={theme.palette.error.main}
+											/>
+										)
 									) : (
-										<Icon
-											path={mdiArrowDownRight}
-											padding={0}
-											size={0.75}
-											color={theme.palette.error.main}
-										/>
+										""
 									)}
 								</Box>
 							</Box>

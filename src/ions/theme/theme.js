@@ -69,14 +69,15 @@ const theme = createTheme({
 		MuiDataGrid: {
 			styleOverrides: {
 				root: {
-					width: "100%",
-					".MuiDataGrid-row:nth-child(even):not(:hover)": {
+					width: "99%",
+					margin: "0 auto",
+					".MuiDataGrid-row:nth-of-type(even):not(:hover)": {
 						backgroundColor: "hsl(225, 27%, 44%)",
 					},
 					".MuiDataGrid-columnHeaders": {
 						border: "none",
-						borderTopLeftRadius: 5,
-						borderTopRightRadius: 5,
+						borderTopLeftRadius: 4,
+						borderTopRightRadius: 4,
 					},
 					"&.MuiDataGrid-root": {
 						border: "1px solid hsla(225, 27%, 54%, 50%)",
@@ -91,7 +92,6 @@ const theme = createTheme({
 					".MuiDataGrid-cell": {
 						position: "relative",
 						overflow: "visible",
-						// backgroundColor: "hsl(225, 27%, 38%)",
 						border: "none",
 					},
 					".MuiDataGrid-cell:focus-within": {

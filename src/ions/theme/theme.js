@@ -38,11 +38,22 @@ const theme = createTheme({
 				},
 			},
 		},
+		MuiTableCell: {
+			styleOverrides: {
+				root: {
+					"&.MuiTableCell-root": {
+						borderBottom: "1px solid hsla(225, 27%, 44%, 40%)",
+					},
+				},
+			},
+		},
 		MuiDataGrid: {
 			styleOverrides: {
 				root: {
 					width: "100%",
-					".MuiDataGrid-main": {},
+					".MuiDataGrid-row:nth-child(even):not(:hover)": {
+						backgroundColor: "hsl(225, 27%, 44%)",
+					},
 					".MuiDataGrid-columnHeaders": {
 						border: "none",
 						borderTopLeftRadius: 5,
@@ -61,7 +72,7 @@ const theme = createTheme({
 					".MuiDataGrid-cell": {
 						position: "relative",
 						overflow: "visible",
-						backgroundColor: "hsl(225, 27%, 38%)",
+						// backgroundColor: "hsl(225, 27%, 38%)",
 						border: "none",
 					},
 					".MuiDataGrid-cell:focus-within": {

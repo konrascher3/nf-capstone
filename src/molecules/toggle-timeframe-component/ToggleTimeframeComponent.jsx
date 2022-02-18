@@ -31,7 +31,8 @@ const ToggleTimeframeComponent = () => {
 			sx={{
 				position: "relative",
 				// top: -40,
-				m: 0.5,
+				mt: 1.75,
+				mr: 1.75,
 				alignSelf: "flex-end",
 			}}
 		>

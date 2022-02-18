@@ -101,15 +101,15 @@ const Page = () => {
 									flexDirection: "column",
 									justifyContent: "center",
 									alignItems: "center",
-									gap: 5,
-									m: 5,
-									minHeight: "50vh",
+									// gap: 5,
+									// m: 5,
+									// minHeight: "50vh",
 								}}
 							>
-								<Box sx={{ maxWidth: "600px" }}>
+								<Box sx={{ maxWidth: 400 }}>
 									<LottieTumbleweed />
 								</Box>
-								<Typography variant="h6" color={theme.palette.text.primary}>
+								<Typography variant="h4" color={theme.palette.text.primary}>
 									It looks kinda empty here...
 								</Typography>
 							</Box>
@@ -140,24 +140,24 @@ const Page = () => {
 							flexDirection: "column",
 							justifyContent: "center",
 							alignItems: "center",
-							gap: 5,
-							m: 5,
-							minHeight: "50vh",
+							// gap: 5,
+							// m: 5,
+							// minHeight: "50vh",
 						}}
 					>
 						<Box
 							sx={{
-								maxWidth: "600px",
+								maxWidth: 400,
 								display: "flex",
 								alignItems: "center",
 								justifyContent: "center",
 								flexDirection: "column",
-								gap: 5,
+								// gap: 5,
 							}}
 						>
 							<GhostLogo size="70%" color={theme.palette.error.main} />
 							<Typography
-								variant="h6"
+								variant="h4"
 								sx={{ textAlign: "center", color: theme.palette.error.main }}
 							>
 								Please login to access your watchlist!

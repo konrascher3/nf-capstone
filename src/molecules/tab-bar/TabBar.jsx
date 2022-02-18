@@ -11,6 +11,9 @@ import Box from "@mui/material/Box";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
+import Icon from "@mdi/react";
+import { mdiCrown } from "@mdi/js";
+
 const TabPanel = props => {
 	const { children, value, index, ...other } = props;
 
@@ -96,6 +99,8 @@ const TabBar = () => {
 		}
 	}, [tabPosition]);
 
+	const variant = "body1";
+
 	return (
 		<Box sx={{ width: "100%" }}>
 			<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -109,15 +114,48 @@ const TabBar = () => {
 					onChange={handleChange}
 				>
 					{/* Custom Categories */}
-					<Tab disabled={loading} label="Top Coins 👑" {...a11yProps("show_top_coins")} />
+					<Tab
+						disabled={loading}
+						label={
+							<Box
+								sx={{
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									gap: 0.75,
+								}}
+							>
+								<Typography variant={variant}>Top coins</Typography>
+							</Box>
+						}
+						{...a11yProps("show_top_coins")}
+					/>
 
 					{/* Sectors */}
-					<Tab label="Stablecoins" {...a11yProps("show_stablecoins")} />
-					<Tab label="Meme coins" {...a11yProps("show_meme_coins")} />
-					<Tab label="NFTs" {...a11yProps("show_nfts")} />
-					<Tab label="DEX Tokens" {...a11yProps("show_dex_tokens")} />
-					<Tab label="Game Fi" {...a11yProps("show_game_fi")} />
-					<Tab label="Music" {...a11yProps("show_music")} />
+					<Tab
+						label={<Typography variant={variant}>Stablecoins</Typography>}
+						{...a11yProps("show_stablecoins")}
+					/>
+					<Tab
+						label={<Typography variant={variant}>Meme coins</Typography>}
+						{...a11yProps("show_meme_coins")}
+					/>
+					<Tab
+						label={<Typography variant={variant}>NFTs</Typography>}
+						{...a11yProps("show_nfts")}
+					/>
+					<Tab
+						label={<Typography variant={variant}>Dex coins</Typography>}
+						{...a11yProps("show_dex_tokens")}
+					/>
+					<Tab
+						label={<Typography variant={variant}>Game fi</Typography>}
+						{...a11yProps("show_game_fi")}
+					/>
+					<Tab
+						label={<Typography variant={variant}>Music</Typography>}
+						{...a11yProps("show_music")}
+					/>
 				</Tabs>
 			</Box>
 		</Box>

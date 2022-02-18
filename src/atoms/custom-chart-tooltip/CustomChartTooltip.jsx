@@ -8,19 +8,21 @@ import { formatCurrency } from "@coingecko/cryptoformat";
 
 import moment from "moment";
 
-import useState from "/src/ions/hooks/state/useStore";
-
-import theme from "/src/ions/theme/theme";
+import useStore from "/src/ions/hooks/state/useStore";
+import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const CustomChartTooltip = ({ active, payload, label }) => {
-	const interval = useState(state => state.interval);
+	const interval = useStore(state => state.interval);
+	const colorMode = useStore(state => state.colorMode);
 
 	if (active) {
 		return (
 			<Box
 				sx={{
 					borderRadius: 0.75,
-					backgroundColor: theme.palette.background.paper,
+					backgroundColor: colorMode
+						? darkMode.palette.background.paper
+						: lightMode.palette.background.paper,
 					p: 1,
 					textAlign: "center",
 				}}

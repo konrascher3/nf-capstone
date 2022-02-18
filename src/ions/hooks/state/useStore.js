@@ -6,6 +6,7 @@ import merge from "deepmerge";
 const useStore = create(
 	persist(
 		set => ({
+			colorMode: true,
 			detailData: null,
 			loading: false,
 			error: null,
@@ -19,6 +20,7 @@ const useStore = create(
 			interval: "daily",
 			tabPosition: 0,
 			loggedIn: false,
+			setColorMode: boolean => set({ colorMode: boolean }),
 			setTabPosition: index => set({ tabPosition: index }),
 			setTimeFrame: days => set({ timeFrame: days }),
 			setInterval: interval => set({ interval: interval }),

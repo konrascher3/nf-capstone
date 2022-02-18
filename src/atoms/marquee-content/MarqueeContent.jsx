@@ -4,9 +4,12 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import useGet from "../../ions/hooks/fetch/get";
 
-import theme from "/src/ions/theme/theme";
+import useStore from "/src/ions/hooks/state/useStore";
+import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const marqueeContent = () => {
+	const colorMode = useStore(state => state.colorMode);
+
 	const variant = "subtitle1";
 	const { data, loading, error } = useGet("../api/fetch-globals");
 	return (
@@ -56,8 +59,16 @@ const marqueeContent = () => {
 						<span
 							style={
 								data["Market Cap"][1] > 0
-									? { color: theme.palette.success.main }
-									: { color: theme.palette.error.main }
+									? {
+											color: colorMode
+												? darkMode.palette.success.main
+												: lightMode.palette.success.main,
+									  }
+									: {
+											color: colorMode
+												? darkMode.palette.error.main
+												: lightMode.palette.error.main,
+									  }
 							}
 						>
 							{data["Market Cap"][1].toString()}%

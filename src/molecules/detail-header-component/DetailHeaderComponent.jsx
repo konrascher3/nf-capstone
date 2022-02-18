@@ -16,6 +16,8 @@ import useStore from "/src/ions/hooks/state/useStore";
 import { mdiArrowDownRight, mdiArrowUpRight } from "@mdi/js";
 import Icon from "@mdi/react";
 
+import theme from "/src/ions/theme/theme";
+
 const DetailHeaderComponent = ({ id }) => {
 	const detailData = useStore(state => state.detailData);
 	const meta = useStore(state => state.meta);
@@ -49,8 +51,6 @@ const DetailHeaderComponent = ({ id }) => {
 			>
 				<Card
 					sx={{
-						ml: 0.75,
-						mr: 0.75,
 						p: 1,
 						position: "relative",
 					}}
@@ -190,8 +190,8 @@ const DetailHeaderComponent = ({ id }) => {
 									}}
 									color={
 										detailData.market_data.price_change_percentage_24h >= 0
-											? "green"
-											: "red"
+											? theme.palette.success.main
+											: theme.palette.error.main
 									}
 								>
 									{`${parseFloat(
@@ -209,14 +209,14 @@ const DetailHeaderComponent = ({ id }) => {
 											path={mdiArrowUpRight}
 											padding={0}
 											size={0.75}
-											color="green"
+											color={theme.palette.success.main}
 										/>
 									) : (
 										<Icon
 											path={mdiArrowDownRight}
 											padding={0}
 											size={0.75}
-											color="red"
+											color={theme.palette.error.main}
 										/>
 									)}
 								</Box>

@@ -1,4 +1,3 @@
-import Stack from "@mui/material/Stack";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import Layout from "../organisms/layout";

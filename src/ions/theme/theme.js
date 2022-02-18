@@ -14,10 +14,10 @@ const theme = createTheme({
 			main: "hsl(265, 89%, 78%)",
 		},
 		error: {
-			main: "#FF5555",
+			main: "hsl(0, 100%, 67%)",
 		},
 		success: {
-			main: "#50FA7B",
+			main: "hsl(135, 94%, 65%)",
 		},
 		text: {
 			primary: "hsl(60, 30%, 96%)",

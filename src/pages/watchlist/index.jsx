@@ -102,14 +102,18 @@ const Page = () => {
 									justifyContent: "center",
 									alignItems: "center",
 									// gap: 5,
-									// m: 5,
+									mx: 5,
 									// minHeight: "50vh",
 								}}
 							>
 								<Box sx={{ maxWidth: 400 }}>
 									<LottieTumbleweed />
 								</Box>
-								<Typography variant="h4" color={theme.palette.text.primary}>
+								<Typography
+									variant="h4"
+									color={theme.palette.text.primary}
+									sx={{ textAlign: "center" }}
+								>
 									It looks kinda empty here...
 								</Typography>
 							</Box>
@@ -136,8 +140,6 @@ const Page = () => {
 				<div>
 					<Box
 						sx={{
-							position: "absolute",
-							top: "25%",
 							display: "flex",
 							flexDirection: "column",
 							justifyContent: "center",
@@ -153,6 +155,8 @@ const Page = () => {
 								justifyContent: "center",
 								flexDirection: "column",
 								gap: 5,
+								position: "absolute",
+								top: "25%",
 							}}
 						>
 							<GhostLogo size="60%" color={theme.palette.error.main} />

@@ -107,7 +107,7 @@ const DataGridColumns = [
 							: { color: theme.palette.error.main }
 					}
 				>
-					<Typography variant={variant}>{parseFloat(value).toFixed(2)}</Typography>
+					<Typography variant={variant}>{`${parseFloat(value).toFixed(2)} %`}</Typography>
 				</div>
 			) : (
 				"-"

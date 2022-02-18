@@ -71,9 +71,7 @@ const Page = () => {
 				{coins && (
 					<div>
 						{/*Data-grid component*/}
-						<Box>
-							<CoinsDataGrid />
-						</Box>
+						<CoinsDataGrid />
 
 						{/*Load-More-Button component*/}
 						{coins.length >= 20 ? (

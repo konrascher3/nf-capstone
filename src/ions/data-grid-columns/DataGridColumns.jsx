@@ -10,6 +10,13 @@ import { StyledRankColumn, StyledNameColumn } from "/src/ions/data-grid-columns/
 import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox";
 import useStore from "/src/ions/hooks/state/useStore";
 
+// MUI Import
+import Typography from "@mui/material/Typography";
+
+import theme from "/src/ions/theme/theme";
+
+const variant = "body1";
+
 const DataGridColumns = [
 	{
 		field: "market_cap_rank",
@@ -22,7 +29,11 @@ const DataGridColumns = [
 				/* TODO: Decide on bookmark */
 				<StyledRankColumn style={{ position: "relative" }}>
 					{loggedIn ? <CustomCheckbox params={params} /> : ""}
-					<span>{params.value}.</span>
+					<span>
+						<Typography variant={variant}>
+							{params.value ? `${params.value}.` : ""}
+						</Typography>
+					</span>
 				</StyledRankColumn>
 			);
 		},
@@ -62,12 +73,21 @@ const DataGridColumns = [
 								width: "100%",
 								overflow: "hidden",
 								whiteSpace: "no-wrap",
+								marginLeft: 2,
 							}}
 						>
-							<div style={{ textOverflow: "ellipsis", overflow: "hidden" }}>
+							<Typography
+								variant={variant}
+								sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
+							>
 								{params.value}
+							</Typography>
+
+							<div>
+								<Typography variant="button">
+									{params.row.symbol.toUpperCase()}
+								</Typography>
 							</div>
-							<div>{params.row.symbol.toUpperCase()}</div>
 						</div>
 					</StyledNameColumn>
 				</label>
@@ -80,8 +100,16 @@ const DataGridColumns = [
 		flex: 1,
 		renderCell: ({ value }) => {
 			return (
-				<div style={value > 0 ? { color: "green" } : { color: "red" }}>
-					{`${parseFloat(value).toFixed(2)}%`}
+				<div
+					style={
+						value > 0
+							? { color: theme.palette.success.main }
+							: { color: theme.palette.error.main }
+					}
+				>
+					<Typography variant={variant}>
+						{value ? `${parseFloat(value).toFixed(2)}%` : ""}
+					</Typography>
 				</div>
 			);
 		},
@@ -90,7 +118,13 @@ const DataGridColumns = [
 		field: "current_price",
 		headerName: "Price",
 		width: 110,
-		valueFormatter: ({ value }) => formatCurrency(value, "USD", "en", false),
+		renderCell: ({ value }) => {
+			return (
+				<Typography variant={variant}>
+					{formatCurrency(value, "USD", "en", false)}
+				</Typography>
+			);
+		},
 	},
 ];
 

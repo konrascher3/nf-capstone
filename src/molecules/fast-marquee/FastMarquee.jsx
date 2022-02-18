@@ -5,7 +5,7 @@ import MarqueeContent from "/src/atoms/marquee-content/MarqueeContent";
 
 const FastMarquee = () => {
 	return (
-		<Marquee gradientWidth={10} speed={25}>
+		<Marquee gradientWidth={20} speed={25} gradientColor={[76, 90, 133]}>
 			<MarqueeContent />
 		</Marquee>
 	);

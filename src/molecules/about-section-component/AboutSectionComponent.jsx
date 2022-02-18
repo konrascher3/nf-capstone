@@ -31,8 +31,6 @@ const AboutSectionComponent = () => {
 				<Box>
 					<Card
 						sx={{
-							ml: 0.75,
-							mr: 0.75,
 							p: 1.25,
 							overflow: "hidden",
 							position: "relative",
@@ -56,7 +54,14 @@ const AboutSectionComponent = () => {
 							<Stack spacing={0.75}>
 								{detailData?.description.en.length > maxDetailLength ? (
 									<Collapse in={showMore} collapsedSize={200}>
-										<Box sx={{ pb: showMore ? 3.5 : 0 }}>
+										<Box
+											sx={{
+												pb: showMore ? 3.5 : 0,
+												display: "flex",
+												flexDirection: "column",
+												gap: 1,
+											}}
+										>
 											<Typography variant="h6" sx={{ fontWeight: 600 }}>
 												About{" "}
 												{`${
@@ -64,14 +69,16 @@ const AboutSectionComponent = () => {
 												} (${detailData.symbol.toUpperCase()})`}
 											</Typography>
 											<Typography variant="body1" display="inline">
-												{HTMLparse(`${detailData.description.en}`)}
+												{`${detailData.description.en.replace(
+													/<\/?[^>]+(>|$)/g,
+													""
+												)}`}
 											</Typography>
 										</Box>
 									</Collapse>
 								) : (
 									<Box
 										sx={{
-											// border: "1px solid red",
 											pb: showMore ? 3.5 : 0,
 										}}
 									>
@@ -94,13 +101,13 @@ const AboutSectionComponent = () => {
 											right: 0,
 											display: "block",
 											width: "100%",
-											height: 80,
+											height: showMore ? 0 : 80,
 											paddingBottom: 40,
-											paddingTop: 150,
+											paddingTop: showMore ? 0 : 150,
 											textAlign: "center",
 											backgroundImage: showMore
 												? ""
-												: "linear-gradient(to bottom, rgba(255,255,255,0) 0%, white 80%)",
+												: "linear-gradient(to bottom, hsla(225, 27%, 31%, 0%) 0%, hsla(225, 27%, 31%, 90%) 70%)",
 										}}
 									>
 										{detailData?.description.en.length > maxDetailLength ? (

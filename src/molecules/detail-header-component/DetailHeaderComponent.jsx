@@ -16,6 +16,8 @@ import useStore from "/src/ions/hooks/state/useStore";
 import { mdiArrowDownRight, mdiArrowUpRight } from "@mdi/js";
 import Icon from "@mdi/react";
 
+import theme from "/src/ions/theme/theme";
+
 const DetailHeaderComponent = ({ id }) => {
 	const detailData = useStore(state => state.detailData);
 	const meta = useStore(state => state.meta);
@@ -49,8 +51,6 @@ const DetailHeaderComponent = ({ id }) => {
 			>
 				<Card
 					sx={{
-						ml: 0.75,
-						mr: 0.75,
 						p: 1,
 						position: "relative",
 					}}
@@ -154,9 +154,15 @@ const DetailHeaderComponent = ({ id }) => {
 									marginLeft: "auto",
 								}}
 							>
-								<Typography variant="body2" sx={{ p: 0.2 }} fontWeight={600}>
-									Rank {detailData.market_data.market_cap_rank}
-								</Typography>
+								{detailData.market_data.market_cap_rank ? (
+									<Typography variant="body2" sx={{ p: 0.2 }} fontWeight={600}>
+										Rank {detailData.market_data.market_cap_rank}
+									</Typography>
+								) : (
+									<Typography variant="body2" sx={{ p: 0.2 }} fontWeight={600}>
+										Not ranked
+									</Typography>
+								)}
 							</Box>
 						</Box>
 						<Box
@@ -190,13 +196,15 @@ const DetailHeaderComponent = ({ id }) => {
 									}}
 									color={
 										detailData.market_data.price_change_percentage_24h >= 0
-											? "green"
-											: "red"
+											? theme.palette.success.main
+											: theme.palette.error.main
 									}
 								>
-									{`${parseFloat(
-										detailData.market_data.price_change_percentage_24h
-									).toFixed(2)}%`}
+									{detailData.market_data.price_change_percentage_24h
+										? `${parseFloat(
+												detailData.market_data.price_change_percentage_24h
+										  ).toFixed(2)}%`
+										: ""}
 								</Typography>
 								<Box
 									sx={{
@@ -204,20 +212,24 @@ const DetailHeaderComponent = ({ id }) => {
 										justifySelf: "center",
 									}}
 								>
-									{detailData.market_data.price_change_percentage_24h >= 0 ? (
-										<Icon
-											path={mdiArrowUpRight}
-											padding={0}
-											size={0.75}
-											color="green"
-										/>
+									{detailData.market_data.price_change_percentage_24h ? (
+										detailData.market_data.price_change_percentage_24h >= 0 ? (
+											<Icon
+												path={mdiArrowUpRight}
+												padding={0}
+												size={0.75}
+												color={theme.palette.success.main}
+											/>
+										) : (
+											<Icon
+												path={mdiArrowDownRight}
+												padding={0}
+												size={0.75}
+												color={theme.palette.error.main}
+											/>
+										)
 									) : (
-										<Icon
-											path={mdiArrowDownRight}
-											padding={0}
-											size={0.75}
-											color="red"
-										/>
+										""
 									)}
 								</Box>
 							</Box>

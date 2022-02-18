@@ -71,7 +71,7 @@ const Chart = () => {
 								stroke="#8884d8"
 								data={dataArray}
 								margin={{
-									left: -60,
+									left: -55,
 									top: 20,
 								}}
 							>
@@ -116,7 +116,7 @@ const Chart = () => {
 								height: 25,
 								alignSelf: "flex-end",
 								position: "relative",
-								top: -57,
+								top: -17,
 								right: 5,
 							}}
 						/>

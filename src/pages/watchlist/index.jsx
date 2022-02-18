@@ -4,28 +4,22 @@ import Head from "next/head";
 import Cookies from "js-cookie";
 
 // MUI Imports
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 
 // Axios Import
 import axios from "axios";
-
-// Lottie-component Import
-import LottieTumbleweed from "/src/atoms/lottie-tumbleweed/LottieTumbleweed";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
 // Custom-components Imports
-
 import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton";
 import CoinsDataGrid from "/src/molecules/coins-data-grid/DataGrid";
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee";
+import EmptyWatchlistComponent from "/src/molecules/empty-watchlist-component/EmptyWatchlistComponent";
+import PleaseLoginComponent from "/src/molecules/please-login-component/PleaseLoginComponent";
 import Drawer from "/src/organisms/drawer/Drawer";
 import Layout from "/src/organisms/layout/index";
-
-import GhostLogo from "/src/atoms/logo/ghost";
 
 const Page = () => {
 	const error = useStore(state => state.error);
@@ -92,34 +86,13 @@ const Page = () => {
 
 			{loggedIn ? (
 				<div>
-					{!coins && (
-						<div>
-							<Box
-								sx={{
-									display: "flex",
-									flexDirection: "column",
-									justifyContent: "center",
-									alignItems: "center",
-									gap: 5,
-									m: 5,
-									minHeight: "50vh",
-								}}
-							>
-								<Box sx={{ maxWidth: "600px" }}>
-									<LottieTumbleweed />
-								</Box>
-								<Typography variant="h6">It looks kinda empty here...</Typography>
-							</Box>
-						</div>
-					)}
+					{!coins && <EmptyWatchlistComponent />}
 					{coins && (
 						<>
 							{/*Drawer component*/}
 							<Drawer />
 							{/*Data-grid component*/}
-							<Stack spacing={3} sx={{ m: 0.5 }}>
-								<CoinsDataGrid />
-							</Stack>
+							<CoinsDataGrid />
 							{/*Load-More-Button component*/}
 							{coins?.length >= 20 ? (
 								<Box sx={{ m: 0.75, display: "flex", justifyContent: "center" }}>
@@ -133,34 +106,7 @@ const Page = () => {
 				</div>
 			) : (
 				<div>
-					<Box
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "center",
-							alignItems: "center",
-							gap: 5,
-							m: 5,
-							minHeight: "50vh",
-						}}
-					>
-						<Box
-							sx={{
-								color: "#FF5555",
-								maxWidth: "600px",
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								flexDirection: "column",
-								gap: 5,
-							}}
-						>
-							<GhostLogo size="70%" />
-							<Typography variant="h6" sx={{ textAlign: "center" }}>
-								Please login to access your watchlist!
-							</Typography>
-						</Box>
-					</Box>
+					<PleaseLoginComponent />
 				</div>
 			)}
 		</Layout>

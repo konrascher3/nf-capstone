@@ -57,7 +57,7 @@ const Searchbar = () => {
 			// Error if term has less than 3 characters
 			setInputError(true);
 			setHelperText("Please provide at least 3 characters");
-		} else if (/^[A-Za-z0-9]+$/.test(searchTerm) === false) {
+		} else if (/^[A-Za-z0-9 ]+$/.test(searchTerm) === false) {
 			// Error if term contains invalid characters
 			setInputError(true);
 			setHelperText("Please provide valid characters");

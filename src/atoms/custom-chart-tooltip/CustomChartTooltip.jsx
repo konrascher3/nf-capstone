@@ -10,6 +10,8 @@ import moment from "moment";
 
 import useState from "/src/ions/hooks/state/useStore";
 
+import theme from "/src/ions/theme/theme";
+
 const CustomChartTooltip = ({ active, payload, label }) => {
 	const interval = useState(state => state.interval);
 
@@ -18,19 +20,19 @@ const CustomChartTooltip = ({ active, payload, label }) => {
 			<Box
 				sx={{
 					borderRadius: 0.75,
-					backgroundColor: "white",
+					backgroundColor: theme.palette.background.paper,
 					p: 1,
 					textAlign: "center",
 				}}
 			>
-				<Typography variant="body2">
+				<Typography variant="body1">
 					{interval === "hourly"
 						? moment.utc(label).format("MMM Do, h:mm a")
 						: interval === "monthly"
 						? moment.utc(label).format("ll")
 						: moment.utc(label).format("MMM Do")}
 				</Typography>
-				<Typography variant="caption">
+				<Typography variant="body2">
 					{payload ? formatCurrency(payload[0].payload.price, "USD", "en", false) : ""}
 				</Typography>
 			</Box>

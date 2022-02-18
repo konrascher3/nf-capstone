@@ -40,6 +40,10 @@ const NewsCard = ({ article }) => {
 								component="img"
 								image={article.urlToImage}
 								alt={`Article-preview from ${article.source.name}`}
+								onError={({ currentTarget }) => {
+									currentTarget.onerror = null;
+									currentTarget.src = `${placeholderSvg.src}`;
+								}}
 							/>
 						) : (
 							<CardMedia

@@ -58,13 +58,18 @@ const Page = () => {
 					</Box>
 
 					{/*Data-grid component*/}
-					<Stack spacing={3} sx={{ m: 0.5 }}>
-						<CoinsDataGrid />
-					</Stack>
+					<CoinsDataGrid />
 
 					{/*Load-More-Button component*/}
 					{coins?.length >= 20 ? (
-						<Box sx={{ m: 0.75, mb: 2, display: "flex", justifyContent: "center" }}>
+						<Box
+							sx={{
+								m: 0.75,
+								mb: 2,
+								display: "flex",
+								justifyContent: "center",
+							}}
+						>
 							<LoadMoreButton disabled={coins} />
 						</Box>
 					) : (

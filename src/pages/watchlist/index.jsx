@@ -136,13 +136,13 @@ const Page = () => {
 				<div>
 					<Box
 						sx={{
+							position: "absolute",
+							top: "25%",
 							display: "flex",
 							flexDirection: "column",
 							justifyContent: "center",
 							alignItems: "center",
-							// gap: 5,
-							// m: 5,
-							// minHeight: "50vh",
+							m: 5,
 						}}
 					>
 						<Box
@@ -152,10 +152,10 @@ const Page = () => {
 								alignItems: "center",
 								justifyContent: "center",
 								flexDirection: "column",
-								// gap: 5,
+								gap: 5,
 							}}
 						>
-							<GhostLogo size="70%" color={theme.palette.error.main} />
+							<GhostLogo size="60%" color={theme.palette.error.main} />
 							<Typography
 								variant="h4"
 								sx={{ textAlign: "center", color: theme.palette.error.main }}

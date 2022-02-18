@@ -10,7 +10,7 @@ import { StyledRankColumn, StyledNameColumn } from "/src/ions/data-grid-columns/
 import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox";
 import useStore from "/src/ions/hooks/state/useStore";
 
-// MUI Import
+// MUI Imports
 import Typography from "@mui/material/Typography";
 
 import theme from "/src/ions/theme/theme";
@@ -31,7 +31,7 @@ const DataGridColumns = [
 					{loggedIn ? <CustomCheckbox params={params} /> : ""}
 					<span>
 						<Typography variant={variant}>
-							{params.value ? `${params.value}.` : ""}
+							{params.value ? `${params.value}.` : "-"}
 						</Typography>
 					</span>
 				</StyledRankColumn>
@@ -99,7 +99,7 @@ const DataGridColumns = [
 		headerName: "24h",
 		flex: 1,
 		renderCell: ({ value }) => {
-			return (
+			return value ? (
 				<div
 					style={
 						value > 0
@@ -107,10 +107,10 @@ const DataGridColumns = [
 							: { color: theme.palette.error.main }
 					}
 				>
-					<Typography variant={variant}>
-						{value ? `${parseFloat(value).toFixed(2)}%` : ""}
-					</Typography>
+					<Typography variant={variant}>{parseFloat(value).toFixed(2)}</Typography>
 				</div>
+			) : (
+				"-"
 			);
 		},
 	},

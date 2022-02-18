@@ -7,7 +7,7 @@ import useGet from "../../ions/hooks/fetch/get";
 import theme from "/src/ions/theme/theme";
 
 const marqueeContent = () => {
-	const variant = "subtitle2";
+	const variant = "subtitle1";
 	const { data, loading, error } = useGet("../api/fetch-globals");
 	return (
 		<>

@@ -4,7 +4,6 @@ import Head from "next/head";
 import Cookies from "js-cookie";
 
 // MUI Imports
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 // Axios Import
@@ -18,10 +17,9 @@ import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton";
 import CoinsDataGrid from "/src/molecules/coins-data-grid/DataGrid";
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee";
 import EmptyWatchlistComponent from "/src/molecules/empty-watchlist-component/EmptyWatchlistComponent";
+import PleaseLoginComponent from "/src/molecules/please-login-component/PleaseLoginComponent";
 import Drawer from "/src/organisms/drawer/Drawer";
 import Layout from "/src/organisms/layout/index";
-import GhostLogo from "/src/atoms/logo/ghost";
-import theme from "/src/ions/theme/theme";
 
 const Page = () => {
 	const error = useStore(state => state.error);
@@ -108,36 +106,7 @@ const Page = () => {
 				</div>
 			) : (
 				<div>
-					<Box
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "center",
-							alignItems: "center",
-							m: 5,
-						}}
-					>
-						<Box
-							sx={{
-								maxWidth: 400,
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								flexDirection: "column",
-								gap: 5,
-								position: "absolute",
-								top: "25%",
-							}}
-						>
-							<GhostLogo size="60%" color={theme.palette.error.main} />
-							<Typography
-								variant="h4"
-								sx={{ textAlign: "center", color: theme.palette.error.main }}
-							>
-								Please login to access your watchlist!
-							</Typography>
-						</Box>
-					</Box>
+					<PleaseLoginComponent />
 				</div>
 			)}
 		</Layout>

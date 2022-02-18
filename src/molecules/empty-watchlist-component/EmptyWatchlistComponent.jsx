@@ -1,7 +1,11 @@
-import Typography from "@mui/material/Typography";
 import React from "react";
-import LottieTumbleweed from "../../atoms/lottie-tumbleweed/LottieTumbleweed";
-import theme from "../../ions/theme/theme";
+
+// MUI Import
+import Typography from "@mui/material/Typography";
+
+// Custom-components Imports
+import LottieTumbleweed from "/src/atoms/lottie-tumbleweed/LottieTumbleweed";
+import theme from "/src/ions/theme/theme";
 
 const EmptyWatchlistComponent = () => {
 	return (

@@ -31,6 +31,15 @@ const theme = createTheme({
 		fontFamily: `"Roboto Condensed", Helvetica, Arial, sans-serif`,
 	},
 	components: {
+		MuiPaper: {
+			styleOverrides: {
+				root: {
+					"&.MuiPaper-root.MuiAccordion-root": {
+						background: "none",
+					},
+				},
+			},
+		},
 		MuiTab: {
 			styleOverrides: {
 				root: {
@@ -43,6 +52,16 @@ const theme = createTheme({
 				root: {
 					"&.MuiTableCell-root": {
 						borderBottom: "1px solid hsla(225, 27%, 44%, 40%)",
+					},
+				},
+			},
+		},
+		MuiAccordionDetails: {
+			styleOverrides: {
+				root: {
+					"&.MuiAccordionDetails-root": {
+						padding: 0,
+						paddingBottom: 30,
 					},
 				},
 			},
@@ -67,7 +86,7 @@ const theme = createTheme({
 						visibility: "hidden",
 					},
 					".MuiDataGrid-columnHeader": {
-						backgroundColor: "hsl(225, 27%, 44%)",
+						backgroundColor: "hsl(225, 27%, 49%)",
 					},
 					".MuiDataGrid-cell": {
 						position: "relative",

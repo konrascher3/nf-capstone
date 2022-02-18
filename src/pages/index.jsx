@@ -71,7 +71,7 @@ const Page = () => {
 						""
 					)}
 
-					<Box sx={{ m: 2 }}></Box>
+					<Box sx={{ m: 7 }}></Box>
 				</>
 			)}
 		</Layout>

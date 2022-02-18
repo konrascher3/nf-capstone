@@ -6,7 +6,6 @@ import Cookies from "js-cookie";
 // MUI Imports
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 
 // Axios Import
 import axios from "axios";
@@ -26,6 +25,8 @@ import Drawer from "/src/organisms/drawer/Drawer";
 import Layout from "/src/organisms/layout/index";
 
 import GhostLogo from "/src/atoms/logo/ghost";
+
+import theme from "/src/ions/theme/theme";
 
 const Page = () => {
 	const error = useStore(state => state.error);
@@ -108,7 +109,9 @@ const Page = () => {
 								<Box sx={{ maxWidth: "600px" }}>
 									<LottieTumbleweed />
 								</Box>
-								<Typography variant="h6">It looks kinda empty here...</Typography>
+								<Typography variant="h6" color={theme.palette.text.primary}>
+									It looks kinda empty here...
+								</Typography>
 							</Box>
 						</div>
 					)}
@@ -117,9 +120,7 @@ const Page = () => {
 							{/*Drawer component*/}
 							<Drawer />
 							{/*Data-grid component*/}
-							<Stack spacing={3} sx={{ m: 0.5 }}>
-								<CoinsDataGrid />
-							</Stack>
+							<CoinsDataGrid />
 							{/*Load-More-Button component*/}
 							{coins?.length >= 20 ? (
 								<Box sx={{ m: 0.75, display: "flex", justifyContent: "center" }}>
@@ -146,7 +147,6 @@ const Page = () => {
 					>
 						<Box
 							sx={{
-								color: "#FF5555",
 								maxWidth: "600px",
 								display: "flex",
 								alignItems: "center",
@@ -155,8 +155,11 @@ const Page = () => {
 								gap: 5,
 							}}
 						>
-							<GhostLogo size="70%" />
-							<Typography variant="h6" sx={{ textAlign: "center" }}>
+							<GhostLogo size="70%" color={theme.palette.error.main} />
+							<Typography
+								variant="h6"
+								sx={{ textAlign: "center", color: theme.palette.error.main }}
+							>
 								Please login to access your watchlist!
 							</Typography>
 						</Box>

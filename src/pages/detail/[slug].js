@@ -55,19 +55,13 @@ const Page = () => {
 			</Box>
 
 			{detailData && (
-				<Stack spacing={3} sx={{ m: 0.25 }}>
+				<Stack spacing={3} sx={{ m: 0.75 }}>
 					{/* Detail-header-component */}
 					<DetailHeaderComponent id={slug} />
 
 					{/*Chart component*/}
 					<Box>
-						<Card
-							sx={{
-								ml: 0.75,
-								mr: 0.75,
-								p: 0.5,
-							}}
-						>
+						<Card>
 							<Chart />
 						</Card>
 					</Box>

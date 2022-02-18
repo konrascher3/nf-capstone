@@ -64,14 +64,12 @@ const Page = () => {
 
 					{/*Load-More-Button component*/}
 					{coins?.length >= 20 ? (
-						<Box sx={{ m: 0.75, display: "flex", justifyContent: "center" }}>
+						<Box sx={{ m: 0.75, mb: 2, display: "flex", justifyContent: "center" }}>
 							<LoadMoreButton disabled={coins} />
 						</Box>
 					) : (
 						""
 					)}
-
-					<Box sx={{ m: 7 }}></Box>
 				</>
 			)}
 		</Layout>

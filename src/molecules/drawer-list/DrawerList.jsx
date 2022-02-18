@@ -275,7 +275,7 @@ const DrawerList = () => {
 					<ListItem
 						sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
 					>
-						<Card sx={{ width: "90%", display: "flex", p: 1, borderRadius: 4.5 }}>
+						<Card sx={{ width: "90%", display: "flex", borderRadius: 2 }}>
 							<CardActionArea
 								onClick={() => {
 									handleLogout();
@@ -287,6 +287,7 @@ const DrawerList = () => {
 										justifyContent: "center",
 										alignItems: "center",
 										width: "100%",
+										p: 1,
 										gap: 4.5,
 									}}
 								>
@@ -329,7 +330,7 @@ const DrawerList = () => {
 						<ListItem
 							sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
 						>
-							<Card sx={{ width: "90%", display: "flex", p: 1, borderRadius: 4.5 }}>
+							<Card sx={{ width: "90%", display: "flex", borderRadius: 2 }}>
 								<CardActionArea
 									onClick={() => {
 										handleWalletClick();
@@ -341,6 +342,7 @@ const DrawerList = () => {
 											justifyContent: "center",
 											alignItems: "center",
 											width: "100%",
+											p: 1,
 											gap: 4.5,
 										}}
 									>

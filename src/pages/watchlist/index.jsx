@@ -10,22 +10,17 @@ import Box from "@mui/material/Box";
 // Axios Import
 import axios from "axios";
 
-// Lottie-component Import
-import LottieTumbleweed from "/src/atoms/lottie-tumbleweed/LottieTumbleweed";
-
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
 // Custom-components Imports
-
 import LoadMoreButton from "/src/atoms/loadMoreButton/LoadMoreButton";
 import CoinsDataGrid from "/src/molecules/coins-data-grid/DataGrid";
 import FastMarquee from "/src/molecules/fast-marquee/FastMarquee";
+import EmptyWatchlistComponent from "/src/molecules/empty-watchlist-component/EmptyWatchlistComponent";
 import Drawer from "/src/organisms/drawer/Drawer";
 import Layout from "/src/organisms/layout/index";
-
 import GhostLogo from "/src/atoms/logo/ghost";
-
 import theme from "/src/ions/theme/theme";
 
 const Page = () => {
@@ -93,32 +88,7 @@ const Page = () => {
 
 			{loggedIn ? (
 				<div>
-					{!coins && (
-						<div>
-							<Box
-								sx={{
-									display: "flex",
-									flexDirection: "column",
-									justifyContent: "center",
-									alignItems: "center",
-									// gap: 5,
-									mx: 5,
-									// minHeight: "50vh",
-								}}
-							>
-								<Box sx={{ maxWidth: 400 }}>
-									<LottieTumbleweed />
-								</Box>
-								<Typography
-									variant="h4"
-									color={theme.palette.text.primary}
-									sx={{ textAlign: "center" }}
-								>
-									It looks kinda empty here...
-								</Typography>
-							</Box>
-						</div>
-					)}
+					{!coins && <EmptyWatchlistComponent />}
 					{coins && (
 						<>
 							{/*Drawer component*/}

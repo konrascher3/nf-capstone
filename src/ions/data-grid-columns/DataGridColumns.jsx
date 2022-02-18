@@ -76,14 +76,13 @@ const DataGridColumns = [
 								marginLeft: 2,
 							}}
 						>
-							<div
-								style={{
-									textOverflow: "ellipsis",
-									overflow: "hidden",
-								}}
+							<Typography
+								variant={variant}
+								sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
 							>
-								<Typography variant={variant}>{params.value}</Typography>
-							</div>
+								{params.value}
+							</Typography>
+
 							<div>
 								<Typography variant="button">
 									{params.row.symbol.toUpperCase()}

@@ -13,6 +13,7 @@ const ToggleTimeframeComponent = () => {
 
 	const setTimeFrame = useStore(state => state.setTimeFrame);
 	const setInterval = useStore(state => state.setInterval);
+	const colorMode = useStore(state => state.colorMode);
 
 	const [alignment, setAlignment] = useState(1);
 
@@ -38,7 +39,7 @@ const ToggleTimeframeComponent = () => {
 		>
 			<ToggleButtonGroup
 				exclusive
-				color="primary"
+				color={colorMode ? "primary" : "secondary"}
 				value={alignment}
 				disabled={loading}
 				size="small"

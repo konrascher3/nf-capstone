@@ -24,7 +24,7 @@ const AboutSectionComponent = () => {
 	// TODO: Improve by pre-rendering the component and
 	//  adjusting the collapse-behavior based on the component's height instead of the char-count.
 	const maxDetailLength = 250;
-
+	const colorMode = useStore(state => state.colorMode);
 	return (
 		<>
 			{detailData.description.en && (
@@ -107,18 +107,32 @@ const AboutSectionComponent = () => {
 											textAlign: "center",
 											backgroundImage: showMore
 												? ""
-												: "linear-gradient(to bottom, hsla(225, 27%, 31%, 0%) 0%, hsla(225, 27%, 31%, 90%) 70%)",
+												: colorMode
+												? "linear-gradient(to bottom, hsla(225, 27%, 31%, 0%) 0%, hsla(225, 27%, 31%, 90%) 70%)"
+												: "linear-gradient(to bottom, hsla(60, 30%, 99%, 0%) 0%, hsla(60, 30%, 99%, 90%) 70%)",
 										}}
 									>
 										{detailData?.description.en.length > maxDetailLength ? (
-											<Button
-												sx={{ pb: 1 }}
-												onClick={() => {
-													setShowMore(!showMore);
-												}}
-											>
-												{showMore ? "show less" : "show more"}
-											</Button>
+											colorMode ? (
+												<Button
+													sx={{ pb: 1 }}
+													onClick={() => {
+														setShowMore(!showMore);
+													}}
+												>
+													{showMore ? "show less" : "show more"}
+												</Button>
+											) : (
+												<Button
+													sx={{ pb: 1 }}
+													color="secondary"
+													onClick={() => {
+														setShowMore(!showMore);
+													}}
+												>
+													{showMore ? "show less" : "show more"}
+												</Button>
+											)
 										) : (
 											""
 										)}

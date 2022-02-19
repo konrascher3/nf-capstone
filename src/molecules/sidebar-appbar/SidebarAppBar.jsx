@@ -11,7 +11,9 @@ import Switch from "@mui/material/Switch";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
+// Import logo
 import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode-optimized.svg";
+import logoLightMode from "/src/ions/img/logos/complete-logo-light-mode-optimized.svg";
 
 // Material-design-icons Imports
 import { mdiClose } from "@mdi/js";
@@ -28,7 +30,11 @@ const SidebarAppBar = () => {
 				<Toolbar
 					sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
 				>
-					<img style={{ width: "170px" }} src={logoDarkMode.src} alt="Coin ghost logo" />
+					<img
+						style={{ width: "170px" }}
+						src={colorMode ? logoDarkMode.src : logoLightMode.src}
+						alt="Coin ghost logo"
+					/>
 					<Box
 						sx={{
 							display: "flex",
@@ -38,11 +44,11 @@ const SidebarAppBar = () => {
 						}}
 					>
 						<Switch
-							defaultChecked
+							// defaultChecked
 							size="medium"
 							checked={colorMode}
 							onChange={() => {
-								setColorMode(!colorMode);
+								setColorMode(colorMode);
 							}}
 							sx={{}}
 						/>

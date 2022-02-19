@@ -11,9 +11,6 @@ import Box from "@mui/material/Box";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 
-import Icon from "@mdi/react";
-import { mdiCrown } from "@mdi/js";
-
 const TabPanel = props => {
 	const { children, value, index, ...other } = props;
 
@@ -101,6 +98,8 @@ const TabBar = () => {
 
 	const variant = "body1";
 
+	const colorMode = useStore(state => state.colorMode);
+
 	return (
 		<Box sx={{ width: "100%" }}>
 			<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -111,6 +110,8 @@ const TabBar = () => {
 					aria-label="Coin categories"
 					variant="scrollable"
 					scrollButtons="auto"
+					textColor={colorMode ? "primary" : "secondary"}
+					indicatorColor={colorMode ? "primary" : "secondary"}
 					onChange={handleChange}
 				>
 					{/* Custom Categories */}

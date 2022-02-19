@@ -14,9 +14,14 @@ import en from "javascript-time-ago/locale/en.json";
 TimeAgo.setDefaultLocale(en.locale);
 TimeAgo.addLocale(en);
 
-import placeholderSvg from "/src/ions/img/placeholder/placeholder.svg";
+import placeholderDarkModeSvg from "/src/ions/img/placeholder/placeholderDarkMode.svg";
+import placeholderLightModeSvg from "/src/ions/img/placeholder/placeholderLightMode.svg";
+
+import useStore from "/src/ions/hooks/state/useStore";
+
 // TODO: Refactor to components; map within this component to avoid prop-drilling
 const NewsCard = ({ article }) => {
+	const colorMode = useStore(state => state.colorMode);
 	return (
 		<Card key={article.source.id} sx={{ borderRadius: 4.5 }} elevation={2}>
 			<CardActionArea href={article.url} target="_blank">
@@ -42,7 +47,11 @@ const NewsCard = ({ article }) => {
 								alt={`Article-preview from ${article.source.name}`}
 								onError={({ currentTarget }) => {
 									currentTarget.onerror = null;
-									currentTarget.src = `${placeholderSvg.src}`;
+									currentTarget.src = `${
+										colorMode
+											? placeholderDarkModeSvg.src
+											: placeholderLightModeSvg.src
+									}`;
 								}}
 							/>
 						) : (
@@ -54,7 +63,11 @@ const NewsCard = ({ article }) => {
 									borderRadius: 2,
 								}}
 								component="img"
-								image={placeholderSvg.src}
+								image={
+									colorMode
+										? placeholderDarkModeSvg.src
+										: placeholderLightModeSvg.src
+								}
 								alt={`Article-preview from ${article.source.name}`}
 							/>
 						)}

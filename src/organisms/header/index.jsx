@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 // Import logo
 import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode-optimized.svg";
+import logoLightMode from "/src/ions/img/logos/complete-logo-light-mode-optimized.svg";
 
 // MUI Imports
 import AppBar from "@mui/material/AppBar";
@@ -46,6 +47,7 @@ const Header = props => {
 	const router = useRouter();
 	const open = useStore(state => state.open);
 	const setOpen = useStore(state => state.setOpen);
+	const colorMode = useStore(state => state.colorMode);
 
 	return (
 		<header>
@@ -69,7 +71,7 @@ const Header = props => {
 							>
 								<img
 									style={{ width: "170px" }}
-									src={logoDarkMode.src}
+									src={colorMode ? logoDarkMode.src : logoLightMode.src}
 									alt="Coin ghost logo"
 								/>
 							</Box>

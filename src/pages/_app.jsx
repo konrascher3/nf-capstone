@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Global } from "@emotion/react";
 
@@ -11,7 +11,6 @@ import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 // import checkMobile from "/src/ions/utils/checkMobile";
 
-import useStore from "/src/ions/hooks/state/useStore";
 import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const globalStyles = (

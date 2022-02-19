@@ -49,7 +49,7 @@ const PleaseLoginComponent = () => {
 							: lightMode.palette.error.main,
 					}}
 				>
-					Please login to access your watchlist!
+					Please log in to access your watchlist!
 				</Typography>
 			</Box>
 		</Box>

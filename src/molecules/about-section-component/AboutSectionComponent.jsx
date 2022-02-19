@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 import HTMLparse from "html-react-parser";
 
@@ -24,7 +25,7 @@ const AboutSectionComponent = () => {
 	// TODO: Improve by pre-rendering the component and
 	//  adjusting the collapse-behavior based on the component's height instead of the char-count.
 	const maxDetailLength = 250;
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 	return (
 		<>
 			{detailData.description.en && (

@@ -19,6 +19,7 @@ import IconButton from "@mui/material/IconButton";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 // Material-design-icons Imports
 import Icon from "@mdi/react";
@@ -47,7 +48,7 @@ const Header = props => {
 	const router = useRouter();
 	const open = useStore(state => state.open);
 	const setOpen = useStore(state => state.setOpen);
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	return (
 		<header>

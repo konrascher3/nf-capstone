@@ -10,6 +10,7 @@ import Switch from "@mui/material/Switch";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 // Import logo
 import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode-optimized.svg";
@@ -21,8 +22,8 @@ import { mdiClose } from "@mdi/js";
 const SidebarAppBar = () => {
 	const open = useStore(state => state.open);
 	const setOpen = useStore(state => state.setOpen);
-	const setColorMode = useStore(state => state.setColorMode);
-	const colorMode = useStore(state => state.colorMode);
+	const setColorMode = useColorMode(state => state.setColorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>

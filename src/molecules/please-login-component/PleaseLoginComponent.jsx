@@ -8,10 +8,12 @@ import Typography from "@mui/material/Typography";
 import GhostLogo from "/src/atoms/logo/ghost";
 
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
+
 import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const PleaseLoginComponent = () => {
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 	return (
 		<Box
 			sx={{

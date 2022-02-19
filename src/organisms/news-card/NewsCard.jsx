@@ -18,10 +18,11 @@ import placeholderDarkModeSvg from "/src/ions/img/placeholder/placeholderDarkMod
 import placeholderLightModeSvg from "/src/ions/img/placeholder/placeholderLightMode.svg";
 
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 // TODO: Refactor to components; map within this component to avoid prop-drilling
 const NewsCard = ({ article }) => {
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 	return (
 		<Card key={article.source.id} sx={{ borderRadius: 4.5 }} elevation={2}>
 			<CardActionArea href={article.url} target="_blank">

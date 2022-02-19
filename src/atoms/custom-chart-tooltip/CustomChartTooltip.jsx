@@ -9,11 +9,12 @@ import { formatCurrency } from "@coingecko/cryptoformat";
 import moment from "moment";
 
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const CustomChartTooltip = ({ active, payload, label }) => {
 	const interval = useStore(state => state.interval);
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	if (active) {
 		return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Global } from "@emotion/react";
 
@@ -12,6 +12,7 @@ import { darkMode, lightMode } from "/src/ions/theme/theme";
 // import checkMobile from "/src/ions/utils/checkMobile";
 
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const globalStyles = (
 	<>
@@ -21,8 +22,9 @@ const globalStyles = (
 );
 
 const App = ({ Component, pageProps }) => {
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 
+	console.log(colorMode);
 	return (
 		<ThemeProvider theme={colorMode ? darkMode : lightMode}>
 			{globalStyles}

@@ -3,9 +3,10 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 import MarqueeContent from "/src/atoms/marquee-content/MarqueeContent";
 import useStore from "../../ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const FastMarquee = () => {
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	return (
 		<Marquee

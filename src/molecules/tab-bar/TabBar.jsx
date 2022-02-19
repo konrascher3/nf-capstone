@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const TabPanel = props => {
 	const { children, value, index, ...other } = props;
@@ -98,7 +99,7 @@ const TabBar = () => {
 
 	const variant = "body1";
 
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	return (
 		<Box sx={{ width: "100%" }}>

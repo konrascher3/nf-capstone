@@ -13,6 +13,8 @@ import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox";
 import Typography from "@mui/material/Typography";
 
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
+
 import { darkMode, lightMode } from "/src/ions/theme/theme";
 const variant = "body1";
 
@@ -98,7 +100,7 @@ const DataGridColumns = [
 		headerName: "24h",
 		flex: 1,
 		renderCell: ({ value }) => {
-			const colorMode = useStore(state => state.colorMode);
+			const colorMode = useColorMode(state => state.colorMode);
 			return value ? (
 				<div
 					style={

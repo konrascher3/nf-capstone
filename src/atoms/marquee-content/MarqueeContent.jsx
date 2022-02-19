@@ -5,10 +5,12 @@ import Typography from "@mui/material/Typography";
 import useGet from "../../ions/hooks/fetch/get";
 
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
+
 import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const marqueeContent = () => {
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	const variant = "subtitle1";
 	const { data, loading, error } = useGet("../api/fetch-globals");

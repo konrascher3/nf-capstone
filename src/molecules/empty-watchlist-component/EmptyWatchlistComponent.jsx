@@ -7,10 +7,12 @@ import Typography from "@mui/material/Typography";
 import LottieTumbleweed from "/src/atoms/lottie-tumbleweed/LottieTumbleweed";
 
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
+
 import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const EmptyWatchlistComponent = () => {
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 	return (
 		<>
 			<LottieTumbleweed />

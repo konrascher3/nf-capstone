@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 // Material Design Icons Imports
 import { mdiArrowDownRight, mdiArrowUpRight } from "@mdi/js";
@@ -19,7 +20,7 @@ import Icon from "@mdi/react";
 import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const DetailHeaderComponent = ({ id }) => {
-	const colorMode = useStore(state => state.colorMode);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	const detailData = useStore(state => state.detailData);
 	const meta = useStore(state => state.meta);

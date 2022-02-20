@@ -6,7 +6,7 @@ import Switch from "@mui/material/Switch";
 
 // Material-design-icons Imports
 import Icon from "@mdi/react";
-import { mdiWeatherNight, mdiWhiteBalanceSunny } from "@mdi/js";
+import { mdiMoonWaxingCrescent, mdiWhiteBalanceSunny } from "@mdi/js";
 
 // useColorMode
 import useColorMode from "/src/ions/hooks/state/useColorMode";
@@ -42,7 +42,7 @@ const ToggleThemeComponent = () => {
 					}}
 				>
 					<Icon
-						path={mdiWeatherNight}
+						path={mdiMoonWaxingCrescent}
 						size={0.8}
 						style={{
 							display: "flex",

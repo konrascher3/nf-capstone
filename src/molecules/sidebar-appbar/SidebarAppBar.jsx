@@ -92,7 +92,7 @@ const SidebarAppBar = () => {
 										backgroundColor: "hsl(60, 30%, 96%)",
 										display: "flex",
 										justifyContent: "center",
-										// alignItems: "center",
+										alignItems: "center",
 									}}
 								>
 									<Icon path={mdiWhiteBalanceSunny} size={0.8} />

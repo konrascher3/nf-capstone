@@ -1,8 +1,14 @@
-import { mdiWeatherNight, mdiWhiteBalanceSunny } from "@mdi/js";
-import Icon from "@mdi/react";
+import React from "react";
+
+// MUI Imports
 import Box from "@mui/material/Box";
 import Switch from "@mui/material/Switch";
-import React from "react";
+
+// Material-design-icons Imports
+import Icon from "@mdi/react";
+import { mdiWeatherNight, mdiWhiteBalanceSunny } from "@mdi/js";
+
+// useColorMode
 import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const ToggleThemeComponent = () => {

@@ -1,33 +1,29 @@
 import React from "react";
 
 // MUI Imports
-import Icon from "@mdi/react";
 import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
-import Switch from "@mui/material/Switch";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 import useColorMode from "/src/ions/hooks/state/useColorMode";
 
-// Import logo
+// Import Logos
 import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode-optimized.svg";
 import logoLightMode from "/src/ions/img/logos/complete-logo-light-mode-optimized.svg";
 
-// Custom Impoor
+// Custom Import
 import ToggleThemeComponent from "/src/molecules/toggle-theme-component/ToggleThemeComponent";
 
 // Material-design-icons Imports
+import Icon from "@mdi/react";
 import { mdiClose } from "@mdi/js";
-import { mdiWeatherNight } from "@mdi/js";
-import { mdiWhiteBalanceSunny } from "@mdi/js";
 
 const SidebarAppBar = () => {
 	const open = useStore(state => state.open);
 	const setOpen = useStore(state => state.setOpen);
-	const setColorMode = useColorMode(state => state.setColorMode);
 	const colorMode = useColorMode(state => state.colorMode);
 
 	return (

@@ -47,22 +47,16 @@ const SidebarAppBar = () => {
 						}}
 					>
 						<Switch
-							disableRipple
 							size="medium"
 							sx={{
 								width: 62,
 								".MuiSwitch-switchBase": {
-									transform: "translate(-1px, -1.5px)",
 									"&.Mui-checked": {
-										transform: "translate(23px, -1.5px)",
+										transform: "translate(23px, 0px)",
 									},
 									"&& .MuiTouchRipple-child": {
 										backgroundColor: "blue",
 									},
-									// "& .MuiSwitch-thumb:before": {
-									// 	width: 32,
-									// 	height: 32,
-									// },
 								},
 							}}
 							checked={colorMode}
@@ -70,7 +64,6 @@ const SidebarAppBar = () => {
 								<Box
 									sx={{
 										boxShadow: 1,
-										p: 0.3,
 										borderRadius: 100,
 										color: "hsl(225, 27%, 31%)",
 										backgroundColor: "hsl(326, 100%, 74%)",
@@ -86,7 +79,7 @@ const SidebarAppBar = () => {
 											display: "flex",
 											alignItems: "center",
 											justifyContent: "center",
-											padding: 0.3,
+											padding: 2.5,
 										}}
 									/>
 								</Box>
@@ -94,9 +87,7 @@ const SidebarAppBar = () => {
 							icon={
 								<Box
 									sx={{
-										// transform: "translateY(-3px)",
 										boxShadow: 1,
-										p: 0.3,
 										borderRadius: 100,
 										color: "hsl(225, 27%, 31%)",
 										backgroundColor: "hsl(60, 30%, 96%)",
@@ -112,7 +103,7 @@ const SidebarAppBar = () => {
 											display: "flex",
 											alignItems: "center",
 											justifyContent: "center",
-											padding: 0.3,
+											padding: 2.5,
 										}}
 									/>
 								</Box>

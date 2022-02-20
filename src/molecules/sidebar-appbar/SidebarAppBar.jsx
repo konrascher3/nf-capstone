@@ -16,6 +16,9 @@ import useColorMode from "/src/ions/hooks/state/useColorMode";
 import logoDarkMode from "/src/ions/img/logos/complete-logo-dark-mode-optimized.svg";
 import logoLightMode from "/src/ions/img/logos/complete-logo-light-mode-optimized.svg";
 
+// Custom Impoor
+import ToggleThemeComponent from "/src/molecules/toggle-theme-component/ToggleThemeComponent";
+
 // Material-design-icons Imports
 import { mdiClose } from "@mdi/js";
 import { mdiWeatherNight } from "@mdi/js";
@@ -43,75 +46,10 @@ const SidebarAppBar = () => {
 							display: "flex",
 							justifyContent: "center",
 							alignItems: "center",
-							gap: 1.75,
+							gap: 1.5,
 						}}
 					>
-						<Switch
-							size="medium"
-							sx={{
-								width: 62,
-								".MuiSwitch-switchBase": {
-									"&.Mui-checked": {
-										transform: "translate(23px, 0px)",
-									},
-									"&& .MuiTouchRipple-child": {
-										backgroundColor: "blue",
-									},
-								},
-							}}
-							checked={colorMode}
-							checkedIcon={
-								<Box
-									sx={{
-										boxShadow: 1,
-										borderRadius: 100,
-										color: "hsl(225, 27%, 31%)",
-										backgroundColor: "hsl(326, 100%, 74%)",
-										display: "flex",
-										justifyContent: "center",
-										alignItems: "center",
-									}}
-								>
-									<Icon
-										path={mdiWeatherNight}
-										size={0.8}
-										style={{
-											display: "flex",
-											alignItems: "center",
-											justifyContent: "center",
-											padding: 2.5,
-										}}
-									/>
-								</Box>
-							}
-							icon={
-								<Box
-									sx={{
-										boxShadow: 1,
-										borderRadius: 100,
-										color: "hsl(225, 27%, 31%)",
-										backgroundColor: "hsl(60, 30%, 96%)",
-										display: "flex",
-										justifyContent: "center",
-										alignItems: "center",
-									}}
-								>
-									<Icon
-										path={mdiWhiteBalanceSunny}
-										size={0.8}
-										style={{
-											display: "flex",
-											alignItems: "center",
-											justifyContent: "center",
-											padding: 2.5,
-										}}
-									/>
-								</Box>
-							}
-							onChange={() => {
-								setColorMode(colorMode);
-							}}
-						/>
+						<ToggleThemeComponent />
 
 						<IconButton
 							color="inherit"

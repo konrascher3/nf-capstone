@@ -47,6 +47,7 @@ const SidebarAppBar = () => {
 						}}
 					>
 						<Switch
+							disableRipple
 							size="medium"
 							sx={{
 								width: 62,
@@ -78,7 +79,16 @@ const SidebarAppBar = () => {
 										alignItems: "center",
 									}}
 								>
-									<Icon path={mdiWeatherNight} size={0.8} />
+									<Icon
+										path={mdiWeatherNight}
+										size={0.8}
+										style={{
+											display: "flex",
+											alignItems: "center",
+											justifyContent: "center",
+											padding: 0.3,
+										}}
+									/>
 								</Box>
 							}
 							icon={
@@ -95,7 +105,16 @@ const SidebarAppBar = () => {
 										alignItems: "center",
 									}}
 								>
-									<Icon path={mdiWhiteBalanceSunny} size={0.8} />
+									<Icon
+										path={mdiWhiteBalanceSunny}
+										size={0.8}
+										style={{
+											display: "flex",
+											alignItems: "center",
+											justifyContent: "center",
+											padding: 0.3,
+										}}
+									/>
 								</Box>
 							}
 							onChange={() => {

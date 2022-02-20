@@ -6,7 +6,7 @@ import Switch from "@mui/material/Switch";
 
 // Material-design-icons Imports
 import Icon from "@mdi/react";
-import { mdiMoonWaxingCrescent, mdiWhiteBalanceSunny } from "@mdi/js";
+import { mdiMoonWaxingCrescent, mdiCheckboxBlankCircleOutline } from "@mdi/js";
 
 // useColorMode
 import useColorMode from "/src/ions/hooks/state/useColorMode";
@@ -66,7 +66,7 @@ const ToggleThemeComponent = () => {
 					}}
 				>
 					<Icon
-						path={mdiWhiteBalanceSunny}
+						path={mdiCheckboxBlankCircleOutline}
 						size={0.8}
 						style={{
 							display: "flex",

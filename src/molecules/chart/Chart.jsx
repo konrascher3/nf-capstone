@@ -25,11 +25,15 @@ import CustomChartPriceTick from "/src/atoms/custom-chart-price-tick/CustomChart
 import CustomChartTooltip from "/src/atoms/custom-chart-tooltip/CustomChartTooltip";
 import ToggleTimeframeComponent from "/src/molecules/toggle-timeframe-component/ToggleTimeframeComponent";
 
-import CompleteLogoChart from "/src/ions/img/chart/complete-logo-chart.svg";
+import CompleteLogoChartDarkTheme from "/src/ions/img/chart/complete-logo-chart-dark-theme.svg";
+import CompleteLogoChartLightTheme from "/src/ions/img/chart/complete-logo-chart-light-theme.svg";
 
 import useGet from "/src/ions/hooks/fetch/get";
+import useColorMode from "../../ions/hooks/state/useColorMode";
 
 const Chart = () => {
+	const colorMode = useColorMode(state => state.colorMode);
+
 	const router = useRouter();
 	const { slug } = router.query;
 	const timeFrame = useStore(state => state.timeFrame);
@@ -110,7 +114,11 @@ const Chart = () => {
 							</AreaChart>
 						</ResponsiveContainer>
 						<img
-							src={CompleteLogoChart.src}
+							src={
+								colorMode
+									? CompleteLogoChartDarkTheme.src
+									: CompleteLogoChartLightTheme.src
+							}
 							alt="Coin ghost logo"
 							style={{
 								height: 25,

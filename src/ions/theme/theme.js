@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
+export const darkMode = createTheme({
 	palette: {
 		mode: "dark",
 		common: {
@@ -103,4 +103,79 @@ const theme = createTheme({
 	},
 });
 
-export default theme;
+export const lightMode = createTheme({
+	palette: {
+		mode: "light",
+		common: {
+			black: "hsl(231, 15%, 18%)",
+			white: "hsl(60, 30%, 96%)",
+		},
+		primary: {
+			main: "hsl(60, 30%, 99%)",
+		},
+		secondary: {
+			main: "hsl(225, 27%, 21%)",
+		},
+		// error: {
+		// 	main: "hsl(0, 100%, 67%)",
+		// },
+		// success: {
+		// 	main: "hsl(135, 94%, 65%)",
+		// },
+		text: {
+			primary: "hsl(231, 15%, 18%)",
+		},
+		background: {
+			paper: "hsl(60, 30%, 99%)",
+			default: "hsl(60, 30%, 99%)",
+		},
+	},
+	typography: {
+		fontFamily: `"Roboto Condensed", Helvetica, Arial, sans-serif`,
+	},
+	components: {
+		MuiPaper: {
+			styleOverrides: {
+				root: {
+					"&.MuiPaper-root.MuiAccordion-root": {
+						background: "none",
+					},
+				},
+			},
+		},
+		MuiDataGrid: {
+			styleOverrides: {
+				root: {
+					width: "99%",
+					margin: "0 auto",
+					".MuiDataGrid-row:nth-of-type(even):not(:hover)": {
+						backgroundColor: "hsla(225, 27%, 79%, 20%)",
+					},
+					".MuiDataGrid-columnHeaders": {
+						border: "none",
+						borderTopLeftRadius: 4,
+						borderTopRightRadius: 4,
+					},
+					"&.MuiDataGrid-root": {
+						border: "1px solid hsla(225, 27%, 54%, 50%)",
+						borderRadius: 5,
+					},
+					".MuiDataGrid-columnSeparator": {
+						visibility: "hidden",
+					},
+					".MuiDataGrid-columnHeader": {
+						backgroundColor: "hsla(225, 27%, 79%, 40%)",
+					},
+					".MuiDataGrid-cell": {
+						position: "relative",
+						overflow: "visible",
+						border: "none",
+					},
+					".MuiDataGrid-cell:focus-within": {
+						outline: "none !important",
+					},
+				},
+			},
+		},
+	},
+});

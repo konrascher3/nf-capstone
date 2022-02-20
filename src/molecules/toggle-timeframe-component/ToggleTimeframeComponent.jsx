@@ -7,12 +7,14 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const ToggleTimeframeComponent = () => {
 	const loading = useStore(state => state.loading);
 
 	const setTimeFrame = useStore(state => state.setTimeFrame);
 	const setInterval = useStore(state => state.setInterval);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	const [alignment, setAlignment] = useState(1);
 
@@ -38,7 +40,7 @@ const ToggleTimeframeComponent = () => {
 		>
 			<ToggleButtonGroup
 				exclusive
-				color="primary"
+				color={colorMode ? "primary" : "secondary"}
 				value={alignment}
 				disabled={loading}
 				size="small"

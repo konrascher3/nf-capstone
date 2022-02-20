@@ -11,14 +11,17 @@ import Typography from "@mui/material/Typography";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 // Material Design Icons Imports
 import { mdiArrowDownRight, mdiArrowUpRight } from "@mdi/js";
 import Icon from "@mdi/react";
 
-import theme from "/src/ions/theme/theme";
+import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const DetailHeaderComponent = ({ id }) => {
+	const colorMode = useColorMode(state => state.colorMode);
+
 	const detailData = useStore(state => state.detailData);
 	const meta = useStore(state => state.meta);
 	const loggedIn = useStore(state => state.loggedIn);
@@ -196,8 +199,12 @@ const DetailHeaderComponent = ({ id }) => {
 									}}
 									color={
 										detailData.market_data.price_change_percentage_24h >= 0
-											? theme.palette.success.main
-											: theme.palette.error.main
+											? colorMode
+												? darkMode.palette.success.main
+												: lightMode.palette.success.main
+											: colorMode
+											? darkMode.palette.error.main
+											: lightMode.palette.error.main
 									}
 								>
 									{detailData.market_data.price_change_percentage_24h
@@ -218,14 +225,22 @@ const DetailHeaderComponent = ({ id }) => {
 												path={mdiArrowUpRight}
 												padding={0}
 												size={0.75}
-												color={theme.palette.success.main}
+												color={
+													colorMode
+														? darkMode.palette.success.main
+														: lightMode.palette.success.main
+												}
 											/>
 										) : (
 											<Icon
 												path={mdiArrowDownRight}
 												padding={0}
 												size={0.75}
-												color={theme.palette.error.main}
+												color={
+													colorMode
+														? darkMode.palette.error.main
+														: lightMode.palette.error.main
+												}
 											/>
 										)
 									) : (

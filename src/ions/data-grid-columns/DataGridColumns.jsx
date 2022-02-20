@@ -8,13 +8,14 @@ import { StyledRankColumn, StyledNameColumn } from "/src/ions/data-grid-columns/
 
 // Custom-components Imports
 import CustomCheckbox from "/src/atoms/custom-checkbox/CustomCheckbox";
-import useStore from "/src/ions/hooks/state/useStore";
 
 // MUI Imports
 import Typography from "@mui/material/Typography";
 
-import theme from "/src/ions/theme/theme";
+import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
+import { darkMode, lightMode } from "/src/ions/theme/theme";
 const variant = "body1";
 
 const DataGridColumns = [
@@ -99,12 +100,21 @@ const DataGridColumns = [
 		headerName: "24h",
 		flex: 1,
 		renderCell: ({ value }) => {
+			const colorMode = useColorMode(state => state.colorMode);
 			return value ? (
 				<div
 					style={
 						value > 0
-							? { color: theme.palette.success.main }
-							: { color: theme.palette.error.main }
+							? {
+									color: colorMode
+										? darkMode.palette.success.main
+										: lightMode.palette.success.main,
+							  }
+							: {
+									color: colorMode
+										? darkMode.palette.error.main
+										: lightMode.palette.error.main,
+							  }
 					}
 				>
 					<Typography variant={variant}>{`${parseFloat(value).toFixed(2)} %`}</Typography>

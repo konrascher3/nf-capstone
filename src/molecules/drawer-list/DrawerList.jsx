@@ -56,10 +56,6 @@ const DrawerList = () => {
 	const setLoggedIn = useStore(state => state.setLoggedIn);
 	const loggedIn = useStore(state => state.loggedIn);
 
-	useEffect(() => {
-		checkMobile();
-	});
-
 	// handleLogout
 	const handleLogout = () => {
 		Cookies.remove("coin-ghost-auth");
@@ -206,6 +202,7 @@ const DrawerList = () => {
 	};
 
 	const handleWalletClick = async () => {
+		checkMobile();
 		await initiateLogin();
 	};
 	return (

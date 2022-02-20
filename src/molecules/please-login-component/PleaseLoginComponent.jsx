@@ -6,9 +6,14 @@ import Typography from "@mui/material/Typography";
 
 // Custom-component Imports
 import GhostLogo from "/src/atoms/logo/ghost";
-import theme from "/src/ions/theme/theme";
+
+import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
+
+import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const PleaseLoginComponent = () => {
+	const colorMode = useColorMode(state => state.colorMode);
 	return (
 		<Box
 			sx={{
@@ -31,12 +36,20 @@ const PleaseLoginComponent = () => {
 					top: "25%",
 				}}
 			>
-				<GhostLogo size="60%" color={theme.palette.error.main} />
+				<GhostLogo
+					size="60%"
+					color={colorMode ? darkMode.palette.error.main : lightMode.palette.error.main}
+				/>
 				<Typography
 					variant="h4"
-					sx={{ textAlign: "center", color: theme.palette.error.main }}
+					sx={{
+						textAlign: "center",
+						color: colorMode
+							? darkMode.palette.error.main
+							: lightMode.palette.error.main,
+					}}
 				>
-					Please login to access your watchlist!
+					Please log in to access your watchlist!
 				</Typography>
 			</Box>
 		</Box>

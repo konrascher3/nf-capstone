@@ -5,16 +5,19 @@ import LoadingButton from "@mui/lab/LoadingButton";
 
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const LoadMoreButton = () => {
 	const loading = useStore(state => state.loading);
 	const coins = useStore(state => state.coins);
 	const pageSize = useStore(state => state.pageSize);
 	const setPageSize = useStore(state => state.setPageSize);
+	const colorMode = useColorMode(state => state.colorMode);
 
 	return (
 		<LoadingButton
 			loading={loading}
+			color={colorMode ? "primary" : "secondary"}
 			disabled={pageSize === 100 || pageSize >= coins?.length}
 			onClick={() => {
 				setPageSize(pageSize + 10);

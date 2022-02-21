@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 
 // MUI Import
 import { DataGrid } from "@mui/x-data-grid";
-
 // Custom-components Imports
 import DataGridColumns from "/src/ions/data-grid-columns/DataGridColumns";
 
@@ -53,6 +52,7 @@ const CoinsDataGrid = () => {
 					disableColumnMenu
 					hideFooter
 					autoHeight
+					selectionModel={loggedIn && Object.keys(meta).filter(k => meta[k])}
 					pageSize={pageSize}
 					rows={coins}
 					columns={DataGridColumns}

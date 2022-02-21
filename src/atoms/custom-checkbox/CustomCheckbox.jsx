@@ -43,6 +43,7 @@ const CustomCheckbox = ({ params }) => {
 						backgroundColor: meta[params.id] ? "#BD93F9" : "#BD93F966",
 						position: "absolute",
 						top: -0.5,
+						transition: "background-color .25s",
 					}}
 				/>
 			</div>

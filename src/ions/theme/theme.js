@@ -71,9 +71,7 @@ export const darkMode = createTheme({
 				root: {
 					width: "99%",
 					margin: "0 auto",
-					".MuiDataGrid-row:nth-of-type(even):not(:hover)": {
-						backgroundColor: "hsl(225, 27%, 44%)",
-					},
+
 					".MuiDataGrid-columnHeaders": {
 						border: "none",
 						borderTopLeftRadius: 4,
@@ -82,6 +80,26 @@ export const darkMode = createTheme({
 					"&.MuiDataGrid-root": {
 						border: "1px solid hsla(225, 27%, 54%, 50%)",
 						borderRadius: 5,
+					},
+					".MuiDataGrid-row.Mui-selected": {
+						backgroundColor: "hsla(265, 89%, 78%, 15%)",
+						transition: "background-color .25s",
+					},
+					".MuiDataGrid-row": {
+						backgroundColor: "inherit",
+						transition: "background-color .25s",
+					},
+					".MuiDataGrid-row:nth-of-type(even):not(:hover)": {
+						backgroundColor: "hsla(225, 27%, 44%)",
+						transition: "background-color .25s",
+					},
+					".MuiDataGrid-row.Mui-selected:hover": {
+						backgroundColor: "hsla(265, 89%, 78%, 20%) !important",
+						transition: "background-color .25s",
+					},
+					".MuiDataGrid-row.Mui-selected:nth-of-type(even)": {
+						backgroundColor: "hsla(265, 89%, 78%, 30%)",
+						transition: "background-color .25s",
 					},
 					".MuiDataGrid-columnSeparator": {
 						visibility: "hidden",
@@ -148,9 +166,6 @@ export const lightMode = createTheme({
 				root: {
 					width: "99%",
 					margin: "0 auto",
-					".MuiDataGrid-row:nth-of-type(even):not(:hover)": {
-						backgroundColor: "hsla(225, 27%, 79%, 20%)",
-					},
 					".MuiDataGrid-columnHeaders": {
 						border: "none",
 						borderTopLeftRadius: 4,
@@ -160,11 +175,31 @@ export const lightMode = createTheme({
 						border: "1px solid hsla(225, 27%, 54%, 50%)",
 						borderRadius: 5,
 					},
+					".MuiDataGrid-row.Mui-selected": {
+						backgroundColor: "hsla(265, 89%, 78%, 20%)",
+						transition: "background-color .25s",
+					},
+					".MuiDataGrid-row": {
+						backgroundColor: "inherit",
+						transition: "background-color .25s",
+					},
+					".MuiDataGrid-row:nth-of-type(even):not(:hover)": {
+						backgroundColor: "hsla(225, 27%, 79%, 20%)",
+						transition: "background-color .25s",
+					},
+					".MuiDataGrid-row.Mui-selected:hover": {
+						backgroundColor: "hsla(265, 89%, 78%, 30%) !important",
+						transition: "background-color .25s",
+					},
+					".MuiDataGrid-row.Mui-selected:nth-of-type(even)": {
+						backgroundColor: "hsla(265, 89%, 78%, 50%)",
+						transition: "background-color .25s",
+					},
 					".MuiDataGrid-columnSeparator": {
 						visibility: "hidden",
 					},
 					".MuiDataGrid-columnHeader": {
-						backgroundColor: "hsla(225, 27%, 79%, 40%)",
+						backgroundColor: "hsla(225, 27%, 59%, 40%)",
 					},
 					".MuiDataGrid-cell": {
 						position: "relative",

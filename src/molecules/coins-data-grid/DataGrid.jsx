@@ -52,7 +52,7 @@ const CoinsDataGrid = () => {
 					disableColumnMenu
 					hideFooter
 					autoHeight
-					selectionModel={Object.keys(meta).filter(k => meta[k])}
+					selectionModel={loggedIn && Object.keys(meta).filter(k => meta[k])}
 					pageSize={pageSize}
 					rows={coins}
 					columns={DataGridColumns}

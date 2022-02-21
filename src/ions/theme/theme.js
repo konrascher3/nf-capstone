@@ -56,16 +56,6 @@ export const darkMode = createTheme({
 				},
 			},
 		},
-		MuiAccordionDetails: {
-			styleOverrides: {
-				root: {
-					"&.MuiAccordionDetails-root": {
-						padding: 0,
-						paddingBottom: 30,
-					},
-				},
-			},
-		},
 		MuiDataGrid: {
 			styleOverrides: {
 				root: {

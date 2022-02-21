@@ -365,7 +365,7 @@ const DrawerList = () => {
 										{metamaskLoading ? (
 											<Box
 												sx={{
-													width: 44,
+													width: 45,
 													display: "flex",
 													alignItems: "center",
 													justifyContent: "center",

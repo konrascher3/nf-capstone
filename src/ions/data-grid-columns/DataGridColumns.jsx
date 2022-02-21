@@ -79,7 +79,10 @@ const DataGridColumns = [
 						>
 							<Typography
 								variant={variant}
-								sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
+								sx={{
+									textOverflow: "ellipsis",
+									overflow: "hidden",
+								}}
 							>
 								{params.value}
 							</Typography>

@@ -56,6 +56,8 @@ const DetailHeaderComponent = ({ id }) => {
 					sx={{
 						p: 1,
 						position: "relative",
+						backgroundColor: meta[id] ? "hsla(265, 89%, 78%, 15%)" : "",
+						transition: "background-color .25s",
 					}}
 				>
 					{/*Detai-header-checkbox-component*/}
@@ -94,6 +96,7 @@ const DetailHeaderComponent = ({ id }) => {
 												position: "absolute",
 												overflow: "hidden",
 												top: -0.5,
+												transition: "background-color .25s",
 											}}
 										/>
 									</div>

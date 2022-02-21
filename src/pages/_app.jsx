@@ -9,8 +9,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import { darkMode, lightMode } from "/src/ions/theme/theme";
 
-// import checkMobile from "/src/ions/utils/checkMobile";
-
 import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const globalStyles = (
@@ -23,7 +21,6 @@ const globalStyles = (
 const App = ({ Component, pageProps }) => {
 	const colorMode = useColorMode(state => state.colorMode);
 
-	console.log(colorMode);
 	return (
 		<ThemeProvider theme={colorMode ? darkMode : lightMode}>
 			{globalStyles}

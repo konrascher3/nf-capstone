@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 
 import Web3 from "web3";
@@ -23,6 +23,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { makeStyles } from "@mui/styles";
 import CardActionArea from "@mui/material/CardActionArea";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // Material-design-icons Imports
 import Icon from "@mdi/react";
@@ -35,7 +36,8 @@ import { mdiWallet } from "@mdi/js";
 // useStore
 import useStore from "/src/ions/hooks/state/useStore";
 import MetaMaskFox from "/src/ions/img/metamask/metamask-fox.svg";
-import checkMobile from "../../ions/utils/checkMobile";
+import useColorMode from "/src/ions/hooks/state/useColorMode";
+import checkMobile from "/src/ions/utils/checkMobile";
 
 const useStyles = makeStyles({
 	hideBorder: {
@@ -55,6 +57,10 @@ const DrawerList = () => {
 
 	const setLoggedIn = useStore(state => state.setLoggedIn);
 	const loggedIn = useStore(state => state.loggedIn);
+
+	const colorMode = useColorMode(state => state.colorMode);
+
+	const [metamaskLoading, setMetamaskLoading] = useState(false);
 
 	// handleLogout
 	const handleLogout = () => {
@@ -77,6 +83,7 @@ const DrawerList = () => {
 			})
 			.catch(error => {
 				console.error("Could not add new user:", error);
+				setMetamaskLoading(false);
 			});
 
 		// After user has been generated, add initial favorites to account
@@ -92,6 +99,7 @@ const DrawerList = () => {
 			})
 			.catch(error => {
 				console.error("Could not add initial favorites:", error);
+				setMetamaskLoading(false);
 			});
 		return initialFavorites;
 	};
@@ -107,6 +115,7 @@ const DrawerList = () => {
 			})
 			.catch(error => {
 				console.error(`Couldn't retrieve nonce for ${publicAddress}:`, error);
+				setMetamaskLoading(false);
 			});
 
 		// Sign nonce
@@ -118,7 +127,10 @@ const DrawerList = () => {
 
 				publicAddress,
 				(err, signature) => {
-					if (err) return reject(err);
+					if (err) {
+						setMetamaskLoading(false);
+						return reject(err);
+					}
 					const userSignature = signature;
 					return resolve({ publicAddress, userSignature });
 				}
@@ -150,11 +162,15 @@ const DrawerList = () => {
 				}
 			})
 			.catch(error => {
+				setMetamaskLoading(false);
 				console.error("Could not validate signature:", error);
 			});
+
+		setMetamaskLoading(false);
 	};
 
 	const initiateLogin = async () => {
+		setMetamaskLoading(true);
 		// Allow site to connect to MetaMask
 		if (window.ethereum && window.ethereum.isMetaMask) {
 			try {
@@ -327,8 +343,11 @@ const DrawerList = () => {
 						<ListItem
 							sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
 						>
-							<Card sx={{ width: "90%", display: "flex", borderRadius: 2 }}>
+							<Card
+								sx={{ width: "90%", height: 61, display: "flex", borderRadius: 2 }}
+							>
 								<CardActionArea
+									disabled={metamaskLoading}
 									onClick={() => {
 										handleWalletClick();
 									}}
@@ -343,13 +362,32 @@ const DrawerList = () => {
 											gap: 4.5,
 										}}
 									>
-										<Box sx={{ display: "flex" }}>
-											<img
-												src={MetaMaskFox.src}
-												alt="MetaMask logo"
-												style={{ width: 45 }}
-											/>
-										</Box>
+										{metamaskLoading ? (
+											<Box
+												sx={{
+													width: 44,
+													display: "flex",
+													alignItems: "center",
+													justifyContent: "center",
+												}}
+											>
+												{colorMode ? (
+													<CircularProgress />
+												) : (
+													<CircularProgress
+														sx={{ color: "hsl(225, 27%, 31%)" }}
+													/>
+												)}
+											</Box>
+										) : (
+											<Box sx={{ display: "flex" }}>
+												<img
+													src={MetaMaskFox.src}
+													alt="MetaMask logo"
+													style={{ width: 45 }}
+												/>
+											</Box>
+										)}
 										<Box
 											sx={{
 												display: "flex",

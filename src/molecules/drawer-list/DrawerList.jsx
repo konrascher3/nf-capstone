@@ -39,6 +39,9 @@ import MetaMaskFox from "/src/ions/img/metamask/metamask-fox.svg";
 import useColorMode from "/src/ions/hooks/state/useColorMode";
 import checkMobile from "/src/ions/utils/checkMobile";
 
+// notistack
+import { useSnackbar } from "notistack";
+
 const useStyles = makeStyles({
 	hideBorder: {
 		"&.MuiAccordion-root::before": {
@@ -62,12 +65,22 @@ const DrawerList = () => {
 
 	const [metamaskLoading, setMetamaskLoading] = useState(false);
 
+	const { enqueueSnackbar } = useSnackbar();
+
 	// handleLogout
 	const handleLogout = () => {
 		Cookies.remove("coin-ghost-auth");
 		setLoggedIn(false);
-		console.log("Logged out successfully!");
 		setOpen(false);
+		enqueueSnackbar(<Typography>Logged out successfully!</Typography>, {
+			autoHideDuration: 3000,
+			variant: "success",
+			sx: {
+				"& .SnackbarContent-root": {
+					backgroundColor: colorMode ? "hsl(135, 94%, 35%)" : "",
+				},
+			},
+		});
 	};
 
 	// Signup helper-function
@@ -157,9 +170,17 @@ const DrawerList = () => {
 				const authToken = Cookies.get("coin-ghost-auth");
 				if (authToken) {
 					setLoggedIn(true);
-					console.log("Logged in successfully!");
 					setOpen(false);
 				}
+				enqueueSnackbar(<Typography>Logged in successfully!</Typography>, {
+					autoHideDuration: 3000,
+					variant: "success",
+					sx: {
+						"& .SnackbarContent-root": {
+							backgroundColor: colorMode ? "hsl(135, 94%, 35%)" : "",
+						},
+					},
+				});
 			})
 			.catch(error => {
 				setMetamaskLoading(false);

@@ -12,7 +12,7 @@ import { mdiMoonWaxingCrescent, mdiCheckboxBlankCircleOutline } from "@mdi/js";
 import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 const ToggleThemeComponent = () => {
-	const setColorMode = useColorMode(state => state.setColorMode);
+	const toggleColorMode = useColorMode(state => state.toggleColorMode);
 	const colorMode = useColorMode(state => state.colorMode);
 	return (
 		<Switch
@@ -78,7 +78,7 @@ const ToggleThemeComponent = () => {
 				</Box>
 			}
 			onChange={() => {
-				setColorMode(colorMode);
+				toggleColorMode();
 			}}
 		/>
 	);

@@ -54,7 +54,7 @@ const Header = props => {
 		<header>
 			<Box sx={{ flexGrow: 1 }}>
 				{/* Empty toolbar to keep the content down */}
-				<Toolbar />
+				<Toolbar id="back-to-top-anchor" />
 				<HideOnScroll {...props}>
 					<AppBar elevation={1}>
 						<Toolbar

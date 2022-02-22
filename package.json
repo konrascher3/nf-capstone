@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "next build",
+    "spj": "npx sort-package-json@1.48 package.json",
     "build:dev": "npx cross-env@7 NODE_ENV=development next build",
     "cypress": "npx cypress@9 open",
     "cypress:run": "npx cypress@9 run",

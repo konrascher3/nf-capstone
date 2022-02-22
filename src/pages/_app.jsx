@@ -4,6 +4,8 @@ import { Global } from "@emotion/react";
 
 import { globalStyle, fonts } from "../ions/styles";
 
+import { SnackbarProvider } from "notistack";
+
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -23,9 +25,11 @@ const App = ({ Component, pageProps }) => {
 
 	return (
 		<ThemeProvider theme={colorMode ? darkMode : lightMode}>
-			{globalStyles}
-			<CssBaseline />
-			<Component {...pageProps} />
+			<SnackbarProvider maxSnack={3}>
+				{globalStyles}
+				<CssBaseline />
+				<Component {...pageProps} />
+			</SnackbarProvider>
 		</ThemeProvider>
 	);
 };

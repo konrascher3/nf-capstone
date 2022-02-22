@@ -31,6 +31,33 @@ export const darkMode = createTheme({
 		fontFamily: `"Roboto Condensed", Helvetica, Arial, sans-serif`,
 	},
 	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+				body: {
+					"&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+						backgroundColor: "hsl(225, 27%, 31%)",
+					},
+					"&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+						borderRadius: 8,
+						backgroundColor: "hsl(225, 27%, 41%)",
+						minHeight: 24,
+						border: "2px solid hsl(225, 27%, 31%)",
+					},
+					"&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+						backgroundColor: "hsl(225, 27%, 51%)",
+					},
+					"&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
+						backgroundColor: "hsl(225, 27%, 51%)",
+					},
+					"&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+						backgroundColor: "hsl(225, 27%, 51%)",
+					},
+					"&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+						backgroundColor: "hsl(225, 27%, 31%)",
+					},
+				},
+			},
+		},
 		MuiPaper: {
 			styleOverrides: {
 				root: {
@@ -142,6 +169,33 @@ export const lightMode = createTheme({
 		fontFamily: `"Roboto Condensed", Helvetica, Arial, sans-serif`,
 	},
 	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+				body: {
+					"&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+						backgroundColor: "hsla(225, 27%, 79%, 20%)",
+					},
+					"&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+						borderRadius: 8,
+						backgroundColor: "hsl(60, 30%, 99%)",
+						minHeight: 24,
+						border: "2px solid hsla(225, 27%, 79%, 90%)",
+					},
+					"&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+						backgroundColor: "hsla(225, 27%, 79%, 20%)",
+					},
+					"&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
+						backgroundColor: "hsla(225, 27%, 79%, 20%)",
+					},
+					"&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+						backgroundColor: "hsla(225, 27%, 79%, 20%)",
+					},
+					"&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+						backgroundColor: "hsl(60, 30%, 96%)",
+					},
+				},
+			},
+		},
 		MuiPaper: {
 			styleOverrides: {
 				root: {
@@ -173,12 +227,16 @@ export const lightMode = createTheme({
 						backgroundColor: "inherit",
 						transition: "background-color .25s",
 					},
+					".MuiDataGrid-row:hover": {
+						backgroundColor: "hsla(225, 27%, 69%, 40%)",
+						transition: "background-color .25s",
+					},
 					".MuiDataGrid-row:nth-of-type(even):not(:hover)": {
-						backgroundColor: "hsla(225, 27%, 79%, 20%)",
+						backgroundColor: "hsla(225, 27%, 79%, 30%)",
 						transition: "background-color .25s",
 					},
 					".MuiDataGrid-row.Mui-selected:hover": {
-						backgroundColor: "hsla(265, 89%, 78%, 30%) !important",
+						backgroundColor: "hsla(265, 89%, 78%, 40%) !important",
 						transition: "background-color .25s",
 					},
 					".MuiDataGrid-row.Mui-selected:nth-of-type(even)": {

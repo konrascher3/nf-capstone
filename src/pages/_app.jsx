@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Global } from "@emotion/react";
 
-import { globalStyle, fonts } from "../ions/styles";
+import { fonts } from "../ions/styles";
 
 import { SnackbarProvider } from "notistack";
 
@@ -17,18 +17,24 @@ import useColorMode from "/src/ions/hooks/state/useColorMode";
 // Custom Components Import
 import BackToTopButton from "/src/molecules/back-to-top-button/BackToTopButton";
 
-const globalStyles = (
-	<>
-		<Global styles={globalStyle} />
-		<Global styles={fonts} />
-	</>
-);
+const globalStyles = <Global styles={fonts} />;
 
 const App = ({ Component, pageProps }) => {
+	const [theme, setTheme] = useState(darkMode);
 	const colorMode = useColorMode(state => state.colorMode);
 
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setTheme(colorMode ? darkMode : lightMode);
+		}, 1);
+
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [colorMode]);
+
 	return (
-		<ThemeProvider theme={colorMode ? darkMode : lightMode}>
+		<ThemeProvider theme={theme}>
 			<SnackbarProvider maxSnack={3}>
 				{globalStyles}
 				<CssBaseline />

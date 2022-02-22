@@ -179,7 +179,7 @@ export const lightMode = createTheme({
 						borderRadius: 8,
 						backgroundColor: "hsl(60, 30%, 99%)",
 						minHeight: 24,
-						border: "2px solid hsla(225, 27%, 59%, 80%)",
+						border: "2px solid hsla(225, 27%, 79%, 90%)",
 					},
 					"&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
 						backgroundColor: "hsla(225, 27%, 79%, 20%)",
@@ -227,12 +227,16 @@ export const lightMode = createTheme({
 						backgroundColor: "inherit",
 						transition: "background-color .25s",
 					},
+					".MuiDataGrid-row:hover": {
+						backgroundColor: "hsla(225, 27%, 69%, 40%)",
+						transition: "background-color .25s",
+					},
 					".MuiDataGrid-row:nth-of-type(even):not(:hover)": {
-						backgroundColor: "hsla(225, 27%, 79%, 20%)",
+						backgroundColor: "hsla(225, 27%, 79%, 30%)",
 						transition: "background-color .25s",
 					},
 					".MuiDataGrid-row.Mui-selected:hover": {
-						backgroundColor: "hsla(265, 89%, 78%, 30%) !important",
+						backgroundColor: "hsla(265, 89%, 78%, 40%) !important",
 						transition: "background-color .25s",
 					},
 					".MuiDataGrid-row.Mui-selected:nth-of-type(even)": {

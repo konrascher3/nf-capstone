@@ -2,7 +2,6 @@
 // he is redirected to it by a deeplink
 
 const checkMobile = async () => {
-	console.log("Check if user is on a mobile device...");
 	const isMobileDevice = () => {
 		return "ontouchstart" in window || "onmsgesturechange" in window;
 	};

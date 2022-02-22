@@ -15,8 +15,6 @@ const handler = async (request, response) => {
 	}
 	const { userSignature, publicAddress } = request.body.data;
 
-	console.log(userSignature, publicAddress);
-
 	await dbConnect();
 
 	// Return error if no signature or publicAddress were passed

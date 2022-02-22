@@ -6,12 +6,16 @@ import { globalStyle, fonts } from "../ions/styles";
 
 import { SnackbarProvider } from "notistack";
 
-import { ThemeProvider } from "@mui/material/styles";
+// MUI Imports
 import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
 
+// Color-theme Imports
 import { darkMode, lightMode } from "/src/ions/theme/theme";
-
 import useColorMode from "/src/ions/hooks/state/useColorMode";
+
+// Custom Components Import
+import BackToTopButton from "/src/molecules/back-to-top-button/BackToTopButton";
 
 const globalStyles = (
 	<>
@@ -29,6 +33,7 @@ const App = ({ Component, pageProps }) => {
 				{globalStyles}
 				<CssBaseline />
 				<Component {...pageProps} />
+				<BackToTopButton />
 			</SnackbarProvider>
 		</ThemeProvider>
 	);

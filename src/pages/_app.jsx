@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useState, useEffect } from "react";
 
 import { Global } from "@emotion/react";
@@ -34,14 +35,22 @@ const App = ({ Component, pageProps }) => {
 	}, [colorMode]);
 
 	return (
-		<ThemeProvider theme={theme}>
-			<SnackbarProvider maxSnack={3}>
-				{globalStyles}
-				<CssBaseline />
-				<Component {...pageProps} />
-				<BackToTopButton />
-			</SnackbarProvider>
-		</ThemeProvider>
+		<>
+			<Head>
+				<title>coin ghost</title>
+				<link rel="manifest" href="/manifest.json" />
+				<link rel="apple-touch-icon" href="/icon.png" />
+				<meta name="theme-color" content="#fff" />
+			</Head>
+			<ThemeProvider theme={theme}>
+				<SnackbarProvider maxSnack={3}>
+					{globalStyles}
+					<CssBaseline />
+					<Component {...pageProps} />
+					<BackToTopButton />
+				</SnackbarProvider>
+			</ThemeProvider>
+		</>
 	);
 };
 

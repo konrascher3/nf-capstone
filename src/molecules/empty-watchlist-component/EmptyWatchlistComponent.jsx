@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 // Custom-components Imports
 import LottieTumbleweed from "/src/atoms/lottie-tumbleweed/LottieTumbleweed";
 
-import useStore from "/src/ions/hooks/state/useStore";
 import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 import { darkMode, lightMode } from "/src/ions/theme/theme";
@@ -20,7 +19,7 @@ const EmptyWatchlistComponent = () => {
 				variant="h4"
 				color={colorMode ? darkMode.palette.text.primary : lightMode.palette.text.primary}
 				sx={{ textAlign: "center", margin: "0 auto" }}
-				maxWidth={200}
+				maxWidth={400}
 			>
 				It looks kinda empty here...
 			</Typography>

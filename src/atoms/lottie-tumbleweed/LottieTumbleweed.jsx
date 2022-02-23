@@ -8,6 +8,10 @@ const LottieTumbleweed = () => {
 		animationData: animationData,
 		loop: true,
 		autoplay: true,
+		style: {
+			maxWidth: 400,
+			margin: "0 auto",
+		},
 	};
 
 	const { View } = useLottie(options);

@@ -38,9 +38,7 @@ const App = ({ Component, pageProps }) => {
 		<>
 			<Head>
 				<title>coin ghost</title>
-				<link rel="manifest" href="/manifest.json" />
-				<link rel="apple-touch-icon" href="/icon.png" />
-				<meta name="theme-color" content="#fff" />
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<ThemeProvider theme={theme}>
 				<SnackbarProvider maxSnack={3}>

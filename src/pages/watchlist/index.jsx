@@ -71,22 +71,32 @@ const Page = () => {
 		}
 	}, [meta]);
 
-	return (
-		<Layout>
-			<Head>
-				<title key="title">coin ghost</title>
-				<meta key="description" name="description" content="This is my project" />
-			</Head>
-			{error && <div>{error.message}</div>}
+	if (loggedIn) {
+		return (
+			<Layout>
+				<Head>
+					<title key="title">coin ghost</title>
+					<meta key="description" name="description" content="This is my project" />
+				</Head>
+				{error && <div>{error.message}</div>}
 
-			{/*Marquee component*/}
-			<Box sx={{ m: 0.75 }}>
-				<FastMarquee />
-			</Box>
+				{/*Marquee component*/}
+				<Box sx={{ m: 0.75 }}>
+					<FastMarquee />
+				</Box>
 
-			{loggedIn ? (
 				<div>
-					{!coins && <EmptyWatchlistComponent />}
+					{!coins && (
+						<Box
+							sx={{
+								maxWidth: 600,
+								alignSelf: "center",
+								justifyContent: "center",
+							}}
+						>
+							<EmptyWatchlistComponent />
+						</Box>
+					)}
 					{coins && (
 						<>
 							{/*Drawer component*/}
@@ -104,13 +114,28 @@ const Page = () => {
 						</>
 					)}
 				</div>
-			) : (
+			</Layout>
+		);
+	} else {
+		return (
+			<Layout>
+				<Head>
+					<title key="title">coin ghost</title>
+					<meta key="description" name="description" content="This is my project" />
+				</Head>
+				{error && <div>{error.message}</div>}
+
+				{/*Marquee component*/}
+				<Box sx={{ m: 0.75 }}>
+					<FastMarquee />
+				</Box>
+
 				<div>
 					<PleaseLoginComponent />
 				</div>
-			)}
-		</Layout>
-	);
+			</Layout>
+		);
+	}
 };
 
 export default Page;

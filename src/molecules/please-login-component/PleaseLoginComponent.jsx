@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 // Custom-component Imports
 import GhostLogo from "/src/atoms/logo/ghost";
 
-import useStore from "/src/ions/hooks/state/useStore";
 import useColorMode from "/src/ions/hooks/state/useColorMode";
 
 import { darkMode, lightMode } from "/src/ions/theme/theme";
@@ -32,8 +31,6 @@ const PleaseLoginComponent = () => {
 					justifyContent: "center",
 					flexDirection: "column",
 					gap: 5,
-					position: "absolute",
-					top: "25%",
 				}}
 			>
 				<GhostLogo

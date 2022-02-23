@@ -6,12 +6,18 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
+					{/*<link*/}
+					{/*	rel="apple-touch-startup-image"*/}
+					{/*	href="assets/apple-splash-2048-2732.jpg"*/}
+					{/*	media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"*/}
+					{/*/>*/}
+
+					<link rel="apple-touch-icon" href="assets/apple-icon-180.png" />
+					<meta name="apple-mobile-web-app-capable" content="yes" />
 					<link rel="manifest" href="/manifest.json" />
-					{/*<link rel="apple-touch-icon" href="/icon.png" />*/}
 					<meta name="theme-color" content="#3a4464" />
-					<link rel="manifest" href="/manifest.json" />
 					<meta charSet="utf-8" />
-					<meta name="description" content="Track your favorite coins" />
+					<meta name="description" content="Track your favorite coins with coin ghost" />
 					<meta name="application-name" content="coin ghost" />
 					<meta name="apple-mobile-web-app-capable" content="yes" />
 					<meta
@@ -23,7 +29,6 @@ class MyDocument extends Document {
 					<meta name="mobile-web-app-capable" content="yes" />
 					<meta name="robots" content="noindex,nofollow" />
 					<meta name="msapplication-tap-highlight" content="no" />
-					{/*<meta name="theme-color" content={theme.palette.primary.main} />*/}
 					{/*<link*/}
 					{/*	rel="apple-touch-icon"*/}
 					{/*	sizes="180x180"*/}

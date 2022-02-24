@@ -147,7 +147,7 @@ class MyDocument extends Document {
 					<meta name="description" content="Track your favorite coins with coin ghost" />
 					<meta name="application-name" content="coin ghost" />
 					<meta name="apple-mobile-web-app-capable" content="yes" />
-					<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+					<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 					<meta name="apple-mobile-web-app-title" content="coin ghost" />
 					<meta name="format-detection" content="telephone=no" />
 					<meta name="mobile-web-app-capable" content="yes" />

@@ -34,7 +34,7 @@ const ScrollTop = props => {
 		<Zoom in={trigger}>
 			<Box
 				role="presentation"
-				sx={{ position: "fixed", bottom: 40, right: 16 }}
+				sx={{ position: "fixed", bottom: 72, right: 16 }}
 				onClick={handleClick}
 			>
 				{children}

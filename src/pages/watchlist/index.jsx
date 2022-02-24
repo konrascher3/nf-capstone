@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 
 import Cookies from "js-cookie";
@@ -28,9 +28,15 @@ const Page = () => {
 	const loggedIn = useStore(state => state.loggedIn);
 	const setMeta = useStore(state => state.setMeta);
 
+	const [checkLogin, setCheckLogin] = useState(false);
+
 	const meta = useStore(state => state.meta);
 
 	const setLoading = useStore(state => state.setLoading);
+
+	useEffect(() => {
+		setCheckLogin(loggedIn);
+	}, [loggedIn]);
 
 	useEffect(() => {
 		// Get and set initial favorites from the server
@@ -71,22 +77,32 @@ const Page = () => {
 		}
 	}, [meta]);
 
-	return (
-		<Layout>
-			<Head>
-				<title key="title">coin ghost</title>
-				<meta key="description" name="description" content="This is my project" />
-			</Head>
-			{error && <div>{error.message}</div>}
+	if (checkLogin) {
+		return (
+			<Layout>
+				<Head>
+					<title key="title">coin ghost</title>
+					<meta key="description" name="description" content="This is my project" />
+				</Head>
+				{error && <div>{error.message}</div>}
 
-			{/*Marquee component*/}
-			<Box sx={{ m: 0.75 }}>
-				<FastMarquee />
-			</Box>
+				{/*Marquee component*/}
+				<Box sx={{ m: 0.75 }}>
+					<FastMarquee />
+				</Box>
 
-			{loggedIn ? (
 				<div>
-					{!coins && <EmptyWatchlistComponent />}
+					{!coins && (
+						<Box
+							sx={{
+								maxWidth: 600,
+								alignSelf: "center",
+								justifyContent: "center",
+							}}
+						>
+							<EmptyWatchlistComponent />
+						</Box>
+					)}
 					{coins && (
 						<>
 							{/*Drawer component*/}
@@ -104,13 +120,28 @@ const Page = () => {
 						</>
 					)}
 				</div>
-			) : (
+			</Layout>
+		);
+	} else if (!checkLogin) {
+		return (
+			<Layout>
+				<Head>
+					<title key="title">coin ghost</title>
+					<meta key="description" name="description" content="This is my project" />
+				</Head>
+				{error && <div>{error.message}</div>}
+
+				{/*Marquee component*/}
+				<Box sx={{ m: 0.75 }}>
+					<FastMarquee />
+				</Box>
+
 				<div>
 					<PleaseLoginComponent />
 				</div>
-			)}
-		</Layout>
-	);
+			</Layout>
+		);
+	}
 };
 
 export default Page;

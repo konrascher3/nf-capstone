@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // MUI Imports
 import Box from "@mui/material/Box";
@@ -13,6 +13,13 @@ import { darkMode, lightMode } from "/src/ions/theme/theme";
 
 const PleaseLoginComponent = () => {
 	const colorMode = useColorMode(state => state.colorMode);
+
+	const [colorTheme, setColorTheme] = useState(darkMode);
+
+	useEffect(() => {
+		setColorTheme(colorMode);
+	}, [colorMode]);
+
 	return (
 		<Box
 			sx={{
@@ -35,13 +42,13 @@ const PleaseLoginComponent = () => {
 			>
 				<GhostLogo
 					size="60%"
-					color={colorMode ? darkMode.palette.error.main : lightMode.palette.error.main}
+					color={colorTheme ? darkMode.palette.error.main : lightMode.palette.error.main}
 				/>
 				<Typography
 					variant="h4"
 					sx={{
 						textAlign: "center",
-						color: colorMode
+						color: colorTheme
 							? darkMode.palette.error.main
 							: lightMode.palette.error.main,
 					}}

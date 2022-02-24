@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 
 import Cookies from "js-cookie";
@@ -28,9 +28,15 @@ const Page = () => {
 	const loggedIn = useStore(state => state.loggedIn);
 	const setMeta = useStore(state => state.setMeta);
 
+	const [checkLogin, setCheckLogin] = useState(false);
+
 	const meta = useStore(state => state.meta);
 
 	const setLoading = useStore(state => state.setLoading);
+
+	useEffect(() => {
+		setCheckLogin(loggedIn);
+	}, [loggedIn]);
 
 	useEffect(() => {
 		// Get and set initial favorites from the server
@@ -71,7 +77,7 @@ const Page = () => {
 		}
 	}, [meta]);
 
-	if (loggedIn) {
+	if (checkLogin) {
 		return (
 			<Layout>
 				<Head>
@@ -116,7 +122,7 @@ const Page = () => {
 				</div>
 			</Layout>
 		);
-	} else {
+	} else if (!checkLogin) {
 		return (
 			<Layout>
 				<Head>

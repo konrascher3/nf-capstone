@@ -17,7 +17,6 @@ class MyDocument extends Document {
 					<meta name="mobile-web-app-capable" content="yes" />
 					<meta name="robots" content="noindex,nofollow" />
 					<meta name="msapplication-tap-highlight" content="no" />
-					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
 				<body>
 					<Main />

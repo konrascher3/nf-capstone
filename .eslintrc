@@ -27,7 +27,7 @@
       "beforeSelfClosing": "always",
       "afterOpening": "never",
       "beforeClosing": "allow"
-    }],
-    "react/no-invalid-html-attribute": 0
+    }]
+//    "react/no-invalid-html-attribute": 0
   }
 }

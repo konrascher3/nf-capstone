@@ -64,7 +64,7 @@ const Page = () => {
 						<Box
 							sx={{
 								m: 0.75,
-								mb: 2,
+								mb: 6,
 								display: "flex",
 								justifyContent: "center",
 							}}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // MUI Import
 import Typography from "@mui/material/Typography";
@@ -6,11 +6,17 @@ import Box from "@mui/material/Box";
 
 // Custom-components Imports
 import LottieTumbleweed from "/src/atoms/lottie-tumbleweed/LottieTumbleweed";
-import useColorMode from "/src/ions/hooks/state/useColorMode";
-import { darkMode, lightMode } from "/src/ions/theme/theme";
+import useColorMode from "../../ions/hooks/state/useColorMode";
+import { darkMode, lightMode } from "../../ions/theme/theme";
 
 const EmptyWatchlistComponent = () => {
+	const [colorTheme, setColorTheme] = useState(darkMode);
 	const colorMode = useColorMode(state => state.colorMode);
+
+	useEffect(() => {
+		setColorTheme(colorMode);
+	}, [colorMode]);
+
 	return (
 		<Box
 			sx={{
@@ -24,8 +30,12 @@ const EmptyWatchlistComponent = () => {
 			<LottieTumbleweed />
 			<Typography
 				variant="h4"
-				color={colorMode ? darkMode.palette.text.primary : lightMode.palette.text.primary}
-				sx={{ textAlign: "center" }}
+				sx={{
+					textAlign: "center",
+					color: colorTheme
+						? darkMode.palette.text.primary
+						: lightMode.palette.text.primary,
+				}}
 				maxWidth={400}
 			>
 				It looks kinda empty here...

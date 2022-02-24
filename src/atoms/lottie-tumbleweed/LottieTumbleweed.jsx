@@ -1,18 +1,12 @@
+import React from "react";
 // Lottie Import
-import { useLottie } from "lottie-react";
+import Lottie from "react-lottie-player";
+
 //// Tumbleweed Import
 import animationData from "/src/ions/lotties/tumbleweed-dark-theme.json";
 
 const LottieTumbleweed = () => {
-	const options = {
-		animationData: animationData,
-		loop: true,
-		autoplay: true,
-	};
-
-	const { View } = useLottie(options);
-
-	return View;
+	return <Lottie loop play animationData={animationData} style={{ maxWidth: 400 }} />;
 };
 
 export default LottieTumbleweed;

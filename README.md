@@ -17,7 +17,8 @@ You can visit the site at [coin-ghost.com](https://serientracker.herokuapp.com/)
 * Search coins
 * Detailed coin-overview
 * Watchlist
-* Registratioon / Login w. MetaMask
+* Progressive Web App
+* Registration / Login w. MetaMask
 
 ## `Tech Stack`
 - axios

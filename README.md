@@ -5,6 +5,7 @@
 
 ![coin-ghost-metamask-appscreens](https://user-images.githubusercontent.com/79465800/155755519-f2bfa30a-0c17-4d4d-8d99-6e1382a8915a.svg)
 
+<img align="right" src="https://user-images.githubusercontent.com/79465800/155758554-c34c5641-c11a-46bd-b7a8-909f8cab7799.gif" alt="coin ghost preview" width="250px"  style="margin-left:16px; margin-top:16px"/>
 
 ## `About`
 

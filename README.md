@@ -11,7 +11,7 @@
 Coin ghost allows you to screen prices of over 12,000 cryptocurrencies. You can get detailed information about each coin, track their price-movement over time, and add your favorite coins to a Watchlist. You can also stay up-to-date with the latest global crypto-news. Supports login with MetaMask.
 
 ### `Preview`
-You can visit the site at [coin-ghost.com](https://serientracker.herokuapp.com/)
+You can visit the site at [coin-ghost.com](https://coin-ghost.com/)
 
 ## `Features`
 * Explore coins

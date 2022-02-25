@@ -1,9 +1,8 @@
 # coin ghost
 
 > This is my capstone project for the web development bootcamp at [neueFische](https://www.neuefische.de/weiterbildung/web-development) 🦈
-<br/>
 
-![coin-ghost-metamask-appscreens](https://user-images.githubusercontent.com/79465800/155755519-f2bfa30a-0c17-4d4d-8d99-6e1382a8915a.svg)
+![coin-ghost-metamask-appscreens](https://user-images.githubusercontent.com/79465800/155764370-f45bc98f-3c35-457c-9ebe-335a99c8ae7e.png)
 
 <img align="right" src="https://user-images.githubusercontent.com/79465800/155761801-eb3c9008-8860-4c3c-8f8e-c8f81f14a2cb.gif" alt="coin ghost preview" width="250px" />
 

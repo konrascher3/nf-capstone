@@ -34,5 +34,3 @@ You can visit the site at [coin-ghost.com](https://serientracker.herokuapp.com/)
 - web3.js
 - zustand
 - Progressive Web App
-
-🚧 This part is currently under construction 🏗️
